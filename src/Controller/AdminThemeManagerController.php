@@ -64,7 +64,7 @@ class AdminThemeManagerController extends FrameworkBundleAdminController
         $imgs = [];
         if (in_array($extension, \Module::getInstanceByName('prettyblocks')->valid_types)) {
             // can upload
-            $new_name = \Tools::str2url(pathinfo($file['name'], PATHINFO_FILENAME));
+            $new_name = \Tools::str2url(pathinfo($file['name'], PATHINFO_FILENAME)) . time();
             $path = '$/modules/prettyblocks/views/images/';
             if (\Tools::getIsset('path')) {
                 $path = pSQL(\Tools::getValue('path'));
