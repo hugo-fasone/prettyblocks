@@ -1,8 +1,17 @@
 <script setup>
-import { ref, onMounted, defineComponent,onBeforeUnmount, computed, watchEffect, watch } from "vue";
+import {
+  ref,
+  onMounted,
+  defineComponent,
+  onBeforeUnmount,
+  computed,
+  watchEffect,
+  watch,
+} from "vue";
 import SortableList from "./SortableList.vue";
 import MenuGroup from "./MenuGroup.vue";
 import MenuItem from "./MenuItem.vue";
+import LeftPanelItem from "./LeftPanelItem.vue";
 import ButtonLight from "./ButtonLight.vue";
 import Button from "./Button.vue";
 import { HttpClient } from "../services/HttpClient";
@@ -11,7 +20,12 @@ import ZoneSelect from "./form/ZoneSelect.vue";
 /* Demo data */
 // import { v4 as uuidv4 } from 'uuid'
 import emitter from "tiny-emitter/instance";
-import { useStore, currentZone, contextShop, storedBlocks } from "../store/currentBlock";
+import {
+  useStore,
+  currentZone,
+  contextShop,
+  storedBlocks,
+} from "../store/currentBlock";
 import { trans } from "../scripts/trans";
 
 import { createToaster } from "@meforma/vue-toaster";
@@ -86,7 +100,7 @@ const initStates = async () => {
   HttpClient.get(ajax_urls.state, params)
     .then((data) => {
       groups.value = Object.entries(data.blocks).map(([key, value] = block) => {
-        return value.formatted;
+        return value;
       });
 
       piniaStored.$patch({
@@ -129,8 +143,8 @@ const state = ref({
 });
 
 /**
-  * Copy current zone
-  */
+ * Copy current zone
+ */
 const copyZone = async () => {
   let contextStore = contextShop();
   let context = await contextStore.getContext();
@@ -141,14 +155,16 @@ const copyZone = async () => {
     ctx_id_lang: context.id_lang,
     ctx_id_shop: context.id_shop,
   };
-  navigator.clipboard.writeText(JSON.stringify(params)).then(function() {
-    console.log('Copying to clipboard was successful!' );
-   
-  }, function(err) {
-    console.error('Could not copy text: ', err);
-  });
-  checkClipboardContent()
-}
+  navigator.clipboard.writeText(JSON.stringify(params)).then(
+    function () {
+      console.log("Copying to clipboard was successful!");
+    },
+    function (err) {
+      console.error("Could not copy text: ", err);
+    }
+  );
+  checkClipboardContent();
+};
 
 /**
  * Paste current zone
@@ -157,49 +173,55 @@ const pasteZone = async () => {
   let current_zone = currentZone().name;
   const clipboardData = await navigator.clipboard.readText();
   const data = JSON.parse(clipboardData);
-  if (data.hasOwnProperty('zone')) {
+  if (data.hasOwnProperty("zone")) {
     let params = {
       ...data,
       zone_name_to_paste: current_zone,
       ajax_token: security_app.ajax_token,
       ajax: true,
     };
-    HttpClient.post(ajax_urls.state, params).then((response) => {
-
-            if (response.success) {
-              toaster.show(response.message)
-              emitter.emit('reloadIframe')
-              // clear clipboard if zone is pasted
-             navigator.clipboard.writeText('').then(function() {
-                checkClipboardContent()
-              }, function(err) {
-                console.error('Could not empty clipboard: ', err);
-                checkClipboardContent()
-              });
+    HttpClient.post(ajax_urls.state, params)
+      .then((response) => {
+        if (response.success) {
+          toaster.show(response.message);
+          emitter.emit("reloadIframe");
+          // clear clipboard if zone is pasted
+          navigator.clipboard.writeText("").then(
+            function () {
+              checkClipboardContent();
+            },
+            function (err) {
+              console.error("Could not empty clipboard: ", err);
+              checkClipboardContent();
             }
+          );
+        }
       })
-      .catch(error => console.error(error));
-    }
-
-}
+      .catch((error) => console.error(error));
+  }
+};
 
 let showCopyZone = ref(false);
 const checkClipboardContent = async () => {
-    try {
-        const clipboardData = await navigator.clipboard.readText();
-        const data = JSON.parse(clipboardData);
-        showCopyZone.value = data.hasOwnProperty('zone');
-        window.blur();
-    } catch (error) {
-        showCopyZone.value = false;
-    }
+  try {
+    const clipboardData = await navigator.clipboard.readText();
+    const data = JSON.parse(clipboardData);
+    showCopyZone.value = data.hasOwnProperty("zone");
+    window.blur();
+  } catch (error) {
+    showCopyZone.value = false;
+  }
 };
 
 /**
  * Delete all blocks in current zone
  */
 const deleteAllBlocks = async () => {
-  if(confirm('Warning: This will delete all blocks in this zone. Are you sure?') == false) {
+  if (
+    confirm(
+      "Warning: This will delete all blocks in this zone. Are you sure?"
+    ) == false
+  ) {
     return;
   }
   let current_zone = currentZone().name;
@@ -213,17 +235,15 @@ const deleteAllBlocks = async () => {
     ctx_id_shop: context.id_shop,
     ajax: true,
   };
-  HttpClient.post(ajax_urls.state, params).then((response) => {
-
-          if (response.success) {
-            toaster.show(response.message)
-            emitter.emit('reloadIframe')
-          }
+  HttpClient.post(ajax_urls.state, params)
+    .then((response) => {
+      if (response.success) {
+        toaster.show(response.message);
+        emitter.emit("reloadIframe");
+      }
     })
-    .catch(error => console.error(error));
-}
-
-
+    .catch((error) => console.error(error));
+};
 </script>
 
 <template>
@@ -235,22 +255,38 @@ const deleteAllBlocks = async () => {
             <ZoneSelect v-model="state" />
           </div>
           <div class="pl-2 mt-[6px]" v-if="!showCopyZone">
-            <ButtonLight type="secondary" icon="TrashIcon" @click="deleteAllBlocks" size="6"/>
+            <ButtonLight
+              type="secondary"
+              icon="TrashIcon"
+              @click="deleteAllBlocks"
+              size="6"
+            />
           </div>
           <div class="mt-[6px]">
-            <ButtonLight type="secondary" icon="Square2StackIcon" @click="copyZone" size="6"/>
+            <ButtonLight
+              type="secondary"
+              icon="Square2StackIcon"
+              @click="copyZone"
+              size="6"
+            />
           </div>
           <div class="mt-[6px]" v-if="showCopyZone">
-            <ButtonLight type="secondary" icon="ArrowDownOnSquareStackIcon" @click="pasteZone" size="6"/>
+            <ButtonLight
+              type="secondary"
+              icon="ArrowDownOnSquareStackIcon"
+              @click="pasteZone"
+              size="6"
+            />
           </div>
         </div>
       </div>
-      
+
       <div class="overflow-y-auto flex-grow p-2 border-b border-gray-200">
         <!-- sortable component is used to sort by drag and drop -->
         <SortableList :items="groups" group="menu-group">
           <template v-slot="{ element }">
             <!-- group of element (collapsable) -->
+            <LeftPanelItem :element="element"></LeftPanelItem>
             <MenuGroup
               @changeState="loadStateConfig"
               @pushEmptyState="loadEmptyState(element)"
