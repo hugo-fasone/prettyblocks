@@ -270,7 +270,11 @@ class PrettyBlocksAjaxModuleFrontController extends ModuleFrontController
         exit(json_encode(['message' => $this->translator->trans('Block duplicate successfully!', [], 'Modules.Prettyblocks.Admin')]));
     }
 
-    // for pushing an empty element repeater
+
+    /**
+     * @deprecated since 3.1.0 use displayAjaxAddNewRepeatableItem instead
+     * @return void
+     */
     public function displayAjaxgetEmptyState()
     {
         $success = true;
@@ -307,6 +311,41 @@ class PrettyBlocksAjaxModuleFrontController extends ModuleFrontController
             exit(json_encode([
                 'success' => $success,
                 'to_push' => $state_to_push,
+            ]));
+        }
+    }
+
+    /**
+     * This function is used to add a new repeatable item to a block
+     * @return void
+     */
+    public function displayAjaxAddNewRepeatableItem()
+    {
+        $success = true;
+        $id_block = (int) Tools::getValue('id_prettyblocks');
+        $id_repeatable_field = (int) Tools::getValue('id_repeatable_field');
+        $id_lang = (int) Tools::getValue('ctx_id_lang');
+        $id_shop = (int) Tools::getValue('ctx_id_shop');
+        $block = new PrettyBlocksModel($id_block, $id_lang, $id_shop);
+
+        $repeaterField = $block->getFieldById($id_repeatable_field);
+
+        $newRepeaterItem = $repeaterField->getNewElementTemplate();
+
+        if (!$newRepeaterItem) {
+            $success = false;
+            $newRepeaterItem = [];
+            exit(json_encode([
+                'state_to_push' => $newRepeaterItem,
+                'success' => $success,
+            ]));
+        }
+        $encoded = json_encode($newRepeaterItem);
+        $repeaterField->state = $encoded;
+        if ($repeaterField->save()) {
+            exit(json_encode([
+                'success' => $success,
+                'to_push' => $newRepeaterItem,
             ]));
         }
     }

@@ -109,7 +109,7 @@ class PrettyBlocksModel extends ObjectModel
         $sql = '
             SELECT name
             FROM ' . _DB_PREFIX_ . 'configuration
-            WHERE name LIKE "' . pSQL($key1) . '" 
+            WHERE name LIKE "' . pSQL($key1) . '"
             OR name LIKE "' . pSQL($key2) . '"
             OR name LIKE "' . pSQL($key3) . '"
         ';
@@ -228,7 +228,11 @@ class PrettyBlocksModel extends ObjectModel
 
         $repeaterDefault = (isset($block['repeater']['groups'])) ? $block['repeater']['groups'] : [];
         $block['states_json'] = $states;
-        $block['config_json'] = json_decode($this->config, true);
+        if ($this->config) {
+            $block['config_json'] = json_decode($this->config, true);
+        } else {
+            $block['config_json'] = [];
+        }
         $block['state_to_push'] = $this->_formatDefautStateFromBlock($repeaterDefault);
         $block['instance_id'] = $this->instance_id;
         $block['id_prettyblocks'] = $this->id;
