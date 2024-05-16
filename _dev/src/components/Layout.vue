@@ -1,57 +1,60 @@
 <script setup>
-import Header from './Header.vue'
-import LeftPanel from './LeftPanel.vue'
-import Frame from './Frame.vue'
-import RightPanel from './RightPanel.vue'
-import { defineComponent, ref } from '@vue/runtime-core'
-import emitter from 'tiny-emitter/instance'
+import Header from "./Header.vue";
+import LeftPanel from "./LeftPanel.vue";
+import Frame from "./Frame.vue";
+import RightPanel from "./RightPanel.vue";
+import { defineComponent, ref } from "@vue/runtime-core";
+import emitter from "tiny-emitter/instance";
+import { usePageStore } from "../core-logic/store/pageStore";
 
 defineComponent({
   Header,
   LeftPanel,
   Frame,
-  RightPanel
-})
+  RightPanel,
+});
+
+usePageStore();
 
 // left panel
-let leftWidth = ref('w-80')
-let hidden_left = ref('sm:block')
+let leftWidth = ref("w-80");
+let hidden_left = ref("sm:block");
 
-emitter.on('hideLeftPanelSize', (value) => {
+emitter.on("hideLeftPanelSize", (value) => {
   if (value) {
-    hidden_left.value = ''
+    hidden_left.value = "";
   } else {
-    hidden_left.value = 'sm:block'
+    hidden_left.value = "sm:block";
   }
-})
+});
 
-emitter.on('changeLeftPanelSize', (value) => {
+emitter.on("changeLeftPanelSize", (value) => {
   if (value) {
-    leftWidth.value = 'w-5/12'
+    leftWidth.value = "w-5/12";
   } else {
-    leftWidth.value = 'w-80'
+    leftWidth.value = "w-80";
   }
-})
+});
 
 // right panel
-let rightWidth = ref('w-80')
-let hidden_right = ref('sm:block')
+let rightWidth = ref("w-80");
+let hidden_right = ref("sm:block");
 
-emitter.on('hideRightPanelSize', (value) => {
+emitter.on("hideRightPanelSize", (value) => {
   if (value) {
-    hidden_right.value = ''
+    hidden_right.value = "";
   } else {
-    hidden_right.value = 'sm:block'
+    hidden_right.value = "sm:block";
   }
-})
+});
 
-emitter.on('changeRightPanelSize', (value) => {
+emitter.on("changeRightPanelSize", (value) => {
   if (value) {
-    rightWidth.value = 'w-5/12'
+    rightWidth.value = "w-5/12";
   } else {
-    rightWidth.value = 'w-80'
+    rightWidth.value = "w-80";
   }
-})
+});
 </script>
 
 <template>

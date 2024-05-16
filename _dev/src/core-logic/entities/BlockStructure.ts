@@ -1,5 +1,6 @@
 import { ComponentStructure } from "./ComponentStructure";
 import { PrimitiveFieldStructure } from "./PrimitiveFieldStructure";
+import { PrimitiveFieldType } from "./ElementType";
 
 export type BlockStructure = {
   id: string;
@@ -7,4 +8,6 @@ export type BlockStructure = {
   fields: Record<string, BlockFieldStructure>;
 };
 
-type BlockFieldStructure = ComponentStructure | PrimitiveFieldStructure;
+type BlockFieldStructure =
+  | ComponentStructure
+  | PrimitiveFieldStructure<PrimitiveFieldType>;

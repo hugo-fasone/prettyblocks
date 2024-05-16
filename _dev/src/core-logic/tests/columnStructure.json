@@ -1,0 +1,67 @@
+{
+  "id": "columnBlock",
+  "label": "Colonnes",
+  "fields": {
+    "title": {
+      "id": "column-block-title",
+      "type": "text",
+      "label": "Column block title",
+      "default": {
+        "value": "Column title"
+      }
+    },
+    "banner": {
+      "id": "banner",
+      "type": "component",
+      "label": "Banner",
+      "fields": {
+        "image": {
+          "type": "text",
+          "label": "Image",
+          "default": {
+            "value": "BannerImage"
+          }
+        },
+        "intro": {
+          "type": "text",
+          "label": "Intro",
+          "default": {
+            "value": "Wonderful intro"
+          }
+        }
+      }
+
+    },
+    "columns": {
+      "id": "column",
+      "type": "component",
+      "label": "Columns",
+      "repeatable": true,
+      "fields": {
+        "title": {
+          "id": "column-title",
+          "type": "text",
+          "label": "Column title",
+          "default": {
+            "value": "Titre de colonne"
+          }
+        },
+        "cards": {
+          "id": "card",
+          "type": "component",
+          "label": "Cards",
+          "repeatable": true,
+          "fields": {
+            "card": {
+              "type": "text",
+              "label": "Card title",
+              "default": {
+                "value": "Titre de carte"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

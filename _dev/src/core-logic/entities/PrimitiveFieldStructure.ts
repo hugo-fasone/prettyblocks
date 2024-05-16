@@ -1,8 +1,9 @@
 import { PrimitiveFieldContentData } from "./PrimitiveFieldContent";
-import { PrimitiveFieldType } from "./PrimitiveFieldType";
+import { PrimitiveFieldType } from "./ElementType";
 
-export type PrimitiveFieldStructure = {
+export type PrimitiveFieldStructure<T extends PrimitiveFieldType> = {
   label: string;
-  type: PrimitiveFieldType;
+  type: T;
   default: PrimitiveFieldContentData;
+  repeatable?: boolean;
 };
