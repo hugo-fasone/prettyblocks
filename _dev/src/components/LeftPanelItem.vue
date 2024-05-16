@@ -40,7 +40,7 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, defineEmits } from "vue";
 import { useStore } from "../store/currentBlock";
 import ButtonLight from "./ButtonLight.vue";
 import Collapsable from "./Collapsable.vue";
@@ -50,6 +50,8 @@ import { trans } from "../scripts/trans";
 const props = defineProps({
   element: Object,
 });
+
+const emit = defineEmits(["pushEmptyState"]);
 
 const store = useStore();
 
@@ -78,7 +80,7 @@ function setSelectedElement(notFormattedId) {
 const addNewSubItem = () => {
   // ! Error handling, cannot add subitem because no repeater field found
   if (!repeatableField) return;
-  console.log(repeatableField.value);
+  emit("pushEmptyState", repeatableField.value);
 };
 </script>
 

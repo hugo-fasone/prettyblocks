@@ -126,6 +126,7 @@ const loadEmptyState = (e) => {
     ctx_id_shop: context.id_shop,
     ajax_token: security_app.ajax_token,
   };
+  console.log(ajax_urls.state);
   HttpClient.get(ajax_urls.state, params)
     .then((data) => {
       initStates();
@@ -286,7 +287,10 @@ const deleteAllBlocks = async () => {
         <SortableList :items="groups" group="menu-group">
           <template v-slot="{ element }">
             <!-- group of element (collapsable) -->
-            <LeftPanelItem :element="element"></LeftPanelItem>
+            <LeftPanelItem
+              @pushEmptyState="loadEmptyState(element)"
+              :element="element"
+            ></LeftPanelItem>
             <MenuGroup
               @changeState="loadStateConfig"
               @pushEmptyState="loadEmptyState(element)"

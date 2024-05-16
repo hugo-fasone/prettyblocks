@@ -17,7 +17,7 @@
           "default": "Column title"
         },
         "columns": {
-          "type": "bloc",
+          "type": "component",
           "label": "Columns",
           "fields": {
             "title": {
@@ -26,7 +26,7 @@
               "default": "Titre de colonne"
             },
             "cards": {
-              "type": "repeater",
+              "type": "component",
               "label": "Cartes",
               "fields": {
                 "card": {
