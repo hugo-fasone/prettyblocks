@@ -1,12 +1,16 @@
-import { ComponentStructure } from "./../entities/ComponentStructure";
+import {
+  PrimitiveFieldContent,
+  PrimitiveNumberType,
+  PrimitiveTextType,
+} from "../entities/PrimitiveFieldContent";
+
 import { BlockContent } from "../entities/BlockContent";
 import { BlockStructure } from "../entities/BlockStructure";
-import { COMPONENT_TYPE } from "./../entities/ElementType";
 import { ComponentContent } from "../entities/ComponentContent";
-import { ComponentStructure } from "../entities/ComponentStructure";
-import { PrimitiveFieldContent } from "../entities/PrimitiveFieldContent";
+import { ComponentStructure } from "./../entities/ComponentStructure";
 import { PrimitiveFieldStructure } from "../entities/PrimitiveFieldStructure";
 import { PrimitiveFieldType } from "../entities/ElementType";
+import { Repeater } from "../entities/Repeater";
 import { v4 as uuidv4 } from "uuid";
 
 export const buildNewBlockContentFromBlockStructure = (
@@ -27,20 +31,50 @@ export const buildNewBlockContentFromBlockStructure = (
   };
 };
 
-export const buildNewComponentFromStructure = (
+const buildNewRepeaterFromStructure = (
   componentStructure: ComponentStructure
-): ComponentContent => {
-  return {};
+): Repeater<ComponentContent> => {
+  return {
+    id: uuidv4(),
+    component_id: componentStructure.id,
+    type: "repeater",
+    label: componentStructure.label,
+    sub_elements: [],
+  };
 };
 
-const buildNewRepeatableComponentFromStructure = (
+const buildNewSingleComponentFromStructure = (
   componentStructure: ComponentStructure
 ): ComponentContent => {
-  return {};
+  return {
+    id: uuidv4(),
+    component_id: componentStructure.id,
+    type: componentStructure.type,
+    label: componentStructure.label,
+    fields: Object.values(componentStructure.fields).map((field) => {
+      if (field.type === "component") {
+        return buildNewComponentFromStructure(field);
+      }
+      return buildNewPrimitiveFieldFromStructure(field);
+    }),
+  };
+};
+
+export const buildNewComponentFromStructure = (
+  componentStructure: ComponentStructure
+): ComponentContent | Repeater<ComponentContent> => {
+  return componentStructure.repeatable
+    ? buildNewRepeaterFromStructure(componentStructure)
+    : buildNewSingleComponentFromStructure(componentStructure);
 };
 
 export const buildNewPrimitiveFieldFromStructure = (
   primitiveFieldStructure: PrimitiveFieldStructure<PrimitiveFieldType>
 ): PrimitiveFieldContent<PrimitiveFieldType> => {
-  return {};
+  return {
+    id: uuidv4(),
+    type: primitiveFieldStructure.type,
+    label: primitiveFieldStructure.label,
+    content: primitiveFieldStructure.default,
+  };
 };

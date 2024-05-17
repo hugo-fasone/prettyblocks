@@ -5,8 +5,9 @@ import { Repeater } from "./Repeater";
 
 export type ComponentContent = {
   id: string;
+  component_id: string;
   type: COMPONENT_TYPE;
-  repeatable?: boolean;
+  label: string;
   fields: (
     | ComponentContent
     | PrimitiveFieldContent<PrimitiveFieldType>

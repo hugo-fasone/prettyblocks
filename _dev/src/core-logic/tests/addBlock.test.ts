@@ -37,11 +37,4 @@ describe("Add new block", () => {
     expect(columnBlock.block_id).toBe("columnBlock");
     expect(columnBlock.id).toBeDefined();
   });
-
-  it("Fills fields with right components", () => {
-    const zoneStore = useZoneStore();
-    expect(zoneStore.content.length).toBe(0);
-    zoneStore.addBlock("columnBlock");
-    const columnBlock = zoneStore.content[0];
-  });
 });
