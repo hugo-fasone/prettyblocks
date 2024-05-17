@@ -20,6 +20,7 @@ describe("Add new block", () => {
     expect(zoneStore.content.length).toBe(0);
     zoneStore.addBlock("undefinedBlock");
     expect(zoneStore.content.length).toBe(0);
+    // TODO expect error to be thrown
   });
 
   it("Adds a new block to zone", () => {
@@ -36,5 +37,9 @@ describe("Add new block", () => {
     const columnBlock = zoneStore.content[0];
     expect(columnBlock.block_id).toBe("columnBlock");
     expect(columnBlock.id).toBeDefined();
+  });
+
+  it("Adds a new block after existing blocks", () => {
+    // TODO
   });
 });
