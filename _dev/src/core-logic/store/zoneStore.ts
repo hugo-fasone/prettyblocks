@@ -1,6 +1,9 @@
+import { BlockStructure } from "./../entities/BlockStructure";
 import { ZoneState } from "../entities/PageState";
 import { addBlock } from "../usecases/addBlock";
+import { addComponent } from "../usecases/addComponent";
 import { defineStore } from "pinia";
+import { deleteBlock } from "../usecases/deleteBlock";
 import { moveBlock } from "../usecases/moveBlock";
 
 export const useZoneStore = defineStore("zone", {
@@ -10,6 +13,15 @@ export const useZoneStore = defineStore("zone", {
       content: [],
     };
   },
+  getters: {
+    getBlockStructure: (state) => {
+      return (blockId: string) => {
+        return state.availableBlocks.find(
+          (block: BlockStructure) => block.id === blockId
+        );
+      };
+    },
+  },
   actions: {
     addBlock(blockId: string) {
       addBlock(this, blockId);
@@ -17,8 +29,12 @@ export const useZoneStore = defineStore("zone", {
     moveBlock(blockIndex: number, newIndex: number) {
       moveBlock(this, blockIndex, newIndex);
     },
-    increment() {
-      this.count++;
+    deleteBlock(blockIndex: number) {
+      deleteBlock(this, blockIndex);
+    },
+    addComponent(blockIndex: number, componentId: string) {
+      console.debug("Hello");
+      addComponent(this, blockIndex, componentId);
     },
   },
 });

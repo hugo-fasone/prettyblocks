@@ -1,13 +1,8 @@
-import {
-  PrimitiveFieldContent,
-  PrimitiveNumberType,
-  PrimitiveTextType,
-} from "../entities/PrimitiveFieldContent";
-
 import { BlockContent } from "../entities/BlockContent";
 import { BlockStructure } from "../entities/BlockStructure";
 import { ComponentContent } from "../entities/ComponentContent";
 import { ComponentStructure } from "./../entities/ComponentStructure";
+import { PrimitiveFieldContent } from "../entities/PrimitiveFieldContent";
 import { PrimitiveFieldStructure } from "../entities/PrimitiveFieldStructure";
 import { PrimitiveFieldType } from "../entities/ElementType";
 import { Repeater } from "../entities/Repeater";
@@ -43,7 +38,7 @@ const buildNewRepeaterFromStructure = (
   };
 };
 
-const buildNewSingleComponentFromStructure = (
+export const buildNewSingleComponentFromStructure = (
   componentStructure: ComponentStructure
 ): ComponentContent => {
   return {

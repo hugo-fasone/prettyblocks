@@ -10,6 +10,6 @@ export type ComponentStructure = {
   repeatable?: boolean;
 };
 
-type ComponentFieldStructure =
+export type ComponentFieldStructure =
   | ComponentStructure
   | PrimitiveFieldStructure<PrimitiveFieldType>;
