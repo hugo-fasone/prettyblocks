@@ -6,9 +6,16 @@ import { useZoneStore } from "../store/zoneStore";
 
 describe("Add new block", () => {
   beforeEach(() => {
+    const emptyBlock: BlockStructure = {
+      id: "emptyBlock",
+      label: "Empty Block",
+      fields: {},
+    };
     const pinia = createTestingPinia({
       initialState: {
-        zone: { availableBlocks: [columnStructure as BlockStructure] },
+        zone: {
+          availableBlocks: [columnStructure as BlockStructure, emptyBlock],
+        },
       },
       stubActions: false,
     });
@@ -40,6 +47,10 @@ describe("Add new block", () => {
   });
 
   it("Adds a new block after existing blocks", () => {
-    // TODO
+    const zoneStore = useZoneStore();
+    zoneStore.addBlock("emptyBlock");
+    zoneStore.addBlock("columnBlock");
+    expect(zoneStore.content.length).toBe(2);
+    expect(zoneStore.content[1].block_id).toBe("columnBlock");
   });
 });
