@@ -1,11 +1,17 @@
+import { findComponentById, findComponentStructure } from "../utils/finder";
+
 import { BlockContent } from "../entities/BlockContent";
+import { BlockStructure } from "../entities/BlockStructure";
+import columnStructure from "./columnStructure.json";
 import filledColumnContent from "./filledColumnContentWithId.json";
-import { findComponentById } from "../utils/finder";
 
 describe("Component finder", () => {
   let blockContent: BlockContent;
+  let blockStructure: BlockStructure;
+
   beforeAll(() => {
     blockContent = filledColumnContent as BlockContent;
+    blockStructure = columnStructure as BlockStructure;
   });
 
   it("finds block id", () => {
@@ -42,5 +48,15 @@ describe("Component finder", () => {
   it("gives right repeater id as parent for nested component search", () => {
     const component = findComponentById(blockContent, "field_2_1_1_0_0");
     expect(component.parent.id).toEqual("field_2_1_1_0");
+  });
+
+  it("finds a 1st level component structure", () => {
+    const componentStructure = findComponentStructure(blockStructure, "banner");
+    expect(componentStructure.label).toEqual("Banner");
+  });
+
+  it("finds a repeated nested component structure", () => {
+    const componentStructure = findComponentStructure(blockStructure, "card");
+    expect(componentStructure.label).toEqual("Cards");
   });
 });

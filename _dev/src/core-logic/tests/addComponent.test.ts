@@ -10,11 +10,11 @@ import { useZoneStore } from "../store/zoneStore";
 
 describe("Add Component", () => {
   const newColumnBlock: BlockContent = {
-    id: "some_random_id",
+    id: "block_id",
     block_id: "columnBlock",
     fields: [
       {
-        id: "some_random_id",
+        id: "title",
         type: "text" as PrimitiveFieldType.TEXT,
         label: "Column block title",
         content: {
@@ -22,13 +22,13 @@ describe("Add Component", () => {
         },
       },
       {
-        id: "some_random_id",
+        id: "banner",
         component_id: "banner",
         type: "component",
         label: "Banner",
         fields: [
           {
-            id: "some_random_id",
+            id: "banner_image",
             type: "text" as PrimitiveFieldType.TEXT,
             label: "Image",
             content: {
@@ -36,7 +36,7 @@ describe("Add Component", () => {
             },
           },
           {
-            id: "some_random_id",
+            id: "banner_intro",
             type: "text" as PrimitiveFieldType.TEXT,
             label: "Intro",
             content: {
@@ -46,7 +46,7 @@ describe("Add Component", () => {
         ],
       },
       {
-        id: "columnComponentId",
+        id: "column",
         component_id: "column",
         type: "repeater",
         label: "Columns",
@@ -73,7 +73,20 @@ describe("Add Component", () => {
       (zoneStore.content[0].fields[2] as Repeater<ComponentContent>)
         .sub_elements
     ).toHaveLength(0);
-    zoneStore.addComponent(0, "undefinedId");
+    zoneStore.addComponent("block_id", "column", "undefinedId");
+    expect(
+      (zoneStore.content[0].fields[2] as Repeater<ComponentContent>)
+        .sub_elements
+    ).toHaveLength(0);
+  });
+
+  it("does not change state if root does not exist", () => {
+    const zoneStore = useZoneStore();
+    expect(
+      (zoneStore.content[0].fields[2] as Repeater<ComponentContent>)
+        .sub_elements
+    ).toHaveLength(0);
+    zoneStore.addComponent("block_id", "undefinedRoot", "card");
     expect(
       (zoneStore.content[0].fields[2] as Repeater<ComponentContent>)
         .sub_elements
@@ -82,16 +95,17 @@ describe("Add Component", () => {
 
   it("adds a new component at indicated place", () => {
     const zoneStore = useZoneStore();
-    zoneStore.addComponent(0, "column");
+    zoneStore.addComponent("block_id", "column", "column");
     expect(
       (zoneStore.content[0].fields[2] as Repeater<ComponentContent>)
         .sub_elements
     ).toHaveLength(1);
+    // expect(1).toEqual(1);
   });
 
-  it("adds component fields to new component", () => {});
+  // it("adds component after existing components", () => {});
 
-  it("adds component after existing components", () => {});
+  // it("adds sub-components", () => {});
 
-  it("adds sub-components", () => {});
+  // it("adds recursively nested components", () => {});
 });

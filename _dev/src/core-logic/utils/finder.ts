@@ -1,6 +1,11 @@
 import { ComponentContent, FieldContent } from "../entities/ComponentContent";
+import {
+  ComponentFieldStructure,
+  ComponentStructure,
+} from "../entities/ComponentStructure";
 
 import { BlockContent } from "../entities/BlockContent";
+import { BlockStructure } from "../entities/BlockStructure";
 import { Repeater } from "../entities/Repeater";
 
 export type SearchComponentResult = {
@@ -44,5 +49,16 @@ const findComponentByIdInRepeater = (
     // Else check recursively
     const foundElement = findComponentById(field, id);
     if (foundElement) return foundElement;
+  }
+};
+
+export const findComponentStructure = (
+  structure: BlockStructure | ComponentStructure,
+  componentId: string
+): ComponentStructure => {
+  for (const field of Object.values(structure.fields)) {
+    if (field.type !== "component") continue;
+    if (field.id === componentId) return field;
+    if (field.repeatable) return findComponentStructure(field, componentId);
   }
 };

@@ -32,9 +32,8 @@ export const useZoneStore = defineStore("zone", {
     deleteBlock(blockIndex: number) {
       deleteBlock(this, blockIndex);
     },
-    addComponent(blockIndex: number, componentId: string) {
-      console.debug("Hello");
-      addComponent(this, blockIndex, componentId);
+    addComponent(blockId: string, root: string, componentId: string) {
+      addComponent(this, blockId, root, componentId);
     },
   },
 });
