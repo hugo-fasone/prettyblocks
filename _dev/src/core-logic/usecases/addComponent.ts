@@ -4,7 +4,7 @@ import {
 } from "../entities/ComponentStructure";
 
 import { BlockContent } from "../entities/BlockContent";
-import { BlockStructure } from "./../entities/BlockStructure";
+import { BlockStructure } from "../entities/BlockStructure";
 import { ComponentContent } from "../entities/ComponentContent";
 import { Repeater } from "../entities/Repeater";
 import { buildNewSingleComponentFromStructure } from "../utils/builder";

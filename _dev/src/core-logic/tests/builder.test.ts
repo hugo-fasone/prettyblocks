@@ -16,7 +16,7 @@ import columnBlockContent from "./newColumnContent.json";
 import columnBlockStructure from "./columnStructure.json";
 
 /* 
-  Add a test here everytime you create a new builder or improve an existing one.
+  Add a test here every time you create a new builder or improve an existing one.
 */
 
 describe("Block, component and Primitive content builder", () => {

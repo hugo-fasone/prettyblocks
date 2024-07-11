@@ -1,0 +1,156 @@
+{
+  "id": "block_id",
+  "block_id": "columnBlock",
+  "fields": [
+    {
+      "id": "field_0",
+      "type": "text",
+      "label": "Column block title",
+      "content": {
+        "value": "Column title"
+      }
+    },
+    {
+      "id": "field_1",
+      "component_id": "banner",
+      "type": "component",
+      "label": "Banner",
+      "fields": [
+        {
+          "id": "field_1_0",
+          "type": "text",
+          "label": "Image",
+          "content": {
+            "value": "BannerImage"
+          }
+        },
+        {
+          "id":"field_1_1",
+          "type":"text",
+          "label": "Intro",
+          "content": {
+            "value": "Wonderful intro"
+          }
+        }
+      ]
+    },
+    {
+      "id": "field_2",
+      "sub_element_id": "column",
+      "type": "repeater",
+      "label": "Columns",
+      "sub_elements": [
+        {
+          "id": "field_2_0",
+          "component_id": "column",
+          "type": "component",
+          "label": "Columns-1",
+          "fields": [
+            {
+              "id": "field_2_0_0",
+              "type":"text",
+              "label": "Column title",
+              "content": {
+                "value": "Titre de colonne"
+              }
+            },
+            {
+              "id": "field_2_0_1",
+              "type": "repeater",
+              "label": "Cards",
+              "sub_elements": [
+                {
+                  "id":"field_2_0_1_0",
+                  "component_id": "card",
+                  "type": "component",
+                  "label": "Cards-1",
+                  "fields": [
+                    {
+                      "id":"field_2_0_1_0_0",
+                      "type": "text",
+                      "label": "Card title",
+                      "content": {
+                        "value": "Titre de carte"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id":"field_2_0_1_1",
+                  "component_id": "card",
+                  "type": "component",
+                  "label": "Cards-2",
+                  "fields": [
+                    {
+                      "id":"field_2_0_1_1_0",
+                      "type": "text",
+                      "label": "Card title",
+                      "content": {
+                        "value": "Titre de carte"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "field_2_1",
+          "component_id": "column",
+          "type": "component",
+          "label": "Columns-2",
+          "fields": [
+            {
+              "id": "field_2_1_0",
+              "type":"text",
+              "label": "Column title",
+              "content": {
+                "value": "Titre de colonne"
+              }
+            },
+            {
+              "id": "field_2_1_1",
+              "type": "repeater",
+              "label": "Cards",
+              "sub_elements": [
+                {
+                  "id":"field_2_1_1_0",
+                  "component_id": "card",
+                  "type": "component",
+                  "label": "Cards-1",
+                  "fields": [
+                    {
+                      "id":"field_2_1_1_0_0",
+                      "type": "text",
+                      "label": "Card title",
+                      "content": {
+                        "value": "Titre de carte"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id":"field_2_1_1_1",
+                  "component_id": "card",
+                  "type": "component",
+                  "label": "Cards-2",
+                  "fields": [
+                    {
+                      "id":"field_2_1_1_1_0",
+                      "type": "text",
+                      "label": "Card title",
+                      "content": {
+                        "value": "Titre de carte"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
