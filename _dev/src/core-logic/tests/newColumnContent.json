@@ -15,11 +15,13 @@
       "component_id": "banner",
       "type": "component",
       "label": "Banner",
+      "optional": true,
       "fields": [
         {
           "id": "some_random_id",
           "type": "text",
           "label": "Image",
+          "optional": true,
           "content": {
             "value": "BannerImage"
           }

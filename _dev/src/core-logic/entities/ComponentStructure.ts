@@ -8,6 +8,7 @@ export type ComponentStructure = {
   label: string;
   fields: Record<string, ComponentFieldStructure>;
   repeatable?: boolean;
+  optional?: boolean;
 };
 
 export type ComponentFieldStructure =

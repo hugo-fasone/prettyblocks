@@ -6,7 +6,7 @@ export const moveBlock = (zoneStore, blockId: string, newIndex: number) => {
     (block: BlockContent) => block.id === blockId
   );
   if (blockIndex < 0) {
-    throw CannotFindComponentError(blockId, "zone");
+    throw CannotFindComponentError(blockId);
   }
   const movedBlock = zoneStore.content[blockIndex];
   const newArray = zoneStore.content.toSpliced(blockIndex, 1);

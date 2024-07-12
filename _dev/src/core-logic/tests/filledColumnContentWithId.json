@@ -20,6 +20,7 @@
           "id": "field_1_0",
           "type": "text",
           "label": "Image",
+          "optional": true,
           "content": {
             "value": "BannerImage"
           }

@@ -3,7 +3,7 @@ export interface CannotFindComponentError extends Error {
 }
 export function CannotFindComponentError(
   componentId: string,
-  contentId: string
+  contentId = "zone"
 ) {
   const error = new Error(
     `Cannot find component ${componentId} inside ${contentId}`

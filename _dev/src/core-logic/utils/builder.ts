@@ -46,6 +46,7 @@ export const buildNewSingleComponentFromStructure = (
     component_id: componentStructure.id,
     type: componentStructure.type,
     label: componentStructure.label,
+    optional: componentStructure.optional,
     fields: Object.values(componentStructure.fields).map((field) => {
       if (field.type === "component") {
         return buildNewComponentFromStructure(field);
@@ -71,5 +72,6 @@ export const buildNewPrimitiveFieldFromStructure = (
     type: primitiveFieldStructure.type,
     label: primitiveFieldStructure.label,
     content: primitiveFieldStructure.default,
+    optional: primitiveFieldStructure.optional,
   };
 };

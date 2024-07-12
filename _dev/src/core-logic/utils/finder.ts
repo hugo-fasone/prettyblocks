@@ -14,6 +14,16 @@ export type SearchComponentResult = {
 };
 
 export const findComponentById = (
+  content: BlockContent[],
+  componentId: string
+) => {
+  for (const block of content) {
+    const foundComponent = findComponentByIdInBlock(block, componentId);
+    if (foundComponent) return foundComponent;
+  }
+};
+
+export const findComponentByIdInBlock = (
   tree: BlockContent | ComponentContent,
   id: string
 ): SearchComponentResult => {
@@ -47,7 +57,7 @@ const findComponentByIdInRepeater = (
     // Check if subfield matches
     if (field.id === id) return { node: field, parent: repeater };
     // Else check recursively
-    const foundElement = findComponentById(field, id);
+    const foundElement = findComponentByIdInBlock(field, id);
     if (foundElement) return foundElement;
   }
 };

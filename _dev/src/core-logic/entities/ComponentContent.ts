@@ -13,5 +13,6 @@ export type ComponentContent = {
   component_id: string;
   type: COMPONENT_TYPE;
   label: string;
+  optional?: boolean;
   fields: FieldContent[];
 };

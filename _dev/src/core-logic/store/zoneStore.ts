@@ -4,6 +4,7 @@ import { addBlock } from "../usecases/addBlock";
 import { addComponent } from "../usecases/addComponent";
 import { defineStore } from "pinia";
 import { deleteBlockById } from "../usecases/deleteBlock";
+import { deleteComponentById } from "../usecases/deleteComponent";
 import { moveBlock } from "../usecases/moveBlock";
 
 export const useZoneStore = defineStore("zone", {
@@ -34,6 +35,9 @@ export const useZoneStore = defineStore("zone", {
     },
     addComponent(blockId: string, root: string, componentId: string) {
       addComponent(this, blockId, root, componentId);
+    },
+    deleteComponentById(componentId: string) {
+      deleteComponentById(this, componentId);
     },
   },
 });

@@ -1,5 +1,8 @@
 import { ComponentContent, FieldContent } from "../entities/ComponentContent";
-import { findComponentById, findComponentStructure } from "../utils/finder";
+import {
+  findComponentByIdInBlock,
+  findComponentStructure,
+} from "../utils/finder";
 
 import { BlockContent } from "../entities/BlockContent";
 import { BlockStructure } from "../entities/BlockStructure";
@@ -45,7 +48,7 @@ const insertNewComponent = (
   newComponentContent: ComponentContent,
   rootId: string
 ) => {
-  const foundComponent = findComponentById(content, rootId);
+  const foundComponent = findComponentByIdInBlock(content, rootId);
   if (!foundComponent) {
     throw CannotFindComponentError(rootId, content.id);
   }

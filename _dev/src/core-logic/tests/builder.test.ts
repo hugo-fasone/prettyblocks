@@ -70,8 +70,13 @@ describe("Block, component and Primitive content builder", () => {
         "component_id",
         expectedComponentContent.component_id
       );
+      expect(newComponentContent).toHaveProperty(
+        "optional",
+        expectedComponentContent.optional
+      );
       expect(newComponentContent).toHaveProperty("fields");
     });
+
     it("fills non-repeatable component fields with default values", () => {
       const componentStructure: ComponentStructure = blockStructure.fields
         .banner as ComponentStructure;
@@ -112,6 +117,7 @@ describe("Block, component and Primitive content builder", () => {
         ).content.value
       );
     });
+
     it("builds a repeatable component", () => {
       const componentStructure: ComponentStructure = blockStructure.fields
         .columns as ComponentStructure;

@@ -14,10 +14,12 @@
       "id": "banner",
       "type": "component",
       "label": "Banner",
+      "optional": true,
       "fields": {
         "image": {
           "type": "text",
           "label": "Image",
+          "optional": true,
           "default": {
             "value": "BannerImage"
           }
