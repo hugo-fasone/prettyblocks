@@ -1,60 +1,19 @@
 import { BlockContent } from "../entities/BlockContent";
 import { BlockStructure } from "../entities/BlockStructure";
+import { CannotFindComponentError } from "../errors/CannotFindComponentError";
+import { CannotFindStructureError } from "../errors/CannotFindStructureError";
 import { ComponentContent } from "../entities/ComponentContent";
-import { PrimitiveFieldType } from "../entities/ElementType";
 import { Repeater } from "../entities/Repeater";
 import columnStructure from "./columnStructure.json";
 import { createTestingPinia } from "@pinia/testing";
+import newColumnContentWithId from "./newColumnContentWithId.json";
+import oneColumnContentWithId from "./oneColumnContentWithId.json";
 import { setActivePinia } from "pinia";
 import { useZoneStore } from "../store/zoneStore";
 
 describe("Add Component", () => {
-  const newColumnBlock: BlockContent = {
-    id: "block_id",
-    block_id: "columnBlock",
-    fields: [
-      {
-        id: "title",
-        type: "text" as PrimitiveFieldType.TEXT,
-        label: "Column block title",
-        content: {
-          value: "Column title",
-        },
-      },
-      {
-        id: "banner",
-        component_id: "banner",
-        type: "component",
-        label: "Banner",
-        fields: [
-          {
-            id: "banner_image",
-            type: "text" as PrimitiveFieldType.TEXT,
-            label: "Image",
-            content: {
-              value: "BannerImage",
-            },
-          },
-          {
-            id: "banner_intro",
-            type: "text" as PrimitiveFieldType.TEXT,
-            label: "Intro",
-            content: {
-              value: "Wonderful intro",
-            },
-          },
-        ],
-      },
-      {
-        id: "column",
-        component_id: "column",
-        type: "repeater",
-        label: "Columns",
-        sub_elements: [],
-      },
-    ],
-  };
-
+  const newColumnBlock: BlockContent = newColumnContentWithId as BlockContent;
+  const oneColumnBlock: BlockContent = oneColumnContentWithId as BlockContent;
   beforeEach(() => {
     const pinia = createTestingPinia({
       initialState: {
@@ -63,49 +22,101 @@ describe("Add Component", () => {
           content: [newColumnBlock],
         },
       },
+      stubActions: false,
     });
     setActivePinia(pinia);
   });
 
-  it("does not change state if component does not exist", () => {
+  it("throws an error if block does not exist", () => {
     const zoneStore = useZoneStore();
     expect(
       (zoneStore.content[0].fields[2] as Repeater<ComponentContent>)
         .sub_elements
     ).toHaveLength(0);
-    zoneStore.addComponent("block_id", "column", "undefinedId");
-    expect(
-      (zoneStore.content[0].fields[2] as Repeater<ComponentContent>)
-        .sub_elements
-    ).toHaveLength(0);
+    const addComponent = () =>
+      zoneStore.addComponent("undefinedBlock", "column", "column");
+    expect(addComponent).toThrow(
+      CannotFindComponentError("undefinedBlock", "zone")
+    );
   });
 
-  it("does not change state if root does not exist", () => {
+  it("throws an error if component does not exist", () => {
     const zoneStore = useZoneStore();
     expect(
       (zoneStore.content[0].fields[2] as Repeater<ComponentContent>)
         .sub_elements
     ).toHaveLength(0);
-    zoneStore.addComponent("block_id", "undefinedRoot", "card");
+    const addComponent = () =>
+      zoneStore.addComponent("block_id", "column", "undefinedId");
+    expect(addComponent).toThrow(CannotFindStructureError("undefinedId"));
+  });
+
+  it("throws an error if root does not exist", () => {
+    const zoneStore = useZoneStore();
     expect(
       (zoneStore.content[0].fields[2] as Repeater<ComponentContent>)
         .sub_elements
     ).toHaveLength(0);
+    const addComponent = () =>
+      zoneStore.addComponent("block_id", "undefinedRoot", "card");
+    expect(addComponent).toThrow(
+      CannotFindComponentError("undefinedRoot", "block_id")
+    );
   });
 
   it("adds a new component at indicated place", () => {
     const zoneStore = useZoneStore();
+    expect(
+      (zoneStore.content[0].fields[2] as Repeater<ComponentContent>)
+        .sub_elements
+    ).toHaveLength(0);
     zoneStore.addComponent("block_id", "column", "column");
     expect(
       (zoneStore.content[0].fields[2] as Repeater<ComponentContent>)
         .sub_elements
     ).toHaveLength(1);
-    // expect(1).toEqual(1);
   });
 
-  // it("adds component after existing components", () => {});
+  it("adds component after existing components", () => {
+    const zoneStore = useZoneStore();
+    zoneStore.$patch({ content: [oneColumnBlock] });
+    expect(
+      (zoneStore.content[0].fields[2] as Repeater<ComponentContent>)
+        .sub_elements
+    ).toHaveLength(1);
+    zoneStore.addComponent("block_id", "column", "column");
+    expect(
+      (zoneStore.content[0].fields[2] as Repeater<ComponentContent>)
+        .sub_elements
+    ).toHaveLength(2);
+    expect(
+      (zoneStore.content[0].fields[2] as Repeater<ComponentContent>)
+        .sub_elements[0].id
+    ).toEqual("e04483da-d1a4-4dab-a467-a98a71b3719f");
+  });
 
-  // it("adds sub-components", () => {});
+  it("adds sub-components", () => {
+    const zoneStore = useZoneStore();
+    zoneStore.addComponent("block_id", "column", "column");
+    expect(
+      (zoneStore.content[0].fields[2] as Repeater<ComponentContent>)
+        .sub_elements[0].fields
+    ).toHaveLength(2);
+  });
 
-  // it("adds recursively nested components", () => {});
+  it("adds recursively nested components", () => {
+    const zoneStore = useZoneStore();
+    zoneStore.$patch({ content: [oneColumnBlock] });
+    zoneStore.addComponent(
+      "block_id",
+      "7a259b78-1371-4015-aeff-c7319e1af668",
+      "card"
+    );
+    expect(
+      (
+        (zoneStore.content[0].fields[2] as Repeater<ComponentContent>)
+          .sub_elements[0].fields[1] as Repeater<ComponentContent>
+      ).sub_elements
+    ).toHaveLength(1);
+  });
 });

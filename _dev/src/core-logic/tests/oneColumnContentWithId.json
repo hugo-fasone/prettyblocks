@@ -1,0 +1,69 @@
+{
+  "id": "block_id",
+  "block_id": "columnBlock",
+  "fields": [
+    {
+      "id": "column-block-title",
+      "type": "text",
+      "label": "Column block title",
+      "content": {
+        "value": "Column title"
+      }
+    },
+    {
+      "id": "banner",
+      "component_id": "banner",
+      "type": "component",
+      "label": "Banner",
+      "fields": [
+        {
+          "id": "banner_image",
+          "type": "text",
+          "label": "Image",
+          "content": {
+            "value": "BannerImage"
+          }
+        },
+        {
+          "id": "banner_intro",
+          "type": "text",
+          "label": "Intro",
+          "content": {
+            "value": "Wonderful intro"
+          }
+        }
+      ]
+    },
+    {
+      "id": "column",
+      "component_id": "column",
+      "type": "repeater",
+      "label": "Columns",
+      "sub_elements": [
+        {
+          "id": "e04483da-d1a4-4dab-a467-a98a71b3719f",
+          "component_id": "column",
+          "type": "component",
+          "label": "Columns",
+          "fields": [
+            {
+              "id": "2d849718-2248-4154-96c8-43212c4dfc44",
+              "type": "text",
+              "label": "Column title",
+              "content": {
+                "value": "Titre de colonne"
+              }
+            },
+            {
+              "id": "7a259b78-1371-4015-aeff-c7319e1af668",
+              "component_id": "card",
+              "type": "repeater",
+              "label": "Cards",
+              "sub_elements": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

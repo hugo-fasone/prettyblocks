@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "types": ["reflect-metadata", "jest"],
+    "types": ["jest", "node"],
     "typeRoots": ["./types", "./node_modules/@types"],
     "moduleResolution": "Node",
     "resolveJsonModule": true,

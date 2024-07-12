@@ -1,0 +1,46 @@
+{
+  "id": "block_id",
+  "block_id": "columnBlock",
+  "fields": [
+    {
+      "id": "column-block-title",
+      "type": "text",
+      "label": "Column block title",
+      "content": {
+        "value": "Column title"
+      }
+    },
+    {
+      "id": "banner",
+      "component_id": "banner",
+      "type": "component",
+      "label": "Banner",
+      "fields": [
+        {
+          "id": "banner_image",
+          "type": "text",
+          "label": "Image",
+          "content": {
+            "value": "BannerImage"
+          }
+        },
+        {
+          "id": "banner_intro",
+          "type": "text",
+          "label": "Intro",
+          "content": {
+            "value": "Wonderful intro"
+          }
+        }
+      ]
+    },
+    {
+      "id": "column",
+      "component_id": "column",
+      "type": "repeater",
+      "label": "Columns",
+      "sub_elements": [
+      ]
+    }
+  ]
+}
