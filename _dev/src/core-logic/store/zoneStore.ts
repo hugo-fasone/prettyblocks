@@ -6,6 +6,7 @@ import { defineStore } from "pinia";
 import { deleteBlockById } from "../usecases/deleteBlock";
 import { deleteComponentById } from "../usecases/deleteComponent";
 import { moveBlock } from "../usecases/moveBlock";
+import { moveComponent } from "../usecases/moveComponent";
 
 export const useZoneStore = defineStore("zone", {
   state: (): ZoneState => {
@@ -38,6 +39,9 @@ export const useZoneStore = defineStore("zone", {
     },
     deleteComponentById(componentId: string) {
       deleteComponentById(this, componentId);
+    },
+    moveComponent(componentId: string, newIndex: number) {
+      moveComponent(this, componentId, newIndex);
     },
   },
 });

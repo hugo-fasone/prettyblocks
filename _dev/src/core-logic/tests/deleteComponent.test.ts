@@ -25,9 +25,7 @@ describe("Delete component", () => {
   it("throws error when component is not found", () => {
     const zoneStore = useZoneStore();
     const failingDelete = () => zoneStore.deleteComponentById("undefinedId");
-    expect(failingDelete).toThrow(
-      CannotFindComponentError("undefinedId", "zone")
-    );
+    expect(failingDelete).toThrow(CannotFindComponentError("undefinedId"));
   });
 
   it("throws error when component is not inside repeater and not optional", () => {
