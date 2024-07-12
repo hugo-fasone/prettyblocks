@@ -3,7 +3,7 @@ import { ZoneState } from "../entities/PageState";
 import { addBlock } from "../usecases/addBlock";
 import { addComponent } from "../usecases/addComponent";
 import { defineStore } from "pinia";
-import { deleteBlock } from "../usecases/deleteBlock";
+import { deleteBlockById } from "../usecases/deleteBlock";
 import { moveBlock } from "../usecases/moveBlock";
 
 export const useZoneStore = defineStore("zone", {
@@ -29,8 +29,8 @@ export const useZoneStore = defineStore("zone", {
     moveBlock(blockIndex: number, newIndex: number) {
       moveBlock(this, blockIndex, newIndex);
     },
-    deleteBlock(blockIndex: number) {
-      deleteBlock(this, blockIndex);
+    deleteBlockById(blockId: string) {
+      deleteBlockById(this, blockId);
     },
     addComponent(blockId: string, root: string, componentId: string) {
       addComponent(this, blockId, root, componentId);

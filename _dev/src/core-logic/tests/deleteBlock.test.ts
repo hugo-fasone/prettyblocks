@@ -5,7 +5,7 @@ import { setActivePinia } from "pinia";
 import { useZoneStore } from "../store/zoneStore";
 
 const newColumnBlock: BlockContent = {
-  id: "some_random_id",
+  id: "columnBlock",
   block_id: "columnBlock",
   fields: [
     {
@@ -78,7 +78,7 @@ describe("Delete Block", () => {
     const zoneStore = useZoneStore();
     expect(zoneStore.content).toHaveLength(3);
     expect(zoneStore.content[1].block_id).toBe("columnBlock");
-    zoneStore.deleteBlock(1);
+    zoneStore.deleteBlockById("columnBlock");
     expect(zoneStore.content).toHaveLength(2);
     expect(zoneStore.content[1].block_id).toBe("emptyBlock");
   });
