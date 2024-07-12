@@ -1,8 +1,12 @@
+import { findComponentById, findComponentByIdInBlock } from "../utils/finder";
+
 import { CannotFindComponentError } from "../errors/CannotFindComponentError";
-import { findComponentById } from "../utils/finder";
 
 export const deleteComponentById = (zoneStore, componentId: string) => {
-  const foundComponent = findComponentById(zoneStore.content, componentId);
+  const foundComponent = findComponentByIdInBlock(
+    zoneStore.content[0],
+    componentId
+  );
   if (!foundComponent) {
     throw CannotFindComponentError(componentId);
   }

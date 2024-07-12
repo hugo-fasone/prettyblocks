@@ -1,11 +1,8 @@
 import { ComponentContent, FieldContent } from "../entities/ComponentContent";
-import {
-  ComponentFieldStructure,
-  ComponentStructure,
-} from "../entities/ComponentStructure";
 
 import { BlockContent } from "../entities/BlockContent";
 import { BlockStructure } from "../entities/BlockStructure";
+import { ComponentStructure } from "../entities/ComponentStructure";
 import { Repeater } from "../entities/Repeater";
 
 export type SearchComponentResult = {
@@ -32,8 +29,25 @@ export const findComponentByIdInBlock = (
   // Check if one of the current node fields matches the id
   const foundField = tree.fields.find((field) => field.id === id);
   if (foundField) return { node: foundField, parent: tree };
+  // Check all subfields
+  return findComponentByIdInSubfields(tree, id);
+};
+
+const findComponentByIdInSubfields = (
+  tree: BlockContent | ComponentContent,
+  id: string
+) => {
   // Check all repeater subfields
-  return findComponentByIdInRepeaterFields(tree, id);
+  const foundField = findComponentByIdInRepeaterFields(tree, id);
+  if (foundField) return foundField;
+  // Check fields recursively
+  const componentsFields: ComponentContent[] = tree.fields.filter(
+    (field) => field.type === "component"
+  ) as ComponentContent[];
+  for (const field of componentsFields) {
+    const foundElement = findComponentByIdInBlock(field, id);
+    if (foundElement) return foundElement;
+  }
 };
 
 const findComponentByIdInRepeaterFields = (

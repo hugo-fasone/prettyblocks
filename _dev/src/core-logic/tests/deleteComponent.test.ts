@@ -1,5 +1,6 @@
 import { BlockContent } from "../entities/BlockContent";
 import { CannotFindComponentError } from "../errors/CannotFindComponentError";
+import { OperationNotAllowedError } from "../errors/OperationNotAllowedError";
 import { createTestingPinia } from "@pinia/testing";
 import oneColumnContentWithId from "./oneColumnContentWithId.json";
 import { setActivePinia } from "pinia";
@@ -19,7 +20,7 @@ describe("Delete component", () => {
     setActivePinia(pinia);
   });
 
-  it("throws error when block is not found", () => {
+  it("throws error when component is not found", () => {
     const zoneStore = useZoneStore();
     const failingDelete = () => zoneStore.deleteComponentById("undefinedId");
     expect(failingDelete).toThrow(
@@ -27,5 +28,14 @@ describe("Delete component", () => {
     );
   });
 
-  it("throws error when component is not inside repeater and not optional", () => {});
+  it("throws error when component is not inside repeater and not optional", () => {
+    const zoneStore = useZoneStore();
+    const failingDelete = () => zoneStore.deleteComponentById("banner_intro");
+    expect(failingDelete).toThrow(
+      OperationNotAllowedError(
+        "Delete component",
+        "Non repeated and non optional components cannot be deleted"
+      )
+    );
+  });
 });

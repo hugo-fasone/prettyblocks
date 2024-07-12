@@ -46,6 +46,8 @@ describe("Component finder", () => {
   it("finds a recursively nested component", () => {
     const component = findComponentByIdInBlock(blockContent, "field_2_1_1_0_0");
     expect(component.node.id).toEqual("field_2_1_1_0_0");
+    const secondComponent = findComponentByIdInBlock(blockContent, "field_1_1");
+    expect(secondComponent.node.id).toEqual("field_1_1");
   });
 
   it("gives right repeater id as parent for nested component search", () => {
