@@ -1,11 +1,12 @@
 import { BlockContent } from "../entities/BlockContent";
+import { CannotFindComponentError } from "../errors/CannotFindComponentError";
 import { PrimitiveFieldType } from "../entities/ElementType";
 import { createTestingPinia } from "@pinia/testing";
 import { setActivePinia } from "pinia";
 import { useZoneStore } from "../store/zoneStore";
 
 const newColumnBlock: BlockContent = {
-  id: "some_random_id",
+  id: "columnBlock",
   block_id: "columnBlock",
   fields: [
     {
@@ -78,20 +79,26 @@ describe("Move Block", () => {
     const zoneStore = useZoneStore();
     expect(zoneStore.content[0].block_id).toBe("columnBlock");
     expect(zoneStore.content[1].block_id).toBe("emptyBlock");
-    zoneStore.moveBlock(0, 1);
+    zoneStore.moveBlock("columnBlock", 1);
     expect(zoneStore.content[1].block_id).toBe("columnBlock");
   });
 
   it("keeps block content", () => {
     const zoneStore = useZoneStore();
-    zoneStore.moveBlock(0, 1);
+    zoneStore.moveBlock("columnBlock", 1);
     expect(zoneStore.content[1]).toEqual(newColumnBlock);
   });
 
   it("keeps other blocks in the right order", () => {
     const zoneStore = useZoneStore();
-    zoneStore.moveBlock(0, 1);
+    zoneStore.moveBlock("columnBlock", 1);
     expect(zoneStore.content[0]).toEqual(emptyBlockContent1);
     expect(zoneStore.content[2]).toEqual(emptyBlockContent2);
+  });
+
+  it("throws error when block does not exist", () => {
+    const zoneStore = useZoneStore();
+    const move = () => zoneStore.moveBlock("undefinedId", 1);
+    expect(move).toThrow(CannotFindComponentError("undefinedId", "zone"));
   });
 });

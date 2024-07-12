@@ -1,4 +1,5 @@
 import { BlockContent } from "../entities/BlockContent";
+import { CannotFindComponentError } from "../errors/CannotFindComponentError";
 import { PrimitiveFieldType } from "../entities/ElementType";
 import { createTestingPinia } from "@pinia/testing";
 import { setActivePinia } from "pinia";
@@ -81,5 +82,13 @@ describe("Delete Block", () => {
     zoneStore.deleteBlockById("columnBlock");
     expect(zoneStore.content).toHaveLength(2);
     expect(zoneStore.content[1].block_id).toBe("emptyBlock");
+  });
+
+  it("throws error if block is not found", () => {
+    const zoneStore = useZoneStore();
+    const failingDelete = () => zoneStore.deleteBlockById("undefinedId");
+    expect(failingDelete).toThrow(
+      CannotFindComponentError("undefinedId", "zone")
+    );
   });
 });

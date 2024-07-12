@@ -26,8 +26,8 @@ export const useZoneStore = defineStore("zone", {
     addBlock(blockId: string) {
       addBlock(this, blockId);
     },
-    moveBlock(blockIndex: number, newIndex: number) {
-      moveBlock(this, blockIndex, newIndex);
+    moveBlock(blockId: string, newIndex: number) {
+      moveBlock(this, blockId, newIndex);
     },
     deleteBlockById(blockId: string) {
       deleteBlockById(this, blockId);
