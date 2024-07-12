@@ -5,7 +5,7 @@
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "target": "es2022"
+    "target": "esnext"
   },
   "exclude": ["node_modules", "**/*.spec.ts"],
   "include": ["./src/**/*.tsx", "./src/**/*.ts"]

@@ -48,6 +48,8 @@ describe("Component finder", () => {
     expect(component.node.id).toEqual("field_2_1_1_0_0");
     const secondComponent = findComponentByIdInBlock(blockContent, "field_1_1");
     expect(secondComponent.node.id).toEqual("field_1_1");
+    const thirdComponent = findComponentByIdInBlock(blockContent, "field_1_0");
+    expect(thirdComponent.node.id).toEqual("field_1_0");
   });
 
   it("gives right repeater id as parent for nested component search", () => {
