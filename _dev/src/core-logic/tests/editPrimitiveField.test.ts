@@ -59,4 +59,5 @@ describe("Edit primitive field", () => {
     });
     expect(numberField.content).toEqual({ value: 12 });
   });
+
 });
