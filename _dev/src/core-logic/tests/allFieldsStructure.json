@@ -1,0 +1,22 @@
+{
+  "id": "allFieldsBlock",
+  "label": "All fields",
+  "fields": {
+    "text": {
+      "id": "text",
+      "type": "text",
+      "label": "Text",
+      "default": {
+        "value": "text"
+      }
+    },
+    "number": {
+      "id": "number",
+      "type": "number",
+      "label": "Number",
+      "default": {
+        "value": 42
+      }
+    }
+  }
+}
