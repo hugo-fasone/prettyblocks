@@ -17,6 +17,15 @@
       "default": {
         "value": 42
       }
+    },
+    "link": {
+      "id": "link",
+      "type": "link",
+      "label": "Link",
+      "default": {
+        "label": "Link label",
+        "href": "href"
+      }
     }
   }
 }

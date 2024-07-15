@@ -60,4 +60,17 @@ describe("Edit primitive field", () => {
     expect(numberField.content).toEqual({ value: 12 });
   });
 
+  it("changes link field value", () => {
+    const zoneStore = useZoneStore();
+    const numberField: PrimitiveFieldContent<PrimitiveFieldType.LINK> =
+      zoneStore.content[0]
+        .fields[2] as PrimitiveFieldContent<PrimitiveFieldType.LINK>;
+    const newValue = { label: "newLabel", href: "newValue" };
+    expect(numberField.content).toEqual({ label: "Link label", href: "href" });
+    zoneStore.editPrimitiveField<PrimitiveFieldType.LINK>(
+      numberField.id,
+      newValue
+    );
+    expect(numberField.content).toEqual(newValue);
+  });
 });
