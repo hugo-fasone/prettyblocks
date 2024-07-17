@@ -1,8 +1,8 @@
-import { BlockContent } from "../entities/BlockContent";
+import type { BlockContent } from "../entities/BlockContent";
 import { CannotFindComponentError } from "../errors/CannotFindComponentError";
-import { ComponentContent } from "../entities/ComponentContent";
+import type { ComponentContent } from "../entities/ComponentContent";
 import { OperationNotAllowedError } from "../errors/OperationNotAllowedError";
-import { Repeater } from "../entities/Repeater";
+import type { Repeater } from "../entities/Repeater";
 import { createTestingPinia } from "@pinia/testing";
 import filledColumnContentWithId from "./filledColumnContentWithId.json";
 import { setActivePinia } from "pinia";

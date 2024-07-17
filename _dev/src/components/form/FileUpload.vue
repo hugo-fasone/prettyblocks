@@ -21,7 +21,8 @@ const props = defineProps({
   // upload url
   uploadUrl: {
     type: String,
-    default: ajax_urls.upload,
+    default: undefined,
+    // default: ajax_urls.upload,
   },
   path: {
     type: String,

@@ -1,47 +1,46 @@
 {
-  "id": "block_id",
-  "block_id": "columnBlock",
+  "id": "columnBlock",
   "label": "columnBlock",
-  "fields": [
-    {
+  "fields": {
+    "title": {
       "id": "column-block-title",
       "type": "text",
       "label": "Column block title",
-      "content": {
+      "default": {
         "value": "Column title"
       }
     },
-    {
+    "banner": {
       "id": "banner",
-      "component_id": "banner",
       "type": "component",
       "label": "Banner",
-      "fields": [
-        {
-          "id": "banner_image",
+      "optional": true,
+      "fields": {
+        "image": {
           "type": "text",
           "label": "Image",
-          "content": {
+          "optional": true,
+          "default": {
             "value": "BannerImage"
           }
         },
-        {
-          "id": "banner_intro",
+        "intro": {
           "type": "text",
           "label": "Intro",
-          "content": {
+          "default": {
             "value": "Wonderful intro"
           }
         }
-      ]
+      }
     },
-    {
+    "columns": {
       "id": "column",
-      "component_id": "column",
-      "type": "repeater",
+      "type": "text",
       "label": "Columns",
-      "sub_elements": [
-      ]
+      "repeatable": true,
+      "default": {
+        "value": "Entry"
+      }
     }
-  ]
+  }
 }

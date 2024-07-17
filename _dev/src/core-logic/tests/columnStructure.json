@@ -1,6 +1,6 @@
 {
   "id": "columnBlock",
-  "label": "Colonnes",
+  "label": "columnBlock",
   "fields": {
     "title": {
       "id": "column-block-title",
@@ -32,7 +32,6 @@
           }
         }
       }
-
     },
     "columns": {
       "id": "column",

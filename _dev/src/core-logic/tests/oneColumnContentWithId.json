@@ -1,6 +1,7 @@
 {
   "id": "block_id",
   "block_id": "columnBlock",
+  "label": "columnBlock",
   "fields": [
     {
       "id": "column-block-title",

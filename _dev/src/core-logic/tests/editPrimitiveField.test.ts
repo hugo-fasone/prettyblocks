@@ -1,11 +1,6 @@
-import {
-  PrimitiveFieldContent,
-  PrimitiveTextType,
-} from "../entities/PrimitiveFieldContent";
-
-import { BlockContent } from "../entities/BlockContent";
-import { BlockStructure } from "../entities/BlockStructure";
+import type { BlockStructure } from "../entities/BlockStructure";
 import { CannotFindComponentError } from "../errors/CannotFindComponentError";
+import type { PrimitiveFieldContent } from "../entities/PrimitiveFieldContent";
 import { PrimitiveFieldType } from "../entities/ElementType";
 import allFieldsStructure from "./allFieldsStructure.json";
 import { buildNewBlockContentFromBlockStructure } from "../utils/builder";

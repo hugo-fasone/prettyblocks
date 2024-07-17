@@ -3,8 +3,8 @@ import {
   findComponentStructure,
 } from "../utils/finder";
 
-import { BlockContent } from "../entities/BlockContent";
-import { BlockStructure } from "../entities/BlockStructure";
+import type { BlockContent } from "../entities/BlockContent";
+import type { BlockStructure } from "../entities/BlockStructure";
 import columnStructure from "./columnStructure.json";
 import filledColumnContent from "./filledColumnContentWithId.json";
 
@@ -30,7 +30,7 @@ describe("Component finder", () => {
 
   it("gives block id as parent for 1st level component search", () => {
     const component = findComponentByIdInBlock(blockContent, "field_0");
-    expect(component.parent.id).toEqual("block_id");
+    expect(component.parent?.id).toEqual("block_id");
   });
 
   it("finds a repeatable component", () => {
@@ -40,7 +40,7 @@ describe("Component finder", () => {
 
   it("gives repeater id as parent for repeated component search", () => {
     const component = findComponentByIdInBlock(blockContent, "field_2_0");
-    expect(component.parent.id).toEqual("field_2");
+    expect(component.parent?.id).toEqual("field_2");
   });
 
   it("finds a recursively nested component", () => {
@@ -54,7 +54,7 @@ describe("Component finder", () => {
 
   it("gives right repeater id as parent for nested component search", () => {
     const component = findComponentByIdInBlock(blockContent, "field_2_1_1_0_0");
-    expect(component.parent.id).toEqual("field_2_1_1_0");
+    expect(component.parent?.id).toEqual("field_2_1_1_0");
   });
 
   it("finds a 1st level component structure", () => {

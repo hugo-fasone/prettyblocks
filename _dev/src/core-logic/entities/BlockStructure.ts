@@ -1,5 +1,5 @@
-import { ComponentStructure } from "./ComponentStructure";
-import { PrimitiveFieldStructure } from "./PrimitiveFieldStructure";
+import type { ComponentStructure } from "./ComponentStructure";
+import type { PrimitiveFieldStructure } from "./PrimitiveFieldStructure";
 import { PrimitiveFieldType } from "./ElementType";
 
 export type BlockStructure = {

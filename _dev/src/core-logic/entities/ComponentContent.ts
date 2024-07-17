@@ -1,12 +1,12 @@
-import { COMPONENT_TYPE, PrimitiveFieldType } from "./ElementType";
+import { type COMPONENT_TYPE, PrimitiveFieldType } from "./ElementType";
 
-import { PrimitiveFieldContent } from "./PrimitiveFieldContent";
-import { Repeater } from "./Repeater";
+import type { PrimitiveFieldContent } from "./PrimitiveFieldContent";
+import type { Repeater } from "./Repeater";
 
 export type FieldContent =
   | ComponentContent
   | PrimitiveFieldContent<PrimitiveFieldType>
-  | Repeater<ComponentContent>;
+  | Repeater<ComponentContent | PrimitiveFieldType>;
 
 export type ComponentContent = {
   id: string;

@@ -5,7 +5,8 @@ import Frame from "./Frame.vue";
 import RightPanel from "./RightPanel.vue";
 import { defineComponent, ref } from "@vue/runtime-core";
 import emitter from "tiny-emitter/instance";
-import { usePageStore } from "../core-logic/store/pageStore";
+import { useZoneStore } from "../core-logic/store/zoneStore";
+import ComponentTree from "./tree/ComponentTree.vue";
 
 defineComponent({
   Header,
@@ -14,7 +15,7 @@ defineComponent({
   RightPanel,
 });
 
-usePageStore();
+useZoneStore();
 
 // left panel
 let leftWidth = ref("w-80");
@@ -59,11 +60,12 @@ emitter.on("changeRightPanelSize", (value) => {
 
 <template>
   <main class="flex flex-col h-screen">
-    <Header />
+    <!-- <Header /> -->
     <div class="overflow-hidden flex flex-grow">
-      <LeftPanel :class="[leftWidth, hidden_left]" class="hidden" />
-      <Frame class="flex-grow" />
-      <RightPanel :class="[rightWidth, hidden_right]" class="hidden" />
+      <!-- <LeftPanel :class="[leftWidth, hidden_left]" class="hidden" /> -->
+      <ComponentTree />
+      <!-- <Frame class="flex-grow" /> -->
+      <!-- <RightPanel :class="[rightWidth, hidden_right]" class="hidden" /> -->
     </div>
   </main>
 </template>

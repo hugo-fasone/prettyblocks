@@ -1,7 +1,7 @@
-import { BlockStructure } from "./../entities/BlockStructure";
-import { PrimitiveFieldContentMap } from "../entities/PrimitiveFieldContent";
+import type { BlockStructure } from "./../entities/BlockStructure";
+import type { PrimitiveFieldContentMap } from "../entities/PrimitiveFieldContent";
 import { PrimitiveFieldType } from "../entities/ElementType";
-import { ZoneState } from "../entities/PageState";
+import type { ZoneState } from "../entities/PageState";
 import { addBlock } from "../usecases/addBlock";
 import { addComponent } from "../usecases/addComponent";
 import { defineStore } from "pinia";
@@ -10,6 +10,7 @@ import { deleteComponentById } from "../usecases/deleteComponent";
 import { editPrimitiveField } from "../usecases/editPrimitiveField";
 import { moveBlock } from "../usecases/moveBlock";
 import { moveComponent } from "../usecases/moveComponent";
+import { renameBlock } from "../usecases/renameBlock";
 
 export const useZoneStore = defineStore("zone", {
   state: (): ZoneState => {
@@ -51,6 +52,9 @@ export const useZoneStore = defineStore("zone", {
       newValue: PrimitiveFieldContentMap[T]
     ) {
       editPrimitiveField(this, componentId, newValue);
+    },
+    renameBlock(blockId: string, newLabel: string) {
+      renameBlock(this, blockId, newLabel);
     },
   },
 });

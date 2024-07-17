@@ -1,6 +1,7 @@
 {
   "id": "some_random_id",
   "block_id": "columnBlock",
+  "label": "columnBlock",
   "fields": [
     {
       "id": "some_random_id",

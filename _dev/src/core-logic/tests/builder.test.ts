@@ -14,6 +14,7 @@ import { PrimitiveFieldType } from "../entities/ElementType";
 import { Repeater } from "../entities/Repeater";
 import columnBlockContent from "./newColumnContent.json";
 import columnBlockStructure from "./columnStructure.json";
+import columnBlockStructureWithPrimitiveRepeater from "./columnStructureWithPrimitiveRepeater.json";
 
 /* 
   Add a test here every time you create a new builder or improve an existing one.
@@ -22,6 +23,9 @@ import columnBlockStructure from "./columnStructure.json";
 describe("Block, component and Primitive content builder", () => {
   let blockStructure: BlockStructure;
   let blockContent: BlockContent;
+  const blockStructurePrimitiveRepeater: BlockStructure =
+    columnBlockStructureWithPrimitiveRepeater as BlockStructure;
+
   beforeAll(() => {
     blockStructure = columnBlockStructure as BlockStructure;
     blockContent = columnBlockContent as BlockContent;
@@ -139,6 +143,34 @@ describe("Block, component and Primitive content builder", () => {
       expect(newComponentContent).toHaveProperty(
         "component_id",
         expectedComponentContent.component_id
+      );
+      expect(newComponentContent).toHaveProperty(
+        "sub_elements",
+        expectedComponentContent.sub_elements
+      );
+    });
+
+    it("builds a primitive repeatable component", () => {
+      const componentStructure: ComponentStructure =
+        blockStructurePrimitiveRepeater.fields.columns as ComponentStructure;
+      const expectedComponentContent: Repeater<PrimitiveFieldType.TEXT> =
+        blockContent.fields[2] as Repeater<PrimitiveFieldType.TEXT>;
+      const newComponentContent: Repeater<ComponentContent> =
+        buildNewComponentFromStructure(
+          componentStructure
+        ) as Repeater<ComponentContent>;
+      expect(newComponentContent).toHaveProperty("id");
+      expect(newComponentContent).toHaveProperty(
+        "label",
+        expectedComponentContent.label
+      );
+      expect(newComponentContent).toHaveProperty(
+        "type",
+        expectedComponentContent.type
+      );
+      expect(newComponentContent).toHaveProperty(
+        "component_id",
+        PrimitiveFieldType.TEXT
       );
       expect(newComponentContent).toHaveProperty(
         "sub_elements",

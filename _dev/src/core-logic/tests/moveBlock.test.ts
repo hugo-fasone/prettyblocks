@@ -1,4 +1,4 @@
-import { BlockContent } from "../entities/BlockContent";
+import type { BlockContent } from "../entities/BlockContent";
 import { CannotFindComponentError } from "../errors/CannotFindComponentError";
 import { PrimitiveFieldType } from "../entities/ElementType";
 import { createTestingPinia } from "@pinia/testing";
@@ -8,6 +8,7 @@ import { useZoneStore } from "../store/zoneStore";
 const newColumnBlock: BlockContent = {
   id: "columnBlock",
   block_id: "columnBlock",
+  label: "Column Block",
   fields: [
     {
       id: "some_random_id",
@@ -53,12 +54,14 @@ const newColumnBlock: BlockContent = {
 const emptyBlockContent1: BlockContent = {
   id: "empty_block_content_1",
   block_id: "emptyBlock",
+  label: "Empty Block",
   fields: [],
 };
 
 const emptyBlockContent2: BlockContent = {
   id: "empty_block_content_2",
   block_id: "emptyBlock",
+  label: "Empty Block",
   fields: [],
 };
 
