@@ -10,7 +10,7 @@ import { deleteComponentById } from "../usecases/deleteComponent";
 import { editPrimitiveField } from "../usecases/editPrimitiveField";
 import { moveBlock } from "../usecases/moveBlock";
 import { moveComponent } from "../usecases/moveComponent";
-import { renameBlock } from "../usecases/renameBlock";
+import { renameElement } from "../usecases/renameElement";
 
 export const useZoneStore = defineStore("zone", {
   state: (): ZoneState => {
@@ -53,8 +53,8 @@ export const useZoneStore = defineStore("zone", {
     ) {
       editPrimitiveField(this, componentId, newValue);
     },
-    renameBlock(blockId: string, newLabel: string) {
-      renameBlock(this, blockId, newLabel);
+    renameElement(blockId: string, newLabel: string) {
+      renameElement(this, blockId, newLabel);
     },
   },
 });

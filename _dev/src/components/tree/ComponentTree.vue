@@ -1,13 +1,19 @@
 <template>
   <div class="tree">
-    <Block v-for="block in content" :blockContent="block"></Block>
+    <Element
+      v-for="block in content"
+      :element="block"
+      :level="0"
+      :children="block.fields"
+      :isDeletable="true"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { useZoneStore } from "../../core-logic/store/zoneStore";
 import { storeToRefs } from "pinia";
-import Block from "./Block.vue";
+import Element from "./Element.vue";
 
 const zoneStore = useZoneStore();
 const { content } = storeToRefs(zoneStore);

@@ -5,4 +5,5 @@ export type BlockContent = {
   block_id: string;
   fields: FieldContent[];
   label: string;
+  type: "block";
 };

@@ -15,6 +15,7 @@ export const buildNewBlockContentFromBlockStructure = (
     id: uuidv4() as string,
     block_id: blockStructure.id,
     label: blockStructure.label,
+    type: "block",
     fields: Object.values(blockStructure.fields).map(
       (
         field: ComponentStructure | PrimitiveFieldStructure<PrimitiveFieldType>
@@ -32,7 +33,7 @@ const buildNewRepeaterFromStructure = (
   componentStructure:
     | ComponentStructure
     | PrimitiveFieldStructure<PrimitiveFieldType>
-): Repeater<ComponentContent | PrimitiveFieldType> => {
+): Repeater<ComponentContent | PrimitiveFieldContent<PrimitiveFieldType>> => {
   return {
     id: uuidv4(),
     component_id:
@@ -65,7 +66,9 @@ export const buildNewSingleComponentFromStructure = (
 
 export const buildNewComponentFromStructure = (
   componentStructure: ComponentStructure
-): ComponentContent | Repeater<ComponentContent | PrimitiveFieldType> => {
+):
+  | ComponentContent
+  | Repeater<ComponentContent | PrimitiveFieldContent<PrimitiveFieldType>> => {
   return componentStructure.repeatable
     ? buildNewRepeaterFromStructure(componentStructure)
     : buildNewSingleComponentFromStructure(componentStructure);

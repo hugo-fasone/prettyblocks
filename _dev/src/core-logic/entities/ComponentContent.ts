@@ -6,7 +6,7 @@ import type { Repeater } from "./Repeater";
 export type FieldContent =
   | ComponentContent
   | PrimitiveFieldContent<PrimitiveFieldType>
-  | Repeater<ComponentContent | PrimitiveFieldType>;
+  | Repeater<ComponentContent | PrimitiveFieldContent<PrimitiveFieldType>>;
 
 export type ComponentContent = {
   id: string;
