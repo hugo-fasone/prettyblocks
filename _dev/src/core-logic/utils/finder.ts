@@ -10,6 +10,16 @@ export type SearchComponentResult = {
   node: BlockContent | FieldContent;
 };
 
+export const findComponentBlock = (
+  content: BlockContent[],
+  componentId: string
+) => {
+  for (const block of content) {
+    const foundComponent = findComponentByIdInBlock(block, componentId);
+    if (foundComponent) return block;
+  }
+};
+
 export const findComponentById = (
   content: BlockContent[],
   componentId: string

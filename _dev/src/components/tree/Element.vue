@@ -35,10 +35,9 @@
       </span>
     </div>
     <Subfields
-      :fields="children"
       v-if="!isCollapsed"
-      :level="level + 1"
-      :deletableChildren="element.type === 'repeater'"
+      :fields="children"
+      :parentElement="element"
     />
   </div>
 </template>
@@ -51,9 +50,8 @@ import { ref, nextTick } from "vue";
 import Subfields from "./Subfields.vue";
 import Icon from "../Icon.vue";
 
-const { element, level, children, isDeletable } = defineProps<{
+const { element, children, isDeletable } = defineProps<{
   element: BlockContent | FieldContent;
-  level: number;
   children: FieldContent[];
   isDeletable: boolean;
 }>();
