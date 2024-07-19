@@ -21,7 +21,7 @@ describe("Rename block", () => {
 
   it("throws error when block does not exist", () => {
     const zoneStore = useZoneStore();
-    expect(() => zoneStore.renameBlock("undefinedId", "New Label")).toThrow(
+    expect(() => zoneStore.renameElement("undefinedId", "New Label")).toThrow(
       CannotFindComponentError("undefinedId")
     );
   });
@@ -29,7 +29,7 @@ describe("Rename block", () => {
   it("changes block label", () => {
     const zoneStore = useZoneStore();
     expect(zoneStore.content[0].label).toEqual("column");
-    zoneStore.renameBlock(zoneStore.content[0].id, "New label");
+    zoneStore.renameElement(zoneStore.content[0].id, "New label");
     expect(zoneStore.content[0].label).toEqual("New label");
   });
 });

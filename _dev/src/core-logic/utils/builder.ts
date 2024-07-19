@@ -42,6 +42,8 @@ const buildNewRepeaterFromStructure = (
         : componentStructure.type,
     type: "repeater",
     label: componentStructure.label,
+    optional: componentStructure.optional || false,
+    hidden: false,
     sub_elements: [],
   };
 };
@@ -54,7 +56,8 @@ export const buildNewSingleComponentFromStructure = (
     component_id: componentStructure.id,
     type: componentStructure.type,
     label: componentStructure.label,
-    optional: componentStructure.optional,
+    optional: componentStructure.optional || false,
+    hidden: false,
     fields: Object.values(componentStructure.fields).map((field) => {
       if (field.type === "component") {
         return buildNewComponentFromStructure(field);

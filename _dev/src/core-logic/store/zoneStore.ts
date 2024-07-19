@@ -11,6 +11,7 @@ import { editPrimitiveField } from "../usecases/editPrimitiveField";
 import { moveBlock } from "../usecases/moveBlock";
 import { moveComponent } from "../usecases/moveComponent";
 import { renameElement } from "../usecases/renameElement";
+import { toggleComponent } from "../usecases/toggleComponent";
 
 export const useZoneStore = defineStore("zone", {
   state: (): ZoneState => {
@@ -55,6 +56,9 @@ export const useZoneStore = defineStore("zone", {
     },
     renameElement(blockId: string, newLabel: string) {
       renameElement(this, blockId, newLabel);
+    },
+    toggleElement(componentId: string) {
+      toggleComponent(this, componentId);
     },
   },
 });

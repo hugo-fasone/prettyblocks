@@ -1,11 +1,25 @@
 <template>
-  <div class="subfields" :style="`margin-left: 1.5rem`">
-    <div v-for="field in fields">
-      <Element
-        :element="field"
-        :children="getChildrenFromElement(field)"
-        :isDeletable="parentElement.type === 'repeater'"
-      />
+  <div class="subfields">
+    <div
+      class="subfieldDraggableZone"
+      :style="`${lastMoveEvent ? 'border: 2px solid #ccc;' : ''}`"
+    >
+      <draggable
+        :list="fields"
+        :group="parentElement.id"
+        item-key="id"
+        :move="handleMove"
+        @end="handleDrop"
+      >
+        <template #item="{ element }">
+          <Element
+            :element="element"
+            :children="getChildrenFromElement(element)"
+            :isDeletable="parentElement.type === 'repeater'"
+            :isMovable="parentElement.type === 'repeater'"
+          />
+        </template>
+      </draggable>
     </div>
     <div
       v-if="parentElement.type === 'repeater'"
@@ -31,6 +45,8 @@ import { PrimitiveFieldContent } from "../../core-logic/entities/PrimitiveFieldC
 import { PrimitiveFieldType } from "../../core-logic/entities/ElementType";
 import { Repeater } from "../../core-logic/entities/Repeater";
 import { findComponentBlock } from "../../core-logic/utils/finder";
+import { ref } from "vue";
+import draggable from "vuedraggable";
 
 const { fields, parentElement } = defineProps<{
   fields: FieldContent[];
@@ -38,6 +54,7 @@ const { fields, parentElement } = defineProps<{
 }>();
 
 const zoneStore = useZoneStore();
+const lastMoveEvent = ref(null);
 
 const getChildrenFromElement = (element) => {
   if (element.type === "repeater") return element.sub_elements;
@@ -51,13 +68,31 @@ const addNewElement = () => {
     parentElement as Repeater<
       ComponentContent | PrimitiveFieldContent<PrimitiveFieldType>
     >
-  ).sub_element_id;
-  console.log(blockId, parentElement.id, componentId);
+  ).component_id;
   zoneStore.addComponent(blockId, parentElement.id, componentId);
+};
+
+const handleMove = (moveEvent) => {
+  if (Element.type !== "repeater") return false;
+  lastMoveEvent.value = moveEvent;
+  // Return false to prevent default behavior
+  return false;
+};
+
+const handleDrop = () => {
+  if (!lastMoveEvent.value) return;
+  zoneStore.moveComponent(
+    lastMoveEvent.value.draggedContext.element.id,
+    lastMoveEvent.value.draggedContext.futureIndex
+  );
+  lastMoveEvent.value = null;
 };
 </script>
 
 <style scoped>
+.subfields {
+  margin-left: 1.5rem;
+}
 .subfieldAdd {
   display: flex;
   align-items: center;

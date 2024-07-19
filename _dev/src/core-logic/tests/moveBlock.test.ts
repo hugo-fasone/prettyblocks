@@ -7,6 +7,7 @@ import { useZoneStore } from "../store/zoneStore";
 
 const newColumnBlock: BlockContent = {
   id: "columnBlock",
+  type: "block",
   block_id: "columnBlock",
   label: "Column Block",
   fields: [
@@ -53,6 +54,7 @@ const newColumnBlock: BlockContent = {
 };
 const emptyBlockContent1: BlockContent = {
   id: "empty_block_content_1",
+  type: "block",
   block_id: "emptyBlock",
   label: "Empty Block",
   fields: [],
@@ -60,6 +62,7 @@ const emptyBlockContent1: BlockContent = {
 
 const emptyBlockContent2: BlockContent = {
   id: "empty_block_content_2",
+  type: "block",
   block_id: "emptyBlock",
   label: "Empty Block",
   fields: [],

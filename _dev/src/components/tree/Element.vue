@@ -1,8 +1,8 @@
 <template>
   <div class="element">
     <div class="elementName">
-      <span class="dragAndDropIcon"
-        ><Icon name="ChevronUpDownIcon" v-if="isDeletable"
+      <span class="dragAndDropIcon" :draggable="true"
+        ><Icon name="ChevronUpDownIcon" v-if="isMovable"
       /></span>
       <span class="elementDropdownArrow" @click="toggleCollapse">
         <Icon
@@ -32,6 +32,14 @@
         <span v-if="isDeletable" @click="deleteElement"
           ><Icon name="TrashIcon"
         /></span>
+        <span
+          v-if="(element as ComponentContent | PrimitiveFieldContent<PrimitiveFieldType>).optional"
+          @click="toggleElement"
+        >
+          <Icon
+            :name="(element as ComponentContent | PrimitiveFieldContent<PrimitiveFieldType>).hidden ? 'EyeSlashIcon' : 'EyeIcon'"
+          />
+        </span>
       </span>
     </div>
     <Subfields
@@ -44,16 +52,22 @@
 
 <script setup lang="ts">
 import { BlockContent } from "../../core-logic/entities/BlockContent";
-import { FieldContent } from "../../core-logic/entities/ComponentContent";
+import {
+  ComponentContent,
+  FieldContent,
+} from "../../core-logic/entities/ComponentContent";
 import { useZoneStore } from "../../core-logic/store/zoneStore.js";
 import { ref, nextTick } from "vue";
 import Subfields from "./Subfields.vue";
 import Icon from "../Icon.vue";
+import { PrimitiveFieldType } from "../../core-logic/entities/ElementType";
+import { PrimitiveFieldContent } from "../../core-logic/entities/PrimitiveFieldContent";
 
-const { element, children, isDeletable } = defineProps<{
+const { element, children, isDeletable, isMovable } = defineProps<{
   element: BlockContent | FieldContent;
   children: FieldContent[];
   isDeletable: boolean;
+  isMovable: boolean;
 }>();
 
 const zoneStore = useZoneStore();
@@ -82,6 +96,10 @@ const renameElement = (event) => {
 
 const toggleCollapse = () => {
   isCollapsed.value = !isCollapsed.value;
+};
+
+const toggleElement = () => {
+  zoneStore.toggleElement(element.id);
 };
 </script>
 

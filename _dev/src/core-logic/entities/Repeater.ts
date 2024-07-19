@@ -11,5 +11,6 @@ export type Repeater<
   type: REPEATER_TYPE;
   label: string;
   sub_elements: C[];
-  sub_element_id: string;
+  optional?: boolean;
+  hidden?: boolean;
 };

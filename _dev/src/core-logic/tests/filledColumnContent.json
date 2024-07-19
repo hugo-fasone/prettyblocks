@@ -37,7 +37,7 @@
     },
     {
       "id": "some_random_id",
-      "sub_element_id": "column",
+      "component_id": "column",
       "type": "repeater",
       "label": "Columns",
       "sub_elements": [

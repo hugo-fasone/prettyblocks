@@ -81,4 +81,5 @@ export type PrimitiveFieldContent<T extends PrimitiveFieldType> = {
   label: string;
   optional?: boolean;
   content: PrimitiveFieldContentMap[T];
+  hidden?: boolean;
 };

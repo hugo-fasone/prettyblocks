@@ -14,5 +14,6 @@ export type ComponentContent = {
   type: COMPONENT_TYPE;
   label: string;
   optional?: boolean;
+  hidden?: boolean;
   fields: FieldContent[];
 };

@@ -7,6 +7,8 @@
       "id": "field_0",
       "type": "text",
       "label": "Column block title",
+      "optional": false,
+      "hidden": false,
       "content": {
         "value": "Column title"
       }
@@ -16,20 +18,25 @@
       "component_id": "banner",
       "type": "component",
       "label": "Banner",
+      "optional": false,
+      "hidden": false,
       "fields": [
         {
           "id": "field_1_0",
           "type": "text",
           "label": "Image",
           "optional": true,
+          "hidden": false,
           "content": {
             "value": "BannerImage"
           }
         },
         {
-          "id":"field_1_1",
-          "type":"text",
+          "id": "field_1_1",
+          "type": "text",
           "label": "Intro",
+          "optional": false,
+          "hidden": false,
           "content": {
             "value": "Wonderful intro"
           }
@@ -38,20 +45,26 @@
     },
     {
       "id": "field_2",
-      "sub_element_id": "column",
+      "component_id": "column",
       "type": "repeater",
       "label": "Columns",
+      "optional": false,
+      "hidden": false,
       "sub_elements": [
         {
           "id": "field_2_0",
           "component_id": "column",
           "type": "component",
           "label": "Columns-1",
+          "optional": false,
+          "hidden": false,
           "fields": [
             {
               "id": "field_2_0_0",
-              "type":"text",
+              "type": "text",
               "label": "Column title",
+              "optional": false,
+              "hidden": false,
               "content": {
                 "value": "Titre de colonne"
               }
@@ -60,17 +73,23 @@
               "id": "field_2_0_1",
               "type": "repeater",
               "label": "Cards",
+              "optional": false,
+              "hidden": false,
               "sub_elements": [
                 {
-                  "id":"field_2_0_1_0",
+                  "id": "field_2_0_1_0",
                   "component_id": "card",
                   "type": "component",
                   "label": "Cards-1",
+                  "optional": false,
+                  "hidden": false,
                   "fields": [
                     {
-                      "id":"field_2_0_1_0_0",
+                      "id": "field_2_0_1_0_0",
                       "type": "text",
                       "label": "Card title",
+                      "optional": false,
+                      "hidden": false,
                       "content": {
                         "value": "Titre de carte"
                       }
@@ -78,15 +97,19 @@
                   ]
                 },
                 {
-                  "id":"field_2_0_1_1",
+                  "id": "field_2_0_1_1",
                   "component_id": "card",
                   "type": "component",
                   "label": "Cards-2",
+                  "optional": false,
+                  "hidden": false,
                   "fields": [
                     {
-                      "id":"field_2_0_1_1_0",
+                      "id": "field_2_0_1_1_0",
                       "type": "text",
                       "label": "Card title",
+                      "optional": false,
+                      "hidden": false,
                       "content": {
                         "value": "Titre de carte"
                       }
@@ -102,11 +125,15 @@
           "component_id": "column",
           "type": "component",
           "label": "Columns-2",
+          "optional": false,
+          "hidden": false,
           "fields": [
             {
               "id": "field_2_1_0",
-              "type":"text",
+              "type": "text",
               "label": "Column title",
+              "optional": false,
+              "hidden": false,
               "content": {
                 "value": "Titre de colonne"
               }
@@ -115,17 +142,23 @@
               "id": "field_2_1_1",
               "type": "repeater",
               "label": "Cards",
+              "optional": false,
+              "hidden": false,
               "sub_elements": [
                 {
-                  "id":"field_2_1_1_0",
+                  "id": "field_2_1_1_0",
                   "component_id": "card",
                   "type": "component",
                   "label": "Cards-1",
+                  "optional": false,
+                  "hidden": false,
                   "fields": [
                     {
-                      "id":"field_2_1_1_0_0",
+                      "id": "field_2_1_1_0_0",
                       "type": "text",
                       "label": "Card title",
+                      "optional": false,
+                      "hidden": false,
                       "content": {
                         "value": "Titre de carte"
                       }
@@ -133,15 +166,19 @@
                   ]
                 },
                 {
-                  "id":"field_2_1_1_1",
+                  "id": "field_2_1_1_1",
                   "component_id": "card",
                   "type": "component",
                   "label": "Cards-2",
+                  "optional": false,
+                  "hidden": false,
                   "fields": [
                     {
-                      "id":"field_2_1_1_1_0",
+                      "id": "field_2_1_1_1_0",
                       "type": "text",
                       "label": "Card title",
+                      "optional": false,
+                      "hidden": false,
                       "content": {
                         "value": "Titre de carte"
                       }

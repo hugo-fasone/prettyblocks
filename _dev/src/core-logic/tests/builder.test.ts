@@ -153,8 +153,11 @@ describe("Block, component and Primitive content builder", () => {
     it("builds a primitive repeatable component", () => {
       const componentStructure: ComponentStructure =
         blockStructurePrimitiveRepeater.fields.columns as ComponentStructure;
-      const expectedComponentContent: Repeater<PrimitiveFieldType.TEXT> =
-        blockContent.fields[2] as Repeater<PrimitiveFieldType.TEXT>;
+      const expectedComponentContent: Repeater<
+        PrimitiveFieldContent<PrimitiveFieldType.TEXT>
+      > = blockContent.fields[2] as Repeater<
+        PrimitiveFieldContent<PrimitiveFieldType.TEXT>
+      >;
       const newComponentContent: Repeater<ComponentContent> =
         buildNewComponentFromStructure(
           componentStructure
