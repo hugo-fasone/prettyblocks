@@ -2,6 +2,7 @@
   "id": "block_id",
   "block_id": "columnBlock",
   "label": "column",
+  "type": "block",
   "fields": [
     {
       "id": "field_0",

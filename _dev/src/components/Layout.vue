@@ -8,6 +8,7 @@ import emitter from "tiny-emitter/instance";
 import { useZoneStore } from "../core-logic/store/zoneStore";
 import ComponentTree from "./tree/ComponentTree.vue";
 import AddBlockModal from "./AddBlockModal.vue";
+import EditPanel from "./componentEdit/EditPanel.vue";
 
 defineComponent({
   Header,
@@ -66,6 +67,7 @@ emitter.on("changeRightPanelSize", (value) => {
       <!-- <LeftPanel :class="[leftWidth, hidden_left]" class="hidden" /> -->
       <ComponentTree />
       <AddBlockModal />
+      <EditPanel />
       <!-- <Frame class="flex-grow" /> -->
       <!-- <RightPanel :class="[rightWidth, hidden_right]" class="hidden" /> -->
     </div>

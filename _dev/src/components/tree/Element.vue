@@ -25,7 +25,7 @@
         />
       </span>
       <span class="elementLabel" v-else>
-        <span>{{ element.label }}</span>
+        <span @click="selectElement">{{ element.label }}</span>
       </span>
       <span class="elementActions">
         <span @click="editElementLabel"><Icon name="PencilIcon" /></span>
@@ -62,6 +62,7 @@ import Subfields from "./Subfields.vue";
 import Icon from "../Icon.vue";
 import { PrimitiveFieldType } from "../../core-logic/entities/ElementType";
 import { PrimitiveFieldContent } from "../../core-logic/entities/PrimitiveFieldContent";
+import emitter from "tiny-emitter/instance";
 
 const { element, children, isDeletable, isMovable } = defineProps<{
   element: BlockContent | FieldContent;
@@ -100,6 +101,10 @@ const toggleCollapse = () => {
 
 const toggleElement = () => {
   zoneStore.toggleElement(element.id);
+};
+
+const selectElement = () => {
+  emitter.emit("editComponent", element);
 };
 </script>
 
