@@ -1,9 +1,6 @@
 <template>
   <div class="subfields">
-    <div
-      class="subfieldDraggableZone"
-      :style="`${lastMoveEvent ? 'border: 2px solid #ccc;' : ''}`"
-    >
+    <div class="subfieldDraggableZone" :class="lastMoveEvent ? 'dragging' : ''">
       <draggable
         :list="fields"
         :group="parentElement.id"
@@ -17,6 +14,7 @@
             :children="getChildrenFromElement(element)"
             :isDeletable="parentElement.type === 'repeater'"
             :isMovable="parentElement.type === 'repeater'"
+            class="tree-element"
           />
         </template>
       </draggable>
@@ -73,13 +71,26 @@ const addNewElement = () => {
 };
 
 const handleMove = (moveEvent) => {
-  if (Element.type !== "repeater") return false;
+  if (parentElement.type !== "repeater") return false;
   lastMoveEvent.value = moveEvent;
+  document
+    .querySelectorAll(".tree-element")
+    .forEach((treeElement) =>
+      treeElement.classList.remove("place-after", "place-before")
+    );
+  moveEvent.related.classList.add(
+    moveEvent.willInsertAfter ? "place-after" : "place-before"
+  );
   // Return false to prevent default behavior
   return false;
 };
 
 const handleDrop = () => {
+  document
+    .querySelectorAll(".tree-element")
+    .forEach((treeElement) =>
+      treeElement.classList.remove("place-after", "place-before")
+    );
   if (!lastMoveEvent.value) return;
   zoneStore.moveComponent(
     lastMoveEvent.value.draggedContext.element.id,
@@ -89,13 +100,36 @@ const handleDrop = () => {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "../../assets/styles/vars";
+
 .subfields {
-  margin-left: 1.5rem;
+  padding-left: 1.5rem;
+  cursor: pointer;
 }
+
 .subfieldAdd {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  margin-left: 1.5rem;
+  &:hover {
+    background: $bg-hover-color;
+  }
+}
+
+.dragging {
+  border: 1px solid $bg-secondary-color;
+}
+
+.place-before::before,
+.place-after::after {
+  content: "";
+  display: block;
+  width: 60%;
+  margin: auto;
+  height: 4px;
+  border-radius: 4px;
+  background-color: $bg-secondary-color;
 }
 </style>

@@ -1,6 +1,9 @@
 <template>
   <div class="element">
-    <div class="elementName">
+    <div
+      class="elementName"
+      :class="(element as FieldContent).hidden ? 'hidden' : ''"
+    >
       <span class="dragAndDropIcon" :draggable="true"
         ><Icon name="ChevronUpDownIcon" v-if="isMovable"
       /></span>
@@ -80,6 +83,7 @@ const deleteMap = {
   block: zoneStore.deleteBlockById,
   component: zoneStore.deleteComponentById,
 };
+
 const deleteElement = () => {
   if (isDeletable) {
     deleteMap[element.type](element.id);
@@ -108,17 +112,54 @@ const selectElement = () => {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "../../assets/styles/vars";
+
+.element {
+  color: $primary-color;
+}
 .elementName {
   display: flex;
   align-items: center;
+  &:hover {
+    background-color: $bg-hover-color;
+    > .elementActions {
+      display: flex;
+    }
+    > .dragAndDropIcon {
+      visibility: visible;
+    }
+  }
 }
+
+.hidden {
+  color: $disabled-color;
+}
+
+.elementLabel {
+  cursor: pointer;
+}
+
+.elementDropdownArrow {
+  cursor: pointer;
+}
+
 .elementActions {
-  display: flex;
+  display: none;
   margin-left: auto;
+  gap: 0.5rem;
+  span {
+    cursor: pointer;
+  }
 }
+
 .elementDropdownArrow,
 .dragAndDropIcon {
   width: 1.5rem;
+}
+
+.dragAndDropIcon {
+  visibility: hidden;
+  cursor: move;
 }
 </style>
