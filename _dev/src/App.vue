@@ -12,6 +12,16 @@ onMounted(() =>
     content: [filledColumns],
   })
 );
+
+const handleDrag = (dragEvent) => {
+  dragEvent.dataTransfer.setDragImage(
+    dragEvent.target,
+    window.outerWidth,
+    window.outerHeight
+  );
+};
+
+document.addEventListener("dragstart", handleDrag);
 </script>
 
 <template>

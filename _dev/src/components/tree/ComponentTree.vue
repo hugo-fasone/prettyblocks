@@ -55,14 +55,28 @@ const addNewBlock = () => {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "../../assets/styles/vars";
+
 .tree {
-  width: 20rem;
+  min-width: 25rem;
+  padding-right: 1rem;
+  box-shadow: inset -0.5rem 0 0.5rem -0.3rem $bg-hover-color;
 }
 
 .blockAdd {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  margin-left: 1.5rem;
+  padding: 0.25rem 0.5rem;
+  background: $bg-hover-color;
+  color: $primary-color;
+  border-radius: 0.5rem;
+  box-shadow: $button-shadow;
+  &:hover {
+    background-color: $bg-secondary-color;
+    color: $secondary-color;
+  }
 }
 </style>

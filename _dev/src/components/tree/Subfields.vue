@@ -1,5 +1,13 @@
 <template>
   <div class="subfields">
+    <div
+      v-if="parentElement.type === 'repeater'"
+      class="subfieldAdd"
+      @click="addNewElement"
+    >
+      <Icon name="PlusIcon" />
+      Ajouter un élément {{ parentElement.label }}
+    </div>
     <div class="subfieldDraggableZone" :class="lastMoveEvent ? 'dragging' : ''">
       <draggable
         :list="fields"
@@ -18,14 +26,6 @@
           />
         </template>
       </draggable>
-    </div>
-    <div
-      v-if="parentElement.type === 'repeater'"
-      class="subfieldAdd"
-      @click="addNewElement"
-    >
-      <Icon name="PlusIcon" />
-      Ajouter un élément {{ parentElement.label }}
     </div>
   </div>
 </template>
@@ -112,24 +112,30 @@ const handleDrop = () => {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-left: 1.5rem;
+  padding: 0.25rem 0.5rem;
+  background: $bg-hover-color;
+  color: $primary-color;
+  border-radius: 0.5rem;
+  box-shadow: $button-shadow;
   &:hover {
-    background: $bg-hover-color;
+    background-color: $bg-secondary-color;
+    color: $secondary-color;
   }
 }
 
 .dragging {
-  border: 1px solid $bg-secondary-color;
+  background-color: $bg-hover-color;
 }
 
 .place-before::before,
 .place-after::after {
   content: "";
   display: block;
-  width: 60%;
+  width: 100%;
   margin: auto;
-  height: 4px;
+  height: 1.5rem;
   border-radius: 4px;
-  background-color: $bg-secondary-color;
+  border: 1px dashed $bg-secondary-color;
+  border-radius: 0.5rem;
 }
 </style>

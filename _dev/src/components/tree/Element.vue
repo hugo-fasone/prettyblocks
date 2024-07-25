@@ -10,11 +10,15 @@
       <span class="elementDropdownArrow" @click="toggleCollapse">
         <Icon
           name="ChevronRightIcon"
-          v-if="children.length > 0 && isCollapsed"
+          v-if="
+            (element.type === 'repeater' || children.length > 0) && isCollapsed
+          "
         />
         <Icon
           name="ChevronDownIcon"
-          v-else-if="children.length > 0 && !isCollapsed"
+          v-else-if="
+            (element.type === 'repeater' || children.length > 0) && !isCollapsed
+          "
         />
       </span>
       <span class="elementIcon"></span>
@@ -23,12 +27,16 @@
           type="text"
           @change="renameElement"
           @focusout="renameState = false"
+          @keyup.enter="renameElement"
           :value="element.label"
           ref="inputRef"
+          class="labelInput"
         />
       </span>
       <span class="elementLabel" v-else>
-        <span @click="selectElement">{{ element.label }}</span>
+        <span @click="selectElement" @dblclick="editElementLabel">{{
+          element.label
+        }}</span>
       </span>
       <span class="elementActions">
         <span @click="editElementLabel"><Icon name="PencilIcon" /></span>
@@ -97,6 +105,7 @@ const editElementLabel = async () => {
 
 const renameElement = (event) => {
   zoneStore.renameElement(element.id, event.target.value);
+  renameState.value = false;
 };
 
 const toggleCollapse = () => {
@@ -121,6 +130,8 @@ const selectElement = () => {
 .elementName {
   display: flex;
   align-items: center;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
   &:hover {
     background-color: $bg-hover-color;
     > .elementActions {
@@ -161,5 +172,20 @@ const selectElement = () => {
 .dragAndDropIcon {
   visibility: hidden;
   cursor: move;
+}
+
+.elementLabelInput {
+  flex: 1;
+}
+
+.labelInput {
+  padding: 0.25rem 0.5rem;
+  margin-right: 0.5rem;
+  width: 100%;
+  border-radius: 0.5rem;
+  &:focus {
+    border: 2px solid $primary-color;
+    box-shadow: none;
+  }
 }
 </style>

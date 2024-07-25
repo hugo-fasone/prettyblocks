@@ -4,4 +4,7 @@ $disabled-color: #888;
 
 $bg-primary-color: #fff;
 $bg-secondary-color: #333;
-$bg-hover-color: #ccc;
+$bg-hover-color: #eee;
+
+$button-shadow: 3px 3px 6px -2px $bg-secondary-color,
+  inset 3px 3px 3px 0 $bg-primary-color;
