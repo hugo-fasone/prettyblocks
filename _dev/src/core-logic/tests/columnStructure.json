@@ -19,6 +19,7 @@
         "image": {
           "type": "text",
           "label": "Image",
+          "id": "bannerImage",
           "optional": true,
           "default": {
             "value": "BannerImage"
@@ -27,6 +28,7 @@
         "intro": {
           "type": "text",
           "label": "Intro",
+          "id": "bannerIntro",
           "default": {
             "value": "Wonderful intro"
           }
@@ -56,6 +58,7 @@
             "card": {
               "type": "text",
               "label": "Card title",
+              "id": "card-title",
               "default": {
                 "value": "Titre de carte"
               }

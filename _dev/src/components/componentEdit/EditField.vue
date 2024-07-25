@@ -1,14 +1,21 @@
 <template>
   <div>
-    <div @click="switchComponent">
+    <div
+      v-if="field.type === 'component' || field.type === 'repeater'"
+      @click="switchComponent"
+      class="componentLink"
+    >
       {{ field.label }}
     </div>
-    <input
-      v-if="field.type === PrimitiveFieldType.TEXT"
-      type="text"
-      :value="(field.content as PrimitiveFieldContentMap[PrimitiveFieldType.TEXT]).value"
-      @change="editField"
-    />
+    <div v-else>
+      {{ field.label }}
+      <input
+        v-if="field.type === PrimitiveFieldType.TEXT"
+        type="text"
+        :value="(field.content as PrimitiveFieldContentMap[PrimitiveFieldType.TEXT]).value"
+        @change="editField"
+      />
+    </div>
   </div>
 </template>
 
@@ -26,8 +33,7 @@ const { field } = defineProps<{
 const zoneStore = useZoneStore();
 
 const switchComponent = () => {
-  if (field.type === "component" || field.type === "repeater")
-    emitter.emit("editComponent", field);
+  emitter.emit("editComponent", field);
 };
 
 const editField = (event) => {
@@ -36,4 +42,10 @@ const editField = (event) => {
 };
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+@import "../../assets/styles/vars";
+
+.componentLink {
+  background-color: $bg-hover-color;
+}
+</style>

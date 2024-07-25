@@ -13,6 +13,7 @@ const newColumnBlock: BlockContent = {
   fields: [
     {
       id: "some_random_id",
+      structureId: "columnBlockTitle",
       type: "text" as PrimitiveFieldType.TEXT,
       label: "Column block title",
       content: {
@@ -27,6 +28,7 @@ const newColumnBlock: BlockContent = {
       fields: [
         {
           id: "some_random_id",
+          structureId: "bannerImage",
           type: "text" as PrimitiveFieldType.TEXT,
           label: "Image",
           content: {
@@ -35,6 +37,7 @@ const newColumnBlock: BlockContent = {
         },
         {
           id: "some_random_id",
+          structureId: "bannerIntro",
           type: "text" as PrimitiveFieldType.TEXT,
           label: "Intro",
           content: {

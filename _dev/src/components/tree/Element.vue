@@ -174,6 +174,10 @@ const selectElement = () => {
   cursor: move;
 }
 
+.elementLabel {
+  flex: 1;
+}
+
 .elementLabelInput {
   flex: 1;
 }

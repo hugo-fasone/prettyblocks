@@ -7,6 +7,7 @@
       "id": "some_random_id",
       "type": "text",
       "label": "Column block title",
+      "structure_id": "column-block-title",
       "content": {
         "value": "Column title"
       }
@@ -23,6 +24,7 @@
           "type": "text",
           "label": "Image",
           "optional": true,
+      "structure_id": "image",
           "content": {
             "value": "BannerImage"
           }

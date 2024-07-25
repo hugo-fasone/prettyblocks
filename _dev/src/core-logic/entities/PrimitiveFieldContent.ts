@@ -77,6 +77,7 @@ export interface PrimitiveFieldContentMap {
 
 export type PrimitiveFieldContent<T extends PrimitiveFieldType> = {
   id: string;
+  structureId: string;
   type: PrimitiveFieldType;
   label: string;
   optional?: boolean;

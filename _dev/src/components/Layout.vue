@@ -65,11 +65,11 @@ emitter.on("changeRightPanelSize", (value) => {
     <!-- <Header /> -->
     <div class="overflow-hidden flex flex-grow">
       <!-- <LeftPanel :class="[leftWidth, hidden_left]" class="hidden" /> -->
-      <ComponentTree />
-      <AddBlockModal />
-      <EditPanel />
+      <ComponentTree :class="[leftWidth, hidden_left]" class="hidden" />
       <!-- <Frame class="flex-grow" /> -->
       <!-- <RightPanel :class="[rightWidth, hidden_right]" class="hidden" /> -->
+      <EditPanel :class="[rightWidth, hidden_right]" class="hidden" />
+      <AddBlockModal />
     </div>
   </main>
 </template>

@@ -82,6 +82,7 @@ export const buildNewPrimitiveFieldFromStructure = (
 ): PrimitiveFieldContent<PrimitiveFieldType> => {
   return {
     id: uuidv4(),
+    structureId: primitiveFieldStructure.id,
     type: primitiveFieldStructure.type,
     label: primitiveFieldStructure.label,
     content: primitiveFieldStructure.default,

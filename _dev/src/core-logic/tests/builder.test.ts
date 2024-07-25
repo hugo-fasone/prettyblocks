@@ -36,19 +36,26 @@ describe("Block, component and Primitive content builder", () => {
       const primitiveTextStructure: PrimitiveFieldStructure<PrimitiveFieldType.TEXT> =
         blockStructure.fields
           .title as PrimitiveFieldStructure<PrimitiveFieldType.TEXT>;
-      const expectedTextContent: PrimitiveFieldContent<PrimitiveFieldType.TEXT> =
-        blockContent
-          .fields[0] as PrimitiveFieldContent<PrimitiveFieldType.TEXT>;
       const newTextContent: PrimitiveFieldContent<PrimitiveFieldType.TEXT> =
         buildNewPrimitiveFieldFromStructure(
           primitiveTextStructure
         ) as PrimitiveFieldContent<PrimitiveFieldType.TEXT>;
       expect(newTextContent).toHaveProperty("id");
-      expect(newTextContent).toHaveProperty("label", expectedTextContent.label);
-      expect(newTextContent).toHaveProperty("type", expectedTextContent.type);
+      expect(newTextContent).toHaveProperty(
+        "label",
+        primitiveTextStructure.label
+      );
+      expect(newTextContent).toHaveProperty(
+        "type",
+        primitiveTextStructure.type
+      );
       expect(newTextContent).toHaveProperty(
         "content.value",
-        expectedTextContent.content.value
+        primitiveTextStructure.default.value
+      );
+      expect(newTextContent).toHaveProperty(
+        "structureId",
+        primitiveTextStructure.id
       );
     });
   });
@@ -186,6 +193,7 @@ describe("Block, component and Primitive content builder", () => {
     it("builds a full block", () => {
       const newBlockContent: BlockContent =
         buildNewBlockContentFromBlockStructure(blockStructure);
+      console.log(JSON.stringify(newBlockContent));
       expect(newBlockContent).toHaveProperty("id");
       expect(newBlockContent).toHaveProperty("block_id", blockContent.block_id);
       expect(newBlockContent.fields).toHaveLength(3);
