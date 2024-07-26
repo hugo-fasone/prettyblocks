@@ -1,7 +1,7 @@
 <template>
   <component
     :is="componentMap[field.type]"
-    :value="(field.content as PrimitiveFieldContentMap[PrimitiveFieldType.TEXT]).value"
+    :value="(field.content as PrimitiveFieldContentMap[PrimitiveFieldType.TEXT])"
     @update:modelValue="editField"
   />
 </template>

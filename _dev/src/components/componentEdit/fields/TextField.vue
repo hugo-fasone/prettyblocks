@@ -2,7 +2,7 @@
   <input
     ref="inputRef"
     type="text"
-    :value="value"
+    :value="value.value"
     @change="onChange"
     @keyup.enter="onChange"
   />
@@ -10,9 +10,10 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import { PrimitiveTextType } from "../../../core-logic/entities/PrimitiveFieldContent";
 
 const emit = defineEmits(["update:modelValue"]);
-const { value } = defineProps<{ value: string }>();
+const { value } = defineProps<{ value: PrimitiveTextType }>();
 
 const inputRef = ref(null);
 
