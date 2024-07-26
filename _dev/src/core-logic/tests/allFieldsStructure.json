@@ -36,6 +36,14 @@
         "value": "Text"
       }
     },
+    "switch": {
+      "id": "switch",
+      "type": "switch",
+      "label": "Switch",
+      "default": {
+        "value": false
+      }
+    },
     "link": {
       "id": "link",
       "type": "link",
