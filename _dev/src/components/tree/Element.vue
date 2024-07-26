@@ -33,10 +33,13 @@
           class="labelInput"
         />
       </span>
-      <span class="elementLabel" v-else>
-        <span @click="selectElement" @dblclick="editElementLabel">{{
-          element.label
-        }}</span>
+      <span
+        class="elementLabel"
+        v-else
+        @click="selectElement"
+        @dblclick="editElementLabel"
+      >
+        {{ element.label }}
       </span>
       <span class="elementActions">
         <span @click="editElementLabel"><Icon name="PencilIcon" /></span>

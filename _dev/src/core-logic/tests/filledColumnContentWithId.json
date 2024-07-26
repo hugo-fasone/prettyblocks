@@ -72,6 +72,7 @@
             },
             {
               "id": "field_2_0_1",
+              "component_id": "card",
               "type": "repeater",
               "label": "Cards",
               "optional": false,
@@ -141,6 +142,7 @@
             },
             {
               "id": "field_2_1_1",
+              "component_id": "card",
               "type": "repeater",
               "label": "Cards",
               "optional": false,
