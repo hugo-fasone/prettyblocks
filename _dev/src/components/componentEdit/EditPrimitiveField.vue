@@ -16,6 +16,7 @@ import TextField from "./fields/TextField.vue";
 import NumberField from "./fields/NumberField.vue";
 import RangeField from "./fields/RangeField.vue";
 import SelectField from "./fields/SelectField.vue";
+import LinkField from "./fields/LinkField.vue";
 import DateField from "./fields/DateField.vue";
 import ColorField from "./fields/ColorField.vue";
 import WysiwygField from "./fields/WysiwygField.vue";
@@ -43,6 +44,7 @@ const componentMap: ComponentMap<PrimitiveFieldType> = {
   [PrimitiveFieldType.SELECT]: SelectField,
   [PrimitiveFieldType.DATE]: DateField,
   [PrimitiveFieldType.COLOR]: ColorField,
+  [PrimitiveFieldType.LINK]: LinkField,
 };
 </script>
 

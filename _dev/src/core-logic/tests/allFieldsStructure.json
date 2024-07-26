@@ -77,6 +77,15 @@
       "default": {
         "value": "#fff"
       }
+    },
+    "link": {
+      "id": "link",
+      "type": "link",
+      "label": "Link",
+      "default": {
+        "label": "",
+        "href": ""
+      }
     }
   }
 }
