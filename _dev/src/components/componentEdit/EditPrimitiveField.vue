@@ -14,6 +14,8 @@ import {
 } from "../../core-logic/entities/PrimitiveFieldContent";
 import TextField from "./fields/TextField.vue";
 import NumberField from "./fields/NumberField.vue";
+import RangeField from "./fields/RangeField.vue";
+import WysiwygField from "./fields/WysiwygField.vue";
 import { useZoneStore } from "../../core-logic/store/zoneStore";
 
 const { field } = defineProps<{
@@ -31,6 +33,8 @@ type ComponentMap<T extends PrimitiveFieldType> = {
 const componentMap: ComponentMap<PrimitiveFieldType> = {
   [PrimitiveFieldType.TEXT]: TextField,
   [PrimitiveFieldType.NUMBER]: NumberField,
+  [PrimitiveFieldType.RANGE]: RangeField,
+  [PrimitiveFieldType.WYSIWYG]: WysiwygField,
 };
 </script>
 

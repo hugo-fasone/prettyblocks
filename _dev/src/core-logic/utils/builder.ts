@@ -86,6 +86,7 @@ export const buildNewPrimitiveFieldFromStructure = (
     type: primitiveFieldStructure.type,
     label: primitiveFieldStructure.label,
     content: primitiveFieldStructure.default,
-    optional: primitiveFieldStructure.optional,
+    optional: primitiveFieldStructure.optional || false,
+    hidden: false,
   };
 };

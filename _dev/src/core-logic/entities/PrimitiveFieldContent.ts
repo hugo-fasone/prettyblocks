@@ -67,7 +67,7 @@ export interface PrimitiveFieldContentMap {
   [PrimitiveFieldType.SWITCH]: PrimitiveSwitchType;
   [PrimitiveFieldType.FILE]: PrimitiveFileType;
   [PrimitiveFieldType.OEMBED]: PrimitiveOembedType;
-  [PrimitiveFieldType.WISIWYG]: PrimitiveWysiwygType;
+  [PrimitiveFieldType.WYSIWYG]: PrimitiveWysiwygType;
   [PrimitiveFieldType.COLOR]: PrimitiveColorType;
   [PrimitiveFieldType.DATE]: PrimitiveDateType;
   [PrimitiveFieldType.MAP]: PrimitiveMapType;

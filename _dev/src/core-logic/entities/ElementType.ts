@@ -13,7 +13,7 @@ export enum PrimitiveFieldType {
   SWITCH = "switch",
   FILE = "file",
   OEMBED = "oembed",
-  WISIWYG = "wysiwyg",
+  WYSIWYG = "wysiwyg",
   COLOR = "color",
   DATE = "date",
   MAP = "map",

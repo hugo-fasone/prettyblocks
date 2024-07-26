@@ -18,6 +18,24 @@
         "value": 42
       }
     },
+    "range": {
+      "id": "range",
+      "type": "range",
+      "label": "Range",
+      "default": {
+        "min": 0,
+        "max": 100,
+        "value": 50
+      }
+    },
+    "wysiwyg": {
+      "id": "wysiwyg",
+      "type": "wysiwyg",
+      "label": "Wysiwyg",
+      "default": {
+        "value": "Text"
+      }
+    },
     "link": {
       "id": "link",
       "type": "link",

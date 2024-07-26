@@ -22,7 +22,7 @@ const validateAndChange = (event) => {
   onChange(event);
 };
 const onChange = (event) => {
-  emit("update:modelValue", { value: event.target.value });
+  emit("update:modelValue", { value: Number(event.target.value) });
 };
 </script>
 
