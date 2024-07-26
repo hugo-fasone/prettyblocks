@@ -69,7 +69,14 @@
       "default": {
         "value": ""
       }
+    },
+    "color": {
+      "id": "color",
+      "type": "color",
+      "label": "Color",
+      "default": {
+        "value": "#fff"
+      }
     }
-
   }
 }
