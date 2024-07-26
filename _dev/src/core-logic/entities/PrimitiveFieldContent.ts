@@ -27,7 +27,7 @@ export type PrimitiveCheckboxType = Record<string, boolean>;
 
 export type PrimitiveSelectType = {
   value: string;
-  options: string[];
+  options: { label: string; value: string }[];
 };
 export type PrimitiveRadioType = PrimitiveSelectType;
 

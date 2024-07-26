@@ -15,6 +15,7 @@ import {
 import TextField from "./fields/TextField.vue";
 import NumberField from "./fields/NumberField.vue";
 import RangeField from "./fields/RangeField.vue";
+import SelectField from "./fields/SelectField.vue";
 import WysiwygField from "./fields/WysiwygField.vue";
 import { useZoneStore } from "../../core-logic/store/zoneStore";
 import SwitchField from "./fields/SwitchField.vue";
@@ -37,6 +38,7 @@ const componentMap: ComponentMap<PrimitiveFieldType> = {
   [PrimitiveFieldType.RANGE]: RangeField,
   [PrimitiveFieldType.WYSIWYG]: WysiwygField,
   [PrimitiveFieldType.SWITCH]: SwitchField,
+  [PrimitiveFieldType.SELECT]: SelectField,
 };
 </script>
 

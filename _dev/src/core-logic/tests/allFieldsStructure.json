@@ -44,13 +44,22 @@
         "value": false
       }
     },
-    "link": {
-      "id": "link",
-      "type": "link",
-      "label": "Link",
+    "select": {
+      "id": "select",
+      "type": "select",
+      "label": "Select",
       "default": {
-        "label": "Link label",
-        "href": "href"
+        "value": "",
+        "options": [
+          {
+            "label": "dog",
+            "value": "dog"
+          },
+          {
+            "label": "cat",
+            "value": "cat"
+          }
+        ]
       }
     }
   }
