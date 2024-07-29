@@ -14,6 +14,7 @@
           :children="element.fields"
           :isDeletable="true"
           :isMovable="true"
+          :isDuplicable="true"
           :move="handleMove"
           @end="handleDrop"
           class="tree-element"

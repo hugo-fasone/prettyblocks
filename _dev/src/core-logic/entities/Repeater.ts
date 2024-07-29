@@ -1,11 +1,7 @@
-import { PrimitiveFieldType, REPEATER_TYPE } from "./ElementType";
+import { FieldContent } from "./ComponentContent";
+import { REPEATER_TYPE } from "./ElementType";
 
-import { ComponentContent } from "./ComponentContent";
-import { PrimitiveFieldContent } from "./PrimitiveFieldContent";
-
-export type Repeater<
-  C extends ComponentContent | PrimitiveFieldContent<PrimitiveFieldType>
-> = {
+export type Repeater<C extends FieldContent> = {
   id: string;
   component_id: string;
   type: REPEATER_TYPE;

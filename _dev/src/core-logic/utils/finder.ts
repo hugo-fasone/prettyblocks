@@ -6,7 +6,7 @@ import { ComponentStructure } from "../entities/ComponentStructure";
 import { Repeater } from "../entities/Repeater";
 
 export type SearchComponentResult = {
-  parent?: BlockContent | ComponentContent | Repeater<ComponentContent>;
+  parent?: BlockContent | ComponentContent | Repeater<FieldContent>;
   node: BlockContent | FieldContent;
 };
 

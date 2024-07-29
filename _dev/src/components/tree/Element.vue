@@ -4,9 +4,6 @@
       class="elementName"
       :class="{ hidden: (element as FieldContent).hidden, selectedElement: isSelected }"
     >
-      <!-- <span class="dragAndDropIcon" :draggable="true"
-        ><Icon name="ChevronUpDownIcon" v-if="isMovable"
-      /></span> -->
       <span class="elementDropdownArrow" @click="toggleCollapse">
         <Icon
           name="ChevronRightIcon"
@@ -42,6 +39,9 @@
         {{ element.label }}
       </span>
       <span class="elementActions">
+        <span v-if="isDuplicable" @click="duplicateElement"
+          ><Icon name="DocumentDuplicateIcon"
+        /></span>
         <span @click="editElementLabel"><Icon name="PencilIcon" /></span>
         <span v-if="isDeletable" @click="deleteElement"
           ><Icon name="TrashIcon"
@@ -79,12 +79,14 @@ import { PrimitiveFieldContent } from "../../core-logic/entities/PrimitiveFieldC
 import { useNavigationStore } from "../../core-logic/store/navigationStore";
 import { storeToRefs } from "pinia";
 
-const { element, children, isDeletable, isMovable } = defineProps<{
-  element: BlockContent | FieldContent;
-  children: FieldContent[];
-  isDeletable: boolean;
-  isMovable: boolean;
-}>();
+const { element, children, isDeletable, isMovable, isDuplicable } =
+  defineProps<{
+    element: BlockContent | FieldContent;
+    children: FieldContent[];
+    isDeletable: boolean;
+    isMovable: boolean;
+    isDuplicable: boolean;
+  }>();
 
 const zoneStore = useZoneStore();
 const navigationStore = useNavigationStore();
@@ -122,6 +124,10 @@ const toggleCollapse = () => {
 
 const toggleElement = () => {
   zoneStore.toggleElement(element.id);
+};
+
+const duplicateElement = () => {
+  zoneStore.duplicateElement(element.id);
 };
 
 const selectElement = () => {

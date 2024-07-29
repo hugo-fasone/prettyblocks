@@ -7,6 +7,7 @@
         item-key="id"
         :move="handleMove"
         @end="handleDrop"
+        class="subfieldsElements"
       >
         <template #item="{ element }">
           <Element
@@ -14,6 +15,7 @@
             :children="getChildrenFromElement(element)"
             :isDeletable="parentElement.type === 'repeater'"
             :isMovable="parentElement.type === 'repeater'"
+            :isDuplicable="parentElement.type === 'repeater'"
             class="tree-element"
           />
         </template>
@@ -104,7 +106,8 @@ const handleDrop = () => {
 @import "../../assets/styles/vars";
 
 .subfields {
-  margin-left: 1.5rem;
+  margin-left: 1.6rem;
+  margin-bottom: 0.5rem;
   cursor: pointer;
   display: flex;
   flex-direction: column;

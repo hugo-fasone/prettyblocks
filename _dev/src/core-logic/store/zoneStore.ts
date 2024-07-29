@@ -7,6 +7,7 @@ import { addComponent } from "../usecases/addComponent";
 import { defineStore } from "pinia";
 import { deleteBlockById } from "../usecases/deleteBlock";
 import { deleteComponentById } from "../usecases/deleteComponent";
+import { duplicateElement } from "../usecases/duplicateElement";
 import { editPrimitiveField } from "../usecases/editPrimitiveField";
 import { moveBlock } from "../usecases/moveBlock";
 import { moveComponent } from "../usecases/moveComponent";
@@ -59,6 +60,9 @@ export const useZoneStore = defineStore("zone", {
     },
     toggleElement(componentId: string) {
       toggleComponent(this, componentId);
+    },
+    duplicateElement(componentId: string) {
+      duplicateElement(this, componentId);
     },
   },
 });
