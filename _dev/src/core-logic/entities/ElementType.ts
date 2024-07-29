@@ -6,7 +6,7 @@ export enum PrimitiveFieldType {
   TEXT_AREA = "textArea",
   PASSWORD = "password",
   EMAIL = "email",
-  URL = "URL",
+  URL = "url",
   CHECKBOX = "checkbox",
   RADIO = "radio",
   SELECT = "select",

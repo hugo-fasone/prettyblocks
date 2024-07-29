@@ -37,6 +37,7 @@ export type PrimitiveDateType = {
 
 export type PrimitiveIconType = {
   name: string;
+  iconList: string[];
 };
 
 export type PrimitiveLinkType = {

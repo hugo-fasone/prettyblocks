@@ -30,6 +30,7 @@ const onChange = (newValue) => {
   border-radius: 2rem;
   background-color: $bg-hover-color;
   box-shadow: 0px 0px 5px #ccc;
+  transition: background-color 0.2s ease-in-out;
 }
 
 .switchToggle {
