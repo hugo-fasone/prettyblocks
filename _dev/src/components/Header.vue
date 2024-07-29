@@ -69,15 +69,16 @@ const showSettings = () => {
 emitter.on("hideSettings", () => {
   settingsEnabled.value = false;
 });
-const leaveApp = () => {
-  window.open(domain, "_blank");
-};
-const goBackEnd = () => {
-  window.open(adminURL, "_self");
-};
 
-const domain = ajax_urls.current_domain;
-const adminURL = ajax_urls.adminURL;
+// const leaveApp = () => {
+//   window.open(domain, "_blank");
+// };
+// const goBackEnd = () => {
+//   window.open(adminURL, "_self");
+// };
+
+// const domain = ajax_urls.current_domain;
+// const adminURL = ajax_urls.adminURL;
 </script>
 
 <template>
@@ -175,7 +176,7 @@ const adminURL = ajax_urls.adminURL;
           <ButtonLight icon="ArrowUturnLeftIcon" class="p-2" />
           <ButtonLight icon="ArrowUturnLeftIcon" class="transform -scale-x-100 p-2" />
         </div> -->
-      <Button @click="globalSave()" type="primary">{{ trans("save") }}</Button>
+      <Button @click="globalSave()" type="primary">save</Button>
     </div>
   </header>
 </template>

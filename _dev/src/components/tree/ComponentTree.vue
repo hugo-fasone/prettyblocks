@@ -14,12 +14,15 @@
           :children="element.fields"
           :isDeletable="true"
           :isMovable="true"
+          :move="handleMove"
+          @end="handleDrop"
+          class="tree-element"
         />
       </template>
     </draggable>
     <div class="blockAdd" @click="addNewBlock">
       <Icon name="PlusIcon" />
-      Ajouter un block
+      Ajouter un bloc
     </div>
   </div>
 </template>
@@ -39,10 +42,24 @@ const lastMoveEvent = ref(null);
 
 const handleMove = (moveEvent) => {
   lastMoveEvent.value = moveEvent;
+  document
+    .querySelectorAll(".tree-element")
+    .forEach((treeElement) =>
+      treeElement.classList.remove("place-after", "place-before")
+    );
+  moveEvent.related.classList.add(
+    moveEvent.willInsertAfter ? "place-after" : "place-before"
+  );
   return false;
 };
 
 const handleDrop = () => {
+  document
+    .querySelectorAll(".tree-element")
+    .forEach((treeElement) =>
+      treeElement.classList.remove("place-after", "place-before")
+    );
+  if (!lastMoveEvent.value) return;
   zoneStore.moveBlock(
     lastMoveEvent.value.draggedContext.element.id,
     lastMoveEvent.value.draggedContext.futureIndex
@@ -60,23 +77,39 @@ const addNewBlock = () => {
 
 .tree {
   min-width: 25rem;
-  padding-right: 1rem;
   box-shadow: inset -0.5rem 0 0.5rem -0.3rem $bg-hover-color;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .blockAdd {
+  margin: 0 1rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-left: 1.5rem;
-  padding: 0.25rem 0.5rem;
+  padding: 0.75rem 1rem;
   background: $bg-hover-color;
   color: $primary-color;
   border-radius: 0.5rem;
-  box-shadow: $button-shadow;
   &:hover {
     background-color: $bg-secondary-color;
     color: $secondary-color;
   }
+}
+
+.dragging {
+  background-color: $bg-hover-color;
+}
+
+.place-before::before,
+.place-after::after {
+  content: "";
+  display: block;
+  width: 100%;
+  margin: auto;
+  height: 2.5rem;
+  border: 1px dashed $bg-secondary-color;
+  border-radius: 0.5rem;
 }
 </style>

@@ -2,11 +2,11 @@
   <div class="element">
     <div
       class="elementName"
-      :class="(element as FieldContent).hidden ? 'hidden' : ''"
+      :class="{ hidden: (element as FieldContent).hidden, selectedElement: isSelected }"
     >
-      <span class="dragAndDropIcon" :draggable="true"
+      <!-- <span class="dragAndDropIcon" :draggable="true"
         ><Icon name="ChevronUpDownIcon" v-if="isMovable"
-      /></span>
+      /></span> -->
       <span class="elementDropdownArrow" @click="toggleCollapse">
         <Icon
           name="ChevronRightIcon"
@@ -71,12 +71,13 @@ import {
   FieldContent,
 } from "../../core-logic/entities/ComponentContent";
 import { useZoneStore } from "../../core-logic/store/zoneStore.js";
-import { ref, nextTick } from "vue";
+import { ref, nextTick, computed } from "vue";
 import Subfields from "./Subfields.vue";
 import Icon from "../Icon.vue";
 import { PrimitiveFieldType } from "../../core-logic/entities/ElementType";
 import { PrimitiveFieldContent } from "../../core-logic/entities/PrimitiveFieldContent";
-import emitter from "tiny-emitter/instance";
+import { useNavigationStore } from "../../core-logic/store/navigationStore";
+import { storeToRefs } from "pinia";
 
 const { element, children, isDeletable, isMovable } = defineProps<{
   element: BlockContent | FieldContent;
@@ -86,9 +87,13 @@ const { element, children, isDeletable, isMovable } = defineProps<{
 }>();
 
 const zoneStore = useZoneStore();
+const navigationStore = useNavigationStore();
 const renameState = ref(false);
 const inputRef = ref(null);
 const isCollapsed = ref(true);
+const { selectedElement } = storeToRefs(navigationStore);
+
+const isSelected = computed(() => selectedElement.value?.id === element.id);
 
 const deleteMap = {
   block: zoneStore.deleteBlockById,
@@ -120,7 +125,7 @@ const toggleElement = () => {
 };
 
 const selectElement = () => {
-  emitter.emit("editComponent", element);
+  useNavigationStore().selectElement(element);
 };
 </script>
 
@@ -133,8 +138,7 @@ const selectElement = () => {
 .elementName {
   display: flex;
   align-items: center;
-  padding: 0.25rem;
-  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
   &:hover {
     background-color: $bg-hover-color;
     > .elementActions {
@@ -194,5 +198,9 @@ const selectElement = () => {
     border: 2px solid $primary-color;
     box-shadow: none;
   }
+}
+
+.selectedElement .elementLabel {
+  font-weight: bold;
 }
 </style>

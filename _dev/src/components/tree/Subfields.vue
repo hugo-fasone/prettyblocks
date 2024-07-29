@@ -1,13 +1,5 @@
 <template>
   <div class="subfields">
-    <div
-      v-if="parentElement.type === 'repeater'"
-      class="subfieldAdd"
-      @click="addNewElement"
-    >
-      <Icon name="PlusIcon" />
-      Ajouter un élément {{ parentElement.label }}
-    </div>
     <div class="subfieldDraggableZone" :class="lastMoveEvent ? 'dragging' : ''">
       <draggable
         :list="fields"
@@ -26,6 +18,14 @@
           />
         </template>
       </draggable>
+    </div>
+    <div
+      v-if="parentElement.type === 'repeater'"
+      class="subfieldAdd"
+      @click="addNewElement"
+    >
+      <Icon name="PlusIcon" />
+      Ajouter un élément {{ parentElement.label }}
     </div>
   </div>
 </template>
@@ -104,19 +104,23 @@ const handleDrop = () => {
 @import "../../assets/styles/vars";
 
 .subfields {
-  padding-left: 1.5rem;
+  margin-left: 1.5rem;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-left: 1px solid $bg-hover-color;
 }
 
 .subfieldAdd {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.25rem 0.5rem;
+  padding: 0.75rem 1rem;
+  margin: 0 1rem;
   background: $bg-hover-color;
   color: $primary-color;
   border-radius: 0.5rem;
-  box-shadow: $button-shadow;
   &:hover {
     background-color: $bg-secondary-color;
     color: $secondary-color;
@@ -133,8 +137,7 @@ const handleDrop = () => {
   display: block;
   width: 100%;
   margin: auto;
-  height: 1.5rem;
-  border-radius: 4px;
+  height: 2.5rem;
   border: 1px dashed $bg-secondary-color;
   border-radius: 0.5rem;
 }

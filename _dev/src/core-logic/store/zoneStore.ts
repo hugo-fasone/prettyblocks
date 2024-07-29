@@ -1,7 +1,7 @@
 import type { BlockStructure } from "./../entities/BlockStructure";
 import type { PrimitiveFieldContentMap } from "../entities/PrimitiveFieldContent";
 import { PrimitiveFieldType } from "../entities/ElementType";
-import type { ZoneState } from "../entities/PageState";
+import type { ZoneState } from "../entities/ZoneState";
 import { addBlock } from "../usecases/addBlock";
 import { addComponent } from "../usecases/addComponent";
 import { defineStore } from "pinia";

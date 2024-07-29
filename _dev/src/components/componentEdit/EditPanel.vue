@@ -1,10 +1,9 @@
 <template>
-  <div v-if="currentComponent" class="editPanel">
-    <h2>{{ currentComponent.label }}</h2>
+  <div v-if="selectedElement" class="editPanel">
+    <h2>{{ selectedElement.label }}</h2>
     <div
       v-if="
-        currentComponent.type === 'component' ||
-        currentComponent.type === 'block'
+        selectedElement.type === 'component' || selectedElement.type === 'block'
       "
       class="editPanelContent"
     >
@@ -21,45 +20,36 @@
         <EditField v-for="field in otherSubfields" :field="field" />
       </div>
     </div>
-    <div v-else-if="currentComponent.type === 'repeater'">
-      <EditField
-        v-for="field in currentComponent.sub_elements"
-        :field="field"
-      />
+    <div v-else-if="selectedElement.type === 'repeater'">
+      <EditField v-for="field in selectedElement.sub_elements" :field="field" />
     </div>
-    <EditField v-else :field="currentComponent" />
+    <EditField v-else :field="selectedElement" />
   </div>
 </template>
 
 <script setup lang="ts">
-import emitter from "tiny-emitter/instance";
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import EditField from "./EditField.vue";
-import {
-  ComponentContent,
-  FieldContent,
-} from "../../core-logic/entities/ComponentContent";
-import { BlockContent } from "../../core-logic/entities/BlockContent";
+import { ComponentContent } from "../../core-logic/entities/ComponentContent";
+import { useNavigationStore } from "../../core-logic/store/navigationStore";
+import { storeToRefs } from "pinia";
 
-const currentComponent = ref<FieldContent | BlockContent>(null);
-
-emitter.on("editComponent", (component: FieldContent | BlockContent) => {
-  currentComponent.value = component;
-});
+const navigationStore = useNavigationStore();
+const { selectedElement } = storeToRefs(navigationStore);
 
 const componentSubfields = computed(() =>
-  (currentComponent.value as ComponentContent).fields.filter(
+  (selectedElement.value as ComponentContent).fields.filter(
     (field) => field.type === "component"
   )
 );
 
 const repeaterSubfields = computed(() =>
-  (currentComponent.value as ComponentContent).fields.filter(
+  (selectedElement.value as ComponentContent).fields.filter(
     (field) => field.type === "repeater"
   )
 );
 const otherSubfields = computed(() =>
-  (currentComponent.value as ComponentContent).fields.filter(
+  (selectedElement.value as ComponentContent).fields.filter(
     (field) => field.type !== "component" && field.type !== "repeater"
   )
 );

@@ -16,15 +16,15 @@
 
 <script setup lang="ts">
 import { FieldContent } from "../../core-logic/entities/ComponentContent.js";
+import { useNavigationStore } from "../../core-logic/store/navigationStore.js";
 import EditPrimitiveField from "./EditPrimitiveField.vue";
-import emitter from "tiny-emitter/instance";
 
 const { field } = defineProps<{
   field: FieldContent;
 }>();
 
 const switchComponent = () => {
-  emitter.emit("editComponent", field);
+  useNavigationStore().selectElement(field);
 };
 </script>
 
