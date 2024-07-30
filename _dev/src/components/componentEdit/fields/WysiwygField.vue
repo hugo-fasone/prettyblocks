@@ -4,6 +4,7 @@
     @update:content="onChange"
     ref="inputRef"
     :content="value.value"
+    class="input"
   />
 </template>
 

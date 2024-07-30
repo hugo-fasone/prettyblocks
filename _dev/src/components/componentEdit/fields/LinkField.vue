@@ -42,14 +42,23 @@ const onChange = () => {
 </script>
 
 <style scoped lang="scss">
+@import "../../../assets/styles/vars";
+
 .linkInput {
   display: grid;
-  grid-template-columns: 5rem 1fr;
+  grid-template-columns: 3rem 1fr;
   align-items: center;
   gap: 0.5rem;
   .input {
     max-width: 100%;
     width: 100%;
+    padding: 0.25rem 0.5rem;
+    margin-right: 0.5rem;
+    border-radius: 0.5rem;
+    &:focus {
+      border: 2px solid $primary-color;
+      box-shadow: none;
+    }
   }
 }
 </style>
