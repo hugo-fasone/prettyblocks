@@ -71,13 +71,20 @@ import {
   FieldContent,
 } from "../../core-logic/entities/ComponentContent";
 import { useZoneStore } from "../../core-logic/store/zoneStore.js";
-import { ref, nextTick, computed } from "vue";
+import { ref, nextTick, computed, watch, onMounted } from "vue";
 import Subfields from "./Subfields.vue";
 import Icon from "../Icon.vue";
 import { PrimitiveFieldType } from "../../core-logic/entities/ElementType";
 import { PrimitiveFieldContent } from "../../core-logic/entities/PrimitiveFieldContent";
 import { useNavigationStore } from "../../core-logic/store/navigationStore";
 import { storeToRefs } from "pinia";
+import {
+  findComponentById,
+  findComponentByIdInRepeater,
+  findComponentByIdInSubfields,
+  SearchComponentResult,
+} from "../../core-logic/utils/finder";
+import { Repeater } from "../../core-logic/entities/Repeater";
 
 const { element, children, isDeletable, isMovable, isDuplicable } =
   defineProps<{
@@ -96,6 +103,26 @@ const isCollapsed = ref(true);
 const { selectedElement } = storeToRefs(navigationStore);
 
 const isSelected = computed(() => selectedElement.value?.id === element.id);
+
+const checkToggle = () => {
+  let foundComponent: SearchComponentResult;
+  if (element.type === "repeater")
+    foundComponent = findComponentByIdInRepeater(
+      element as Repeater<FieldContent>,
+      selectedElement.value?.id
+    );
+  if (element.type === "component" || element.type === "block")
+    foundComponent = findComponentByIdInSubfields(
+      element as BlockContent | ComponentContent,
+      selectedElement.value?.id
+    );
+  if (foundComponent) {
+    isCollapsed.value = false;
+  }
+};
+
+watch(selectedElement, checkToggle);
+onMounted(checkToggle);
 
 const deleteMap = {
   block: zoneStore.deleteBlockById,

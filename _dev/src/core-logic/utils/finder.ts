@@ -43,7 +43,7 @@ export const findComponentByIdInBlock = (
   return findComponentByIdInSubfields(tree, id);
 };
 
-const findComponentByIdInSubfields = (
+export const findComponentByIdInSubfields = (
   tree: BlockContent | ComponentContent,
   id: string
 ) => {
@@ -73,15 +73,18 @@ const findComponentByIdInRepeaterFields = (
   }
 };
 
-const findComponentByIdInRepeater = (
-  repeater: Repeater<ComponentContent>,
+export const findComponentByIdInRepeater = (
+  repeater: Repeater<FieldContent>,
   id: string
 ) => {
   for (const field of repeater.sub_elements) {
     // Check if subfield matches
     if (field.id === id) return { node: field, parent: repeater };
     // Else check recursively
-    const foundElement = findComponentByIdInBlock(field, id);
+    const foundElement = findComponentByIdInBlock(
+      field as ComponentContent,
+      id
+    );
     if (foundElement) return foundElement;
   }
 };
