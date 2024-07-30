@@ -1,9 +1,18 @@
 <template>
   <div v-if="selectedElement" class="editPanel">
-    <div class="title">
-      <h2>Edition</h2>
-      <h3>{{ selectedElement.label }}</h3>
-    </div>
+    <header>
+      <div class="title">
+        <h2>Edition</h2>
+        <h3>{{ selectedElement.label }}</h3>
+      </div>
+      <div
+        class="back"
+        @click="selectParent"
+        :class="{ disable: !parentElement }"
+      >
+        <Icon name="ArrowUpCircleIcon" />
+      </div>
+    </header>
     <div
       v-if="
         selectedElement.type === 'component' || selectedElement.type === 'block'
@@ -45,14 +54,18 @@ import {
 } from "../../core-logic/entities/ComponentContent";
 import { useNavigationStore } from "../../core-logic/store/navigationStore";
 import { storeToRefs } from "pinia";
-import { findComponentBlock } from "../../core-logic/utils/finder";
-import { Repeater } from "../../core-logic/entities/Repeater";
+import { findComponentById } from "../../core-logic/utils/finder";
 import { useZoneStore } from "../../core-logic/store/zoneStore";
+import { BlockContent } from "../../core-logic/entities/BlockContent";
 import Icon from "../Icon.vue";
 
 const navigationStore = useNavigationStore();
 const { selectedElement } = storeToRefs(navigationStore);
 const zoneStore = useZoneStore();
+
+const parentElement = computed(() => {
+  return findComponentById(zoneStore.content, selectedElement.value.id).parent;
+});
 
 const componentSubfields = computed(() =>
   (selectedElement.value as ComponentContent).fields.filter(
@@ -71,14 +84,11 @@ const otherSubfields = computed(() =>
   )
 );
 
-const addNewElement = () => {
-  const blockId = findComponentBlock(
-    zoneStore.content,
-    selectedElement.value.id
-  ).id;
-  const componentId = (selectedElement.value as Repeater<FieldContent>)
-    .component_id;
-  zoneStore.addComponent(blockId, selectedElement.value.id, componentId);
+const selectParent = () => {
+  if (!!parentElement.value)
+    navigationStore.selectElement(
+      parentElement.value as FieldContent | BlockContent
+    );
 };
 </script>
 
@@ -94,6 +104,17 @@ const addNewElement = () => {
   flex-direction: column;
   gap: 1rem;
   max-height: 100%;
+  header {
+    display: flex;
+    justify-content: space-between;
+    .back {
+      cursor: pointer;
+    }
+    .disable {
+      color: $disabled-color;
+      cursor: not-allowed;
+    }
+  }
   .title {
     padding-bottom: 1rem;
     border-bottom: 1px solid $bg-hover-color;
