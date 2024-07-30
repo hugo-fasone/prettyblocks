@@ -7,6 +7,7 @@
       :value="value.label"
       @change="onChange"
       @keyup.enter="onChange"
+      class="input"
     />
     <span> Url </span>
     <input
@@ -15,6 +16,7 @@
       :value="value.href"
       @change="onChange"
       @keyup.enter="onChange"
+      class="input"
     />
   </div>
 </template>
@@ -45,5 +47,9 @@ const onChange = () => {
   grid-template-columns: 5rem 1fr;
   align-items: center;
   gap: 0.5rem;
+  .input {
+    max-width: 100%;
+    width: 100%;
+  }
 }
 </style>

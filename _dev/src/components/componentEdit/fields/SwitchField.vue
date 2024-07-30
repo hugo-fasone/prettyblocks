@@ -31,6 +31,7 @@ const onChange = (newValue) => {
   background-color: $bg-hover-color;
   box-shadow: 0px 0px 5px #ccc;
   transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
 }
 
 .switchToggle {

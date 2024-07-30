@@ -33,5 +33,9 @@ const switchComponent = () => {
 
 .componentLink {
   background-color: $bg-hover-color;
+  color: $primary-color;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
 }
 </style>

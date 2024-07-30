@@ -3,6 +3,7 @@
     :is="componentMap[field.type]"
     :value="(field.content as PrimitiveFieldContentMap[PrimitiveFieldType.TEXT])"
     @update:modelValue="editField"
+    class="primitiveFieldInput"
   />
 </template>
 
@@ -52,4 +53,9 @@ const componentMap: ComponentMap<PrimitiveFieldType> = {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.primitiveFieldInput {
+  width: 100%;
+  max-width: 100%;
+}
+</style>

@@ -124,6 +124,7 @@ const handleDrop = () => {
   background: $bg-hover-color;
   color: $primary-color;
   border-radius: 0.5rem;
+  cursor: pointer;
   &:hover {
     background-color: $bg-secondary-color;
     color: $secondary-color;
