@@ -32,16 +32,6 @@
         <EditField v-for="field in otherSubfields" :field="field" />
       </div>
     </div>
-    <div
-      v-else-if="selectedElement.type === 'repeater'"
-      class="contentCategory"
-    >
-      <EditField v-for="field in selectedElement.sub_elements" :field="field" />
-      <div class="subfieldAdd" @click="addNewElement">
-        <Icon name="PlusIcon" />
-        Ajouter un élément {{ selectedElement.label }}
-      </div>
-    </div>
     <EditField v-else :field="selectedElement" />
   </div>
 </template>
