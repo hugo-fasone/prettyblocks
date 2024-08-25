@@ -17,6 +17,7 @@
     "scssphp/scssphp": "^1.11.0"
   },
   "require-dev": {
+    "roave/security-advisories": "dev-latest",
     "prestashop/php-dev-tools": "^4.3"
   },
   "config": {
@@ -25,14 +26,10 @@
   },
   "autoload": {
     "psr-4": {
-      "PrestaSafe\\PrettyBlocks\\": "src/",
-      "PrestaSafe\\PrettyBlocks\\Fields\\": "classes/prettyblocks/fields/",
-      "PrestaSafe\\PrettyBlocks\\Interfaces\\": "classes/prettyblocks/interfaces/",
-      "PrestaSafe\\PrettyBlocks\\Core\\": "classes/prettyblocks/core/"
+      "PrestaSafe\\PrettyBlocks\\": "src/"
     },
     "classmap": [
-      "prettyblocks.php",
-      "classes"
+      "prettyblocks.php"
     ],
     "exclude-from-classmap": []
   },
