@@ -1,0 +1,49 @@
+# config.yml
+
+services:
+  default:
+    public: true
+    autoconfigure: true
+    autowire: true
+
+  # Registry pour enregistrer dynamiquement les types d'entités
+  prestasafe.prettyblocks.registry.entity_registry:
+    class: PrestaSafe\PrettyBlocks\Registry\EntityRegistry
+
+  # Factory pour la création dynamique des entités
+  prestasafe.prettyblocks.factory.entity_factory:
+    class: PrestaSafe\PrettyBlocks\Factory\EntityFactory
+    arguments:
+      - '@prestasafe.prettyblocks.registry.entity_registry'
+
+  # Repositories Doctrine
+  prestasafe.prettyblocks.repository.block_repository:
+    class: PrestaSafe\PrettyBlocks\Repository\BlockRepository
+    factory: [ '@doctrine', getRepository ]
+
+  prestasafe.prettyblocks.repository.component_repository:
+    class: PrestaSafe\PrettyBlocks\Repository\ComponentRepository
+    factory: [ '@doctrine', getRepository ]
+
+  prestasafe.prettyblocks.repository.primitive_field_repository:
+    class: PrestaSafe\PrettyBlocks\Repository\PrimitiveFieldRepository
+    factory: [ '@doctrine', getRepository ]
+
+  prestasafe.prettyblocks.repository.zone_repository:
+    class: PrestaSafe\PrettyBlocks\Repository\ZoneRepository
+    factory: [ '@doctrine', getRepository ]
+
+  # Service principal pour la gestion des zones
+  prestasafe.prettyblocks.service.zone_service:
+    class: PrestaSafe\PrettyBlocks\Service\ZoneService
+    arguments:
+      - '@prestasafe.prettyblocks.repository.zone_repository'
+      - '@prestasafe.prettyblocks.factory.entity_factory'
+
+  # Contrôleurs API
+  prestasafe.prettyblocks.controller.zone_controller:
+    class: PrestaSafe\PrettyBlocks\Controller\Api\ZoneController
+    arguments:
+      - '@prestasafe.prettyblocks.service.zone_service'
+    tags:
+      - { name: controller.service_arguments }

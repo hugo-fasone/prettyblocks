@@ -1,0 +1,19 @@
+# routes.yml
+
+prestasafe_prettyblocks_zone_list:
+  path: /prettyblocks/api/zones
+  methods: [ GET ]
+  defaults:
+    _controller: 'prestasafe.prettyblocks.controller.zone_controller:listZones'
+
+prestasafe_prettyblocks_zone_get:
+  path: /prettyblocks/api/zones/{id}
+  methods: [ GET ]
+  defaults:
+    _controller: 'prestasafe.prettyblocks.controller.zone_controller:getZone'
+
+prestasafe_prettyblocks_zone_update:
+  path: /prettyblocks/api/zones/{id}
+  methods: [ PUT ]
+  defaults:
+    _controller: 'prestasafe.prettyblocks.controller.zone_controller:updateZone'
