@@ -1,19 +1,31 @@
 # routes.yml
 
-prestasafe_prettyblocks_zone_list:
+prettyblocks_admin_index:
+  path: /prettyblocks/admin
+  methods: [ GET ]
+  defaults:
+    _controller: PrestaSafe\PrettyBlocks\Controller\Admin\EditionController::indexAction
+
+prettyblocks_zone_list:
   path: /prettyblocks/api/zones
   methods: [ GET ]
   defaults:
-    _controller: 'prestasafe.prettyblocks.controller.zone_controller:listZones'
+    _controller: PrestaSafe\PrettyBlocks\Controller\Api\ZoneController:listZones
 
-prestasafe_prettyblocks_zone_get:
+prettyblocks_zone_get:
   path: /prettyblocks/api/zones/{id}
   methods: [ GET ]
   defaults:
-    _controller: 'prestasafe.prettyblocks.controller.zone_controller:getZone'
+    _controller: PrestaSafe\PrettyBlocks\Controller\Api\ZoneController:getZone
 
-prestasafe_prettyblocks_zone_update:
+prettyblocks_zone_update:
   path: /prettyblocks/api/zones/{id}
   methods: [ PUT ]
   defaults:
-    _controller: 'prestasafe.prettyblocks.controller.zone_controller:updateZone'
+    _controller: PrestaSafe\PrettyBlocks\Controller\Api\ZoneController:updateZone
+
+prettyblocks_media_upload:
+  path: /prettyblocks/api/media/upload
+  methods: [ POST ]
+  defaults:
+    _controller: PrestaSafe\PrettyBlocks\Controller\Api\MediaController:uploadMedia

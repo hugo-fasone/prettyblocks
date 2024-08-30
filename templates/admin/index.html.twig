@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PrettyBlocks Editor</title>
+
+  {% if app.environment == 'dev' %}
+    <script type="module" src="https://172.23.0.4:3002/modules/prettyblocks/src/Resources/editor/@vite/client"></script>
+    <script type="module" src="https://172.23.0.4:3002/modules/prettyblocks/src/Resources/editor/src/main.js"></script>
+  {% else %}
+  {% if prettyblocks.assets is defined %}
+    <script type="module" src="{{ 'modules/prettyblocks/public/' ~ prettyblocks.assets.entrypoint }}"></script>
+    {% for css in prettyblocks.assets.css %}
+  <link rel="stylesheet" href="{{ 'modules/prettyblocks/public/' ~ css }}">
+    {% endfor %}
+    {% for js in prettyblocks.assets.js %}
+    <script src="{{ 'modules/prettyblocks/public/' ~ js }}"></script>
+    {% endfor %}
+  {% endif %}
+  {% endif %}
+
+  <script>
+    window.base_url = {{ base_url|json_encode|raw }}
+      window.ajax_urls = {{ ajax_urls|json_encode|raw }}
+        window.trans_app = {{ trans_app|json_encode|raw }}
+          window.security_app = {{ security_app|json_encode|raw }}
+  </script>
+</head>
+<body>
+<div id="app"></div>
+</body>
+</html>

@@ -1,7 +1,5 @@
-# config.yml
-
 services:
-  default:
+  _defaults:
     public: true
     autoconfigure: true
     autowire: true
@@ -20,18 +18,30 @@ services:
   prestasafe.prettyblocks.repository.block_repository:
     class: PrestaSafe\PrettyBlocks\Repository\BlockRepository
     factory: [ '@doctrine', getRepository ]
+    arguments:
+      -
+        $persistentObject: PrestaSafe\PrettyBlocks\Entity\Block
 
   prestasafe.prettyblocks.repository.component_repository:
     class: PrestaSafe\PrettyBlocks\Repository\ComponentRepository
     factory: [ '@doctrine', getRepository ]
+    arguments:
+      -
+        $persistentObject: PrestaSafe\PrettyBlocks\Entity\Component
 
   prestasafe.prettyblocks.repository.primitive_field_repository:
     class: PrestaSafe\PrettyBlocks\Repository\PrimitiveFieldRepository
     factory: [ '@doctrine', getRepository ]
+    arguments:
+      -
+        $persistentObject: PrestaSafe\PrettyBlocks\Entity\PrimitiveField
 
   prestasafe.prettyblocks.repository.zone_repository:
     class: PrestaSafe\PrettyBlocks\Repository\ZoneRepository
     factory: [ '@doctrine', getRepository ]
+    arguments:
+      -
+        $persistentObject: PrestaSafe\PrettyBlocks\Entity\Zone
 
   # Service principal pour la gestion des zones
   prestasafe.prettyblocks.service.zone_service:

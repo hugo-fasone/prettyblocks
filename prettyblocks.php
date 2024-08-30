@@ -19,6 +19,7 @@
  */
 
 use PrestaSafe\PrettyBlocks\Install\Installer;
+use PrestaSafe\PrettyBlocks\Smarty\Plugin\ZonePlugin;
 use PrestaShop\PrestaShop\Core\Module\WidgetInterface;
 
 if (!defined('_PS_VERSION_')) {
@@ -66,13 +67,8 @@ class PrettyBlocks extends Module implements WidgetInterface
 
     public function getContent()
     {
-        $domain = Tools::getShopDomainSsl(true);
-        $symfonyUrl = $domain . Link::getUrlSmarty([
-                'entity' => 'sf',
-                'route' => 'admin_prettyblocks',
-            ]);
-
-        return Tools::redirect($symfonyUrl);
+        $route = $this->get('router')->generate('prettyblocks_admin_index');
+        Tools::redirectAdmin($route);
     }
 
     private function loadDefault()
@@ -207,19 +203,14 @@ class PrettyBlocks extends Module implements WidgetInterface
         }
     }
 
-    public function registerBlockToZone($zone_name, $block_code)
-    {
-        return PrettyBlocksModel::registerBlockToZone($zone_name, $block_code);
-    }
-
     /**
      * Hook dispatcher for registering smarty function
      */
     public function hookActionDispatcher()
     {
         /* @deprecated {magic_zone} is deprecated since v1.1.0. Use {prettyblocks_zone} instead. */
-        $this->context->smarty->registerPlugin('function', 'magic_zone', [PrettyBlocks::class, 'renderZone']);
-        $this->context->smarty->registerPlugin('function', 'prettyblocks_zone', [PrettyBlocks::class, 'renderZone']);
-        $this->context->smarty->registerPlugin('function', 'prettyblocks_title', [PrettyBlocks::class, 'renderTitle']);
+        $this->context->smarty->registerPlugin('function', 'magic_zone', [ZonePlugin::class, 'renderZone']);
+        $this->context->smarty->registerPlugin('function', 'prettyblocks_zone', [ZonePlugin::class, 'renderZone']);
+        $this->context->smarty->registerPlugin('function', 'prettyblocks_title', [ZonePlugin::class, 'renderTitle']);
     }
 }

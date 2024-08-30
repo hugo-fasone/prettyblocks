@@ -14,8 +14,8 @@ import Button from "./Button.vue";
 import Iframe from "../scripts/iframe";
 import { contextShop } from "../store/currentBlock";
 
-// let iframe = new Iframe(ajax_urls.startup_url, 1, 1)
-let iframe = new Iframe();
+let iframe = new Iframe(ajax_urls.startup_url, 1, 1)
+//let iframe = new Iframe();
 defineProps({
   src: String,
 });
@@ -85,7 +85,7 @@ let showLoader = computed(() => {
 
 watch(iframe.loader);
 let filteredURL = computed(() => {
-  // return iframe.updateFilteredURL(iframe.current_url.value);
+  return iframe.updateFilteredURL(iframe.current_url.value);
 });
 
 watch(iframe.current_url, () => {
