@@ -51,6 +51,7 @@ onUnmounted(() => {
 const reloadIframe = () => {
   iframe.reloadIframe();
 };
+
 emitter.on("reloadIframe", async (id_prettyblocks) => {
   let context = contextShop();
   iframe.setUrl(context.href);
@@ -91,12 +92,13 @@ let filteredURL = computed(() => {
 watch(iframe.current_url, () => {
   filteredURL.value = iframe.updateFilteredURL(iframe.current_url.value);
 });
+
 </script>
 
 <template>
   <!-- animate-pulse classe to put -->
   <section class="w-full h-full">
-    <!-- <button @click="reloadIframe()"> reload iframe </button> {{ showLoader }} -->
+    <!--    <button @click="reloadIframe()"> reload iframe </button> {{ showLoader }}-->
     <!-- {{ classes }} -->
     <iframe
       id="website-iframe"

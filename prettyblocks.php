@@ -125,7 +125,6 @@ class PrettyBlocks extends Module implements WidgetInterface
     {
         return [
             // 'ajax_builder_url' => $this->context->link->getModuleLink($this->name,'ajax'),
-            'theme_settings' => PrettyBlocksModel::getThemeSettings(false, 'front'),
             'id_shop' => (int) $this->context->shop->id,
             'shop_name' => $this->context->shop->name,
             'shop_current_url' => $this->context->shop->getBaseURL(true, true),
@@ -199,7 +198,7 @@ class PrettyBlocks extends Module implements WidgetInterface
             return $this->fetch($template);
         }
         if ($vars['hookName'] !== null) {
-            return $this->renderZone(['zone_name' => $vars['hookName']]);
+            return ZonePlugin::renderZone(['zone_name' => $vars['hookName']]);
         }
     }
 

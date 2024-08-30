@@ -49,9 +49,8 @@ export default class Iframe {
                 emitter.emit('loadStateConfig', id_prettyblocks)
 
             }
-            // test 
-            if(event.data.type == 'setNewUrl')
-            {  
+          // test
+            if(event.data.type == 'setNewUrl') {
                 let context = event.data.params.context
                 let custom_url = event.data.params.url
                 emitter.emit('changeUrl', context, custom_url)
@@ -88,7 +87,7 @@ export default class Iframe {
                 let id_prettyblocks = event.data.data.id_prettyblocks
                 let zone_name = event.data.data.zone_name
                 let piniaBlocks =  await storedBlocks().blocks
-                
+
                 let element = await piniaBlocks.find(b => {
                     return b.id_prettyblocks == id_prettyblocks
                 });
@@ -112,8 +111,6 @@ export default class Iframe {
                 this.id_shop.value = iwindow.id_shop
                 this.loader.value = false
                 emitter.emit('initStates')
-
-
             }
 
         }
@@ -125,8 +122,8 @@ export default class Iframe {
     }
 
     /**
-     * 
-     * @param {*} url 
+     *
+     * @param {*} url
      * For set URL in input
      */
     setUrl(url) {
@@ -144,8 +141,8 @@ export default class Iframe {
         this.loader.value = true
         let iframe = document.getElementById('website-iframe')
         iframe.src = this.updateFilteredURL(this.current_url.value)
-        // this.loadIframe()
-        // this.loader.value = false
+      await this.loadIframe()
+      this.loader.value = false
     }
     updateFilteredURL(url) {
         let hashIndex = url.indexOf('#');
@@ -260,13 +257,15 @@ export default class Iframe {
                 }
                 this.loadContext(e)
 
+              this.loader.value = false
+
             }, false)
         }
     }
 
     /**
      * Updpate title component in Config field using Toolbar
-     * @param {*} newValue 
+     * @param {*} newValue
      */
     async updateTitleComponent(newValue, id_block = null, field = null, index = null) {
         if (!id_block) {

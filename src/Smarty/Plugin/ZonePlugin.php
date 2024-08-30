@@ -4,20 +4,23 @@ declare(strict_types=1);
 
 namespace PrestaSafe\PrettyBlocks\Smarty\Plugin;
 
+use Context;
+
 class ZonePlugin
 {
-    public static function renderZone($params): bool
+    public static function renderZone($params): string
     {
         $zone_name = $params['zone_name'];
 
         if (empty($zone_name)) {
-            return false;
+            return "";
         }
 
         $context = Context::getContext();
         $id_lang = $context->language->id;
         $id_shop = $context->shop->id;
-        $blocks = PrettyBlocksModel::getInstanceByZone($zone_name, 'front', $id_lang, $id_shop);
+        //$blocks = PrettyBlocksModel::getInstanceByZone($zone_name, 'front', $id_lang, $id_shop);
+        $blocks = [];
 
         $context->smarty->assign([
             'zone_name' => $zone_name,
