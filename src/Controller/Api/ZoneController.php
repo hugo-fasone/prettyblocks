@@ -91,4 +91,5 @@ class ZoneController extends AbstractController
 
         return new JsonResponse(['status' => 'Zone updated successfully']);
     }
+
 }

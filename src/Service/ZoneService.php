@@ -4,13 +4,10 @@ declare(strict_types=1);
 
 namespace PrestaSafe\PrettyBlocks\Service;
 
-use PrestaSafe\PrettyBlocks\Entity\Component\AbstractComponent;
-use PrestaSafe\PrettyBlocks\Entity\PrimitiveField\AbstractPrimitiveField;
-use PrestaSafe\PrettyBlocks\Entity\PrimitiveField\TextField;
+use PrestaSafe\PrettyBlocks\Entity\Block\BlockInterface;
 use PrestaSafe\PrettyBlocks\Entity\Zone;
 use PrestaSafe\PrettyBlocks\Factory\EntityFactory;
 use PrestaSafe\PrettyBlocks\Repository\ZoneRepository;
-use PrestaSafe\PrettyBlocks\Entity\Block\BlockInterface;
 
 class ZoneService
 {
@@ -42,16 +39,22 @@ class ZoneService
 
         // Add new blocks
         foreach ($blocks as $blockData) {
-            $block = $this->hydrateBlockFromData($blockData);
+            $block = $this->hydrateBlockFromDataStructure($blockData);
             $zone->addBlock($block);
         }
 
         $this->zoneRepository->save($zone);
     }
 
-    private function hydrateBlockFromData(array $data): BlockInterface
+    private function hydrateBlockFromDataStructure(array $data): BlockInterface
     {
-        return $this->entityFactory->createBlock($data);
-    }
+        $block = $this->entityFactory->createBlock($data);
+        // Hydrater les champs du bloc
+        foreach ($data['fields'] as $fieldData) {
+            $field = $this->entityFactory->createField($fieldData);
+            $block->addField($field);
+        }
 
+        return $block;
+    }
 }

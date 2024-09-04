@@ -8,9 +8,11 @@ import { buildNewBlockContentFromBlockStructure } from "./core-logic/utils/build
 
 const zoneStore = useZoneStore();
 onMounted(() => {
+  // @todo: get the content from the server instead of using the test data
   const columnContent = buildNewBlockContentFromBlockStructure(columnStructure);
   const allFieldsContent =
     buildNewBlockContentFromBlockStructure(allFieldsStructure);
+
   zoneStore.$patch({
     availableBlocks: [columnStructure, allFieldsStructure],
     content: [columnContent, allFieldsContent],

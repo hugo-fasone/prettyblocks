@@ -39,4 +39,9 @@ class EntityRegistry
     {
         return $this->fieldTypes[$type] ?? null;
     }
+
+    public function getAvailableBlock(): BlockCollection
+    {
+
+    }
 }
