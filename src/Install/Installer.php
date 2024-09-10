@@ -107,7 +107,7 @@ class Installer extends AbstractInstaller
             $this->dynamicDiscriminatorMapService->updateDiscriminatorMap();
             $allMetadata = $entityManager->getMetadataFactory()->getAllMetadata();
             $namespace = 'PrestaSafe\PrettyBlocks\Entity';
-            // Filtrer les métadonnées pour ne prendre en compte que celles du namespace spécifié
+
             $filteredMetadata = array_filter($allMetadata, function ($classMetadata) use ($namespace) {
                 return str_contains($classMetadata->getName(), $namespace);
             });
@@ -123,17 +123,14 @@ class Installer extends AbstractInstaller
 
     protected function registerDoctrineNamespace(): void
     {
-        // Get the Doctrine manager and add the custom driver for PrettyBlocks
         $entityManager = $this->getEntityManager();
         $config = $entityManager->getConfiguration();
 
-        // Define the annotation driver for the PrettyBlocks namespace
         $annotationDriver = new AnnotationDriver(
             new AnnotationReader(),
             [dirname(__DIR__, 2) . '/src/Entity']
         );
 
-        // Register the custom annotation driver with Doctrine's configuration
         ($config->getMetadataDriverImpl())->addDriver($annotationDriver, 'PrestaSafe\PrettyBlocks\Entity');
 
     }
