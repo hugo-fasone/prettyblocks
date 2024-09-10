@@ -1,12 +1,12 @@
 <script setup>
 import Accordion from './Accordion.vue'
-import { HttpClient } from '../services/HttpClient'
+import {HttpClient} from '../services/HttpClient'
 import FieldRepeater from './FieldRepeater.vue'
-import { defineComponent, onMounted, onUnmounted, ref } from 'vue'
+import {defineComponent, onMounted, onUnmounted, ref} from 'vue'
 import emitter from 'tiny-emitter/instance'
-import { createToaster } from "@meforma/vue-toaster";
+import {createToaster} from "@meforma/vue-toaster";
 
-import { contextShop } from "../store/currentBlock";
+import {contextShop} from "../store/currentBlock";
 
 const toaster = createToaster({
   position: 'top',
@@ -20,7 +20,7 @@ defineComponent({
 onUnmounted(() => {
   settings.value = false
   canSave.value = false
- 
+
 })
 onMounted(()=> {
    getSettings()

@@ -14,9 +14,10 @@
 
 <script>
 import Checkbox from '../components/form/Checkbox.vue';
-import { contextShop } from '../store/currentBlock'
-import { HttpClient } from '../services/HttpClient';
-import { createToaster } from "@meforma/vue-toaster";
+import {contextShop} from '../store/currentBlock'
+import {HttpClient} from '../services/HttpClient';
+import {createToaster} from "@meforma/vue-toaster";
+
 const toaster = createToaster({
   position: "top",
 });

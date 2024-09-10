@@ -1,4 +1,4 @@
-import { PrimitiveFieldType } from "./ElementType";
+import {PrimitiveFieldType} from "./ElementType";
 
 export type PrimitiveTextType = {
   value: string;

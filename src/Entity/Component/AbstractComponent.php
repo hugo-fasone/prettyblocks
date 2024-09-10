@@ -5,27 +5,43 @@ declare(strict_types=1);
 namespace PrestaSafe\PrettyBlocks\Entity\Component;
 
 use Doctrine\ORM\Mapping as ORM;
+use PrestaSafe\PrettyBlocks\Entity\Element;
 
 /**
  * @ORM\MappedSuperclass
  */
-abstract class AbstractComponent implements ComponentInterface
+abstract class AbstractComponent extends Element implements ComponentInterface
 {
     /**
      * @ORM\Id
      * @ORM\Column(type="string")
      */
-    protected $id;
+    protected string $id;
 
     /**
      * @ORM\Column(type="string")
      */
-    protected $label;
+    protected string $label;
 
     /**
      * @ORM\Column(type="string")
      */
-    protected $type;
+    protected string $type;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected int $position;
+
+    public function getPosition(): int
+    {
+        return $this->position;
+    }
+
+    public function setPosition(int $position): void
+    {
+        $this->position = $position;
+    }
 
     public function __construct(string $id, string $label, string $type)
     {

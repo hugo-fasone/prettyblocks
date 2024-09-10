@@ -1,10 +1,10 @@
-import { CannotFindComponentError } from "../errors/CannotFindComponentError";
-import { ComponentContent } from "../entities/ComponentContent";
-import { OperationNotAllowedError } from "../errors/OperationNotAllowedError";
-import { createTestingPinia } from "@pinia/testing";
+import {CannotFindComponentError} from "../errors/CannotFindComponentError";
+import {ComponentContent} from "../entities/ComponentContent";
+import {OperationNotAllowedError} from "../errors/OperationNotAllowedError";
+import {createTestingPinia} from "@pinia/testing";
 import filledColumnBlockContent from "./filledColumnContentWithId.json";
-import { setActivePinia } from "pinia";
-import { useZoneStore } from "../store/zoneStore";
+import {setActivePinia} from "pinia";
+import {useZoneStore} from "../store/zoneStore";
 
 describe("Toggle com>ponent", () => {
   const columnBlockContent = filledColumnBlockContent;

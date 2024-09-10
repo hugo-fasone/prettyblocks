@@ -1,5 +1,5 @@
-import { FieldContent } from "./ComponentContent";
-import { REPEATER_TYPE } from "./ElementType";
+import {FieldContent} from "./ComponentContent";
+import {REPEATER_TYPE} from "./ElementType";
 
 export type Repeater<C extends FieldContent> = {
   id: string;

@@ -7,7 +7,7 @@ namespace PrestaSafe\PrettyBlocks\Entity\Block;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="PrestaSafe\PrettyBlocks\Repository\BlockRepository")
+ * @ORM\Entity
  * @ORM\Table(name="text_blocks")
  */
 class TextBlock extends AbstractBlock
@@ -16,5 +16,10 @@ class TextBlock extends AbstractBlock
     {
         // Validation spécifique pour le TextBlock
         return true;
+    }
+
+    public function getType(): string
+    {
+        return 'text';
     }
 }

@@ -1,11 +1,10 @@
 <script setup>
-import { ref, computed } from "vue";
-import { useLeftPanelStore } from "../store/index";
+import {computed, ref} from "vue";
 import Icon from "./Icon.vue";
 import ButtonLight from "./ButtonLight.vue";
 import emitter from "tiny-emitter/instance";
-import { contextShop, useStore } from "../store/currentBlock";
-import { HttpClient } from "../services/HttpClient";
+import {contextShop, useStore} from "../store/currentBlock";
+import {HttpClient} from "../services/HttpClient";
 
 const props = defineProps({
   id: String, // unique id for each block

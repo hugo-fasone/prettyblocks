@@ -1,10 +1,10 @@
 <script setup>
-import { defineComponent, ref, watch } from 'vue'
-import { Listbox, ListboxButton, ListboxLabel, ListboxOption, ListboxOptions } from '@headlessui/vue'
-import { ChevronUpDownIcon } from '@heroicons/vue/24/solid'
-import { storedZones, currentZone } from '../../store/currentBlock'
+import {defineComponent, ref, watch} from 'vue'
+import {Listbox, ListboxButton, ListboxLabel, ListboxOption, ListboxOptions} from '@headlessui/vue'
+import {ChevronUpDownIcon} from '@heroicons/vue/24/solid'
+import {currentZone} from '../../store/currentBlock'
 import emitter from 'tiny-emitter/instance'
-import { trans } from '../../scripts/trans'
+import {trans} from '../../scripts/trans'
 
 defineComponent({
   Listbox, ListboxButton, ListboxLabel, ListboxOption, ListboxOptions,
@@ -55,8 +55,8 @@ function onInput(value) {
   current_zone.$patch({ name: value })
   emit('update:modelValue.name', value)
 
-  emitter.emit('focusOnZone', value) 
-  
+  emitter.emit('focusOnZone', value)
+
 }
 
 watch(() => props.modelValue, onInput)

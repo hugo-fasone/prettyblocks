@@ -1,7 +1,7 @@
 <script setup>
-import { onMounted, reactive, watch } from 'vue'
-import { Listbox, ListboxButton, ListboxLabel, ListboxOption, ListboxOptions } from '@headlessui/vue'
-import { ChevronUpDownIcon } from '@heroicons/vue/24/solid'
+import {onMounted, reactive, watch} from 'vue'
+import {Listbox, ListboxButton, ListboxLabel, ListboxOption, ListboxOptions} from '@headlessui/vue'
+import {ChevronUpDownIcon} from '@heroicons/vue/24/solid'
 
 const props = defineProps({
   title: String,

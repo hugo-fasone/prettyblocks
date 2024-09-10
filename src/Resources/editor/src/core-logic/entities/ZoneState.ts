@@ -1,5 +1,5 @@
-import { BlockContent } from "./BlockContent";
-import { BlockStructure } from "./BlockStructure";
+import {BlockContent} from "./BlockContent";
+import {BlockStructure} from "./BlockStructure";
 
 export type ZoneState = {
   availableBlocks: BlockStructure[];

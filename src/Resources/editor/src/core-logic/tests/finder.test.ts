@@ -1,10 +1,7 @@
-import {
-  findComponentByIdInBlock,
-  findComponentStructure,
-} from "../utils/finder";
+import {findComponentByIdInBlock, findComponentStructure,} from "../utils/finder";
 
-import type { BlockContent } from "../entities/BlockContent";
-import type { BlockStructure } from "../entities/BlockStructure";
+import type {BlockContent} from "../entities/BlockContent";
+import type {BlockStructure} from "../entities/BlockStructure";
 import columnStructure from "./columnStructure.json";
 import filledColumnContent from "./filledColumnContentWithId.json";
 

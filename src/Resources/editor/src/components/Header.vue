@@ -1,5 +1,5 @@
 <script setup>
-import { defineComponent, ref } from "vue";
+import {defineComponent, ref} from "vue";
 import Icon from "./Icon.vue";
 import Button from "./Button.vue";
 import ButtonLight from "./ButtonLight.vue";
@@ -7,8 +7,7 @@ import HeaderDropdown from "./HeaderDropdown.vue";
 import ZoneSelect from "./form/ZoneSelect.vue";
 import ShopSelect from "./form/ShopSelect.vue";
 import emitter from "tiny-emitter/instance";
-import { contextShop } from "../store/currentBlock";
-import { trans } from "../scripts/trans";
+import {contextShop} from "../store/currentBlock";
 
 defineComponent({
   Icon,

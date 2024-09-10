@@ -1,12 +1,6 @@
 <script setup>
-import { defineComponent, defineEmits, watch, ref } from "vue";
-import {
-  Listbox,
-  ListboxLabel,
-  ListboxButton,
-  ListboxOptions,
-  ListboxOption,
-} from "@headlessui/vue";
+import {defineComponent, defineEmits, ref, watch} from "vue";
+import {Listbox, ListboxButton, ListboxLabel, ListboxOption, ListboxOptions,} from "@headlessui/vue";
 
 let props = defineProps({
   choices: Object,

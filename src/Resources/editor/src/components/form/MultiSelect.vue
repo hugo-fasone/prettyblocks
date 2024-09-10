@@ -1,7 +1,7 @@
 <script setup>
-import { defineComponent, defineEmits, ref, watch } from 'vue'
+import {defineComponent, defineEmits, ref, watch} from 'vue'
 import VueFormMultiselect from '@vueform/multiselect'
-import { trans } from '../../scripts/trans'
+import {trans} from '../../scripts/trans'
 
 const props = defineProps({
   label: String,

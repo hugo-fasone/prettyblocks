@@ -19,6 +19,7 @@
  */
 
 use PrestaSafe\PrettyBlocks\Install\Installer;
+use PrestaSafe\PrettyBlocks\Service\DynamicDiscriminatorMapService;
 use PrestaSafe\PrettyBlocks\Smarty\Plugin\ZonePlugin;
 use PrestaShop\PrestaShop\Core\Module\WidgetInterface;
 
@@ -86,7 +87,7 @@ class PrettyBlocks extends Module implements WidgetInterface
         $dbalConnection = $this->get('doctrine.dbal.default_connection');
 
         /** @var Installer $installer */
-        $installer = (new Installer($this->getTranslator(), $dbalConnection));
+        $installer = (new Installer($this->getTranslator(), $dbalConnection, $this));
 
         try {
             return $installer->install($this);
@@ -110,7 +111,7 @@ class PrettyBlocks extends Module implements WidgetInterface
         $dbalConnection = $this->get('doctrine.dbal.default_connection');
 
         /** @var Installer $installer */
-        $installer = (new Installer($this->getTranslator(), $dbalConnection));
+        $installer = (new Installer($this->getTranslator(), $dbalConnection, $this));
 
         try {
             return ($installer)->uninstall($this) && parent::uninstall();

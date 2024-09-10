@@ -46,17 +46,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import {computed} from "vue";
 import EditField from "./EditField.vue";
-import {
-  ComponentContent,
-  FieldContent,
-} from "../../core-logic/entities/ComponentContent";
-import { useNavigationStore } from "../../core-logic/store/navigationStore";
-import { storeToRefs } from "pinia";
-import { findComponentById } from "../../core-logic/utils/finder";
-import { useZoneStore } from "../../core-logic/store/zoneStore";
-import { BlockContent } from "../../core-logic/entities/BlockContent";
+import {ComponentContent, FieldContent,} from "../../core-logic/entities/ComponentContent";
+import {useNavigationStore} from "../../core-logic/store/navigationStore";
+import {storeToRefs} from "pinia";
+import {findComponentById} from "../../core-logic/utils/finder";
+import {useZoneStore} from "../../core-logic/store/zoneStore";
+import {BlockContent} from "../../core-logic/entities/BlockContent";
 import Icon from "../Icon.vue";
 
 const navigationStore = useNavigationStore();

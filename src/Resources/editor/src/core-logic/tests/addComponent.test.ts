@@ -1,15 +1,15 @@
-import { BlockContent } from "../entities/BlockContent";
-import { BlockStructure } from "../entities/BlockStructure";
-import { CannotFindComponentError } from "../errors/CannotFindComponentError";
-import { CannotFindStructureError } from "../errors/CannotFindStructureError";
-import { ComponentContent } from "../entities/ComponentContent";
-import { Repeater } from "../entities/Repeater";
+import {BlockContent} from "../entities/BlockContent";
+import {BlockStructure} from "../entities/BlockStructure";
+import {CannotFindComponentError} from "../errors/CannotFindComponentError";
+import {CannotFindStructureError} from "../errors/CannotFindStructureError";
+import {ComponentContent} from "../entities/ComponentContent";
+import {Repeater} from "../entities/Repeater";
 import columnStructure from "./columnStructure.json";
-import { createTestingPinia } from "@pinia/testing";
+import {createTestingPinia} from "@pinia/testing";
 import newColumnContentWithId from "./newColumnContentWithId.json";
 import oneColumnContentWithId from "./oneColumnContentWithId.json";
-import { setActivePinia } from "pinia";
-import { useZoneStore } from "../store/zoneStore";
+import {setActivePinia} from "pinia";
+import {useZoneStore} from "../store/zoneStore";
 
 describe("Add Component", () => {
   const newColumnBlock: BlockContent = newColumnContentWithId as BlockContent;

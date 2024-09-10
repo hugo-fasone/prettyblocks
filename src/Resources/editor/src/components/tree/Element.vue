@@ -65,26 +65,22 @@
 </template>
 
 <script setup lang="ts">
-import { BlockContent } from "../../core-logic/entities/BlockContent";
-import {
-  ComponentContent,
-  FieldContent,
-} from "../../core-logic/entities/ComponentContent";
-import { useZoneStore } from "../../core-logic/store/zoneStore.js";
-import { ref, nextTick, computed, watch, onMounted } from "vue";
+import {BlockContent} from "../../core-logic/entities/BlockContent";
+import {ComponentContent, FieldContent,} from "../../core-logic/entities/ComponentContent";
+import {useZoneStore} from "../../core-logic/store/zoneStore.js";
+import {computed, nextTick, onMounted, ref, watch} from "vue";
 import Subfields from "./Subfields.vue";
 import Icon from "../Icon.vue";
-import { PrimitiveFieldType } from "../../core-logic/entities/ElementType";
-import { PrimitiveFieldContent } from "../../core-logic/entities/PrimitiveFieldContent";
-import { useNavigationStore } from "../../core-logic/store/navigationStore";
-import { storeToRefs } from "pinia";
+import {PrimitiveFieldType} from "../../core-logic/entities/ElementType";
+import {PrimitiveFieldContent} from "../../core-logic/entities/PrimitiveFieldContent";
+import {useNavigationStore} from "../../core-logic/store/navigationStore";
+import {storeToRefs} from "pinia";
 import {
-  findComponentById,
   findComponentByIdInRepeater,
   findComponentByIdInSubfields,
   SearchComponentResult,
 } from "../../core-logic/utils/finder";
-import { Repeater } from "../../core-logic/entities/Repeater";
+import {Repeater} from "../../core-logic/entities/Repeater";
 
 const { element, children, isDeletable, isMovable, isDuplicable } =
   defineProps<{

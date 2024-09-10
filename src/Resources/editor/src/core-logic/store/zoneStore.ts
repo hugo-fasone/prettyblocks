@@ -1,18 +1,18 @@
-import type { BlockStructure } from "./../entities/BlockStructure";
-import type { PrimitiveFieldContentMap } from "../entities/PrimitiveFieldContent";
-import { PrimitiveFieldType } from "../entities/ElementType";
-import type { ZoneState } from "../entities/ZoneState";
-import { addBlock } from "../usecases/addBlock";
-import { addComponent } from "../usecases/addComponent";
-import { defineStore } from "pinia";
-import { deleteBlockById } from "../usecases/deleteBlock";
-import { deleteComponentById } from "../usecases/deleteComponent";
-import { duplicateElement } from "../usecases/duplicateElement";
-import { editPrimitiveField } from "../usecases/editPrimitiveField";
-import { moveBlock } from "../usecases/moveBlock";
-import { moveComponent } from "../usecases/moveComponent";
-import { renameElement } from "../usecases/renameElement";
-import { toggleComponent } from "../usecases/toggleComponent";
+import type {BlockStructure} from "./../entities/BlockStructure";
+import type {PrimitiveFieldContentMap} from "../entities/PrimitiveFieldContent";
+import {PrimitiveFieldType} from "../entities/ElementType";
+import type {ZoneState} from "../entities/ZoneState";
+import {addBlock} from "../usecases/addBlock";
+import {addComponent} from "../usecases/addComponent";
+import {defineStore} from "pinia";
+import {deleteBlockById} from "../usecases/deleteBlock";
+import {deleteComponentById} from "../usecases/deleteComponent";
+import {duplicateElement} from "../usecases/duplicateElement";
+import {editPrimitiveField} from "../usecases/editPrimitiveField";
+import {moveBlock} from "../usecases/moveBlock";
+import {moveComponent} from "../usecases/moveComponent";
+import {renameElement} from "../usecases/renameElement";
+import {toggleComponent} from "../usecases/toggleComponent";
 
 export const useZoneStore = defineStore("zone", {
   state: (): ZoneState => {

@@ -1,9 +1,9 @@
-import { ComponentContent, FieldContent } from "../entities/ComponentContent";
+import {ComponentContent, FieldContent} from "../entities/ComponentContent";
 
-import { BlockContent } from "../entities/BlockContent";
-import { BlockStructure } from "../entities/BlockStructure";
-import { ComponentStructure } from "../entities/ComponentStructure";
-import { Repeater } from "../entities/Repeater";
+import {BlockContent} from "../entities/BlockContent";
+import {BlockStructure} from "../entities/BlockStructure";
+import {ComponentStructure} from "../entities/ComponentStructure";
+import {Repeater} from "../entities/Repeater";
 
 export type SearchComponentResult = {
   parent?: BlockContent | ComponentContent | Repeater<FieldContent>;

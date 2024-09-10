@@ -1,12 +1,12 @@
-import type { BlockStructure } from "../entities/BlockStructure";
-import { CannotFindComponentError } from "../errors/CannotFindComponentError";
-import type { PrimitiveFieldContent } from "../entities/PrimitiveFieldContent";
-import { PrimitiveFieldType } from "../entities/ElementType";
+import type {BlockStructure} from "../entities/BlockStructure";
+import {CannotFindComponentError} from "../errors/CannotFindComponentError";
+import type {PrimitiveFieldContent} from "../entities/PrimitiveFieldContent";
+import {PrimitiveFieldType} from "../entities/ElementType";
 import allFieldsStructure from "./allFieldsStructure.json";
-import { buildNewBlockContentFromBlockStructure } from "../utils/builder";
-import { createTestingPinia } from "@pinia/testing";
-import { setActivePinia } from "pinia";
-import { useZoneStore } from "../store/zoneStore";
+import {buildNewBlockContentFromBlockStructure} from "../utils/builder";
+import {createTestingPinia} from "@pinia/testing";
+import {setActivePinia} from "pinia";
+import {useZoneStore} from "../store/zoneStore";
 
 describe("Edit primitive field", () => {
   beforeEach(() => {

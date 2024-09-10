@@ -1,12 +1,12 @@
-import type { BlockContent } from "../entities/BlockContent";
-import { CannotFindComponentError } from "../errors/CannotFindComponentError";
-import type { ComponentContent } from "../entities/ComponentContent";
-import { OperationNotAllowedError } from "../errors/OperationNotAllowedError";
-import type { Repeater } from "../entities/Repeater";
-import { createTestingPinia } from "@pinia/testing";
+import type {BlockContent} from "../entities/BlockContent";
+import {CannotFindComponentError} from "../errors/CannotFindComponentError";
+import type {ComponentContent} from "../entities/ComponentContent";
+import {OperationNotAllowedError} from "../errors/OperationNotAllowedError";
+import type {Repeater} from "../entities/Repeater";
+import {createTestingPinia} from "@pinia/testing";
 import oneColumnContentWithId from "./oneColumnContentWithId.json";
-import { setActivePinia } from "pinia";
-import { useZoneStore } from "../store/zoneStore";
+import {setActivePinia} from "pinia";
+import {useZoneStore} from "../store/zoneStore";
 
 describe("Delete component", () => {
   const oneColumnBlock: BlockContent = oneColumnContentWithId as BlockContent;

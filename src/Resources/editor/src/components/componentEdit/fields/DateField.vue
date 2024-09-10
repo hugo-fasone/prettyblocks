@@ -9,8 +9,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import { PrimitiveDateType } from "../../../core-logic/entities/PrimitiveFieldContent";
+import {ref} from "vue";
+import {PrimitiveDateType} from "../../../core-logic/entities/PrimitiveFieldContent";
 
 const emit = defineEmits(["update:modelValue"]);
 const { value } = defineProps<{ value: PrimitiveDateType }>();

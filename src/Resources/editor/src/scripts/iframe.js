@@ -1,12 +1,13 @@
-import { ref } from 'vue'
-import { HttpClient } from "../services/HttpClient";
+import {ref} from 'vue'
+import {HttpClient} from "../services/HttpClient";
 import emitter from 'tiny-emitter/instance'
 
-import { useStore, storedZones, contextShop, storedBlocks } from '../store/currentBlock'
+import {contextShop, storedBlocks, storedZones, useStore} from '../store/currentBlock'
 import Block from './block'
 
 
-import { createToaster } from "@meforma/vue-toaster";
+import {createToaster} from "@meforma/vue-toaster";
+
 const toaster = createToaster({
     position: 'top',
 });

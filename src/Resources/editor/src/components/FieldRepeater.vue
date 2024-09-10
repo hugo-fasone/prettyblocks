@@ -15,8 +15,8 @@ import FileUpload from './form/FileUpload.vue'
 import Choices from './form/Choices.vue'
 import Icon from './Icon.vue'
 import Editor from '@tinymce/tinymce-vue'
-import { v4 as uuidv4 } from 'uuid'
-import { defineComponent, defineProps, ref, defineEmits, onMounted } from 'vue'
+import {v4 as uuidv4} from 'uuid'
+import {defineComponent, defineEmits, defineProps, ref} from 'vue'
 
 defineComponent({
   FormControl,
@@ -95,7 +95,7 @@ let tinymce_api_key = ref(window.security_app.tinymce_api_key)
     <div v-if="f.type == 'select'">
       <Choices :choices="f.choices" v-model="f.value" :label="f.label" />
     </div>
-    
+
     <div v-if="f.type == 'multiselect'">
       <MultiSelect v-model="f.value" :label="f.label" :options="f.choices" searchable="true" mode="tags"></MultiSelect>
     </div>

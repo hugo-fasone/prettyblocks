@@ -1,9 +1,9 @@
 <script setup>
-import { defineComponent, onMounted, ref } from "vue";
+import {defineComponent, onMounted} from "vue";
 import Icon from "../Icon.vue";
 import Button from "./../Button.vue";
 import Dropzone from "dropzone";
-import { HttpClient } from "../../services/HttpClient";
+import {HttpClient} from "../../services/HttpClient";
 // import 'dropzone/dist/basic.css'
 // import 'dropzone/dist/dropzone.css'
 

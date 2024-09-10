@@ -4,10 +4,15 @@ declare(strict_types=1);
 
 namespace PrestaSafe\PrettyBlocks\Controller\Admin;
 
+use Configuration;
+use Exception;
+use Link;
+use Module;
 use PrestaShop\PrestaShop\Adapter\LegacyContext;
 use PrestaShopBundle\Controller\Admin\FrameworkBundleAdminController;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Response;
+use Tools;
 
 class EditionController extends FrameworkBundleAdminController
 {
@@ -18,9 +23,9 @@ class EditionController extends FrameworkBundleAdminController
 
         [$css, $js, $js_entry] = $this->getAssets($context);
 
-        $module = \Module::getInstanceByName('prettyblocks');
+        $module = Module::getInstanceByName('prettyblocks');
 
-        $link = new \Link();
+        $link = new Link();
         $symfonyUrl = 'https://raviday_core.app.localhost/';
         //$symfonyUrl = $this->get('router')->generate("prettyblocks_zone_get");
 
@@ -30,7 +35,7 @@ class EditionController extends FrameworkBundleAdminController
 
         return $this->render('@Modules/prettyblocks/templates/admin/index.html.twig', [
             'base_url' => $link->getBaseLink(),
-            'favicon_url' => \Tools::getShopDomainSsl(true) . '/modules/' . $module->name . '/views/images/favicon.ico',
+            'favicon_url' => Tools::getShopDomainSsl(true) . '/modules/' . $module->name . '/views/images/favicon.ico',
             'module_name' => $module->displayName,
             'shop_name' => $context->getContext()->shop->name,
             'env' => [
@@ -91,7 +96,7 @@ class EditionController extends FrameworkBundleAdminController
                 'get_pro' => $this->trans('Get Pro Blocks', 'Modules.Prettyblocks.Admin'),
             ],
             'security_app' => [
-                'ajax_token' => \Configuration::getGlobalValue('_PRETTYBLOCKS_TOKEN_'),
+                'ajax_token' => Configuration::getGlobalValue('_PRETTYBLOCKS_TOKEN_'),
                 'prettyblocks_version' => $module->version,
                 'available_language_ids' => $available_language_ids,
                 'tinymce_api_key' => 'no-api-key',
@@ -120,9 +125,9 @@ class EditionController extends FrameworkBundleAdminController
             $manifest = $build_dir . 'manifest.json';
 
             if (!$filesystem->exists($manifest)) {
-                throw new \Exception('manifest.json not exist');
+                throw new Exception('manifest.json not exist');
             }
-            $json = \Tools::file_get_contents($manifest);
+            $json = Tools::file_get_contents($manifest);
             $json = json_decode($json, true);
 
             foreach ($json as $file) {

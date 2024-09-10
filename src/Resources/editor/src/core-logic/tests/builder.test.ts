@@ -4,18 +4,18 @@ import {
   buildNewPrimitiveFieldFromStructure,
 } from "../utils/builder";
 
-import { BlockContent } from "../entities/BlockContent";
-import { BlockStructure } from "../entities/BlockStructure";
-import { ComponentContent } from "../entities/ComponentContent";
-import { ComponentStructure } from "../entities/ComponentStructure";
-import { PrimitiveFieldContent } from "../entities/PrimitiveFieldContent";
-import { PrimitiveFieldStructure } from "../entities/PrimitiveFieldStructure";
-import { PrimitiveFieldType } from "../entities/ElementType";
-import { Repeater } from "../entities/Repeater";
+import {BlockContent} from "../entities/BlockContent";
+import {BlockStructure} from "../entities/BlockStructure";
+import {ComponentContent} from "../entities/ComponentContent";
+import {ComponentStructure} from "../entities/ComponentStructure";
+import {PrimitiveFieldContent} from "../entities/PrimitiveFieldContent";
+import {PrimitiveFieldStructure} from "../entities/PrimitiveFieldStructure";
+import {PrimitiveFieldType} from "../entities/ElementType";
+import {Repeater} from "../entities/Repeater";
 import columnBlockStructure from "./columnStructure.json";
 import columnBlockStructureWithPrimitiveRepeater from "./columnStructureWithPrimitiveRepeater.json";
 
-/* 
+/*
   Add a test here every time you create a new builder or improve an existing one.
 */
 

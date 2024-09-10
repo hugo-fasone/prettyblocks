@@ -1,7 +1,8 @@
 import emitter from 'tiny-emitter/instance'
-import { contextShop, useStore } from '../store/currentBlock'
-import { HttpClient } from "../services/HttpClient";
-import { ref } from 'vue'
+import {contextShop, useStore} from '../store/currentBlock'
+import {HttpClient} from "../services/HttpClient";
+import {ref} from 'vue'
+
 export default class Block {
     id_prettyblocks = 0;
     instance_id = null;
@@ -12,14 +13,14 @@ export default class Block {
     id_shop = 0;
     id_lang = 0;
 
-      
+
     constructor(element) {
         let context = contextShop()
         this.id_prettyblocks = element.id_prettyblocks
         this.instance_id = element.instance_id
-        this.code = element.code 
-        this.subSelected = element.subSelected 
-        this.need_reload = element.need_reload 
+      this.code = element.code
+      this.subSelected = element.subSelected
+      this.need_reload = element.need_reload
         this.id_shop = context.id_shop
         this.id_lang = context.id_lang
 
@@ -50,6 +51,36 @@ export default class Block {
         return useStore()
     }
 
+    static async loadById(id_prettyblocks)
+    {
+        let context = contextShop()
+        let id_lang = context.id_lang
+        let id_shop = context.id_shop
+
+      const params = {
+            id_prettyblocks: id_prettyblocks,
+            action: 'loadBlockById',
+            ajax: true,
+            ctx_id_lang: id_lang,
+            ctx_id_shop: id_shop,
+            ajax_token: security_app.ajax_token
+        }
+        let data = await HttpClient.get(ajax_urls.state, params);
+        let block = new Block(data)
+        block.loadStates(data.repeater_db)
+        return block
+    }
+    loadStates(states)
+    {
+        this.states.value = states
+    }
+
+
+    getStates()
+    {
+        return this.states.value
+    }
+
     async saveConfig(configState) {
 
         const params = {
@@ -64,22 +95,7 @@ export default class Block {
         }
         let data = await HttpClient.post(ajax_urls.state, params);
         return data
-        
-    }
-    loadStates(states)
-    {
-        this.states.value = states
-    }
 
-
-    getStates()
-    {
-        return this.states.value
-    }
-    
-    setStateByKey(key, value)
-    {
-        this.states.value[key] = value
     }
 
     getSubSelectedKey()
@@ -90,6 +106,11 @@ export default class Block {
         return key_formatted
     }
 
+  setStateByKey(key, value)
+    {
+        this.states.value[key] = value
+    }
+
     async updateSubSelectItem(state)
     {
          // let currentBlock = useStore()
@@ -98,7 +119,7 @@ export default class Block {
             action: 'updateState',
             state: JSON.stringify(state.value),
             subSelected: this.getSubSelectedKey(),
-            ajax: true, 
+          ajax: true,
             ctx_id_lang: this.id_lang,
             ctx_id_shop: this.id_shop,
             ajax_token: security_app.ajax_token
@@ -106,11 +127,6 @@ export default class Block {
         let data = await HttpClient.post(ajax_urls.state, params);
 
         return data
-    }
-
-    save()
-    {
-        
     }
 
     getStateByKey(key)
@@ -132,24 +148,9 @@ export default class Block {
         emitter.emit('scrollInIframe', this.id_prettyblocks)
     }
 
-    static async loadById(id_prettyblocks)
+    save()
     {
-        let context = contextShop()
-        let id_lang = context.id_lang
-        let id_shop = context.id_shop
-        
-        const params = {
-            id_prettyblocks: id_prettyblocks,
-            action: 'loadBlockById',
-            ajax: true,
-            ctx_id_lang: id_lang,
-            ctx_id_shop: id_shop,
-            ajax_token: security_app.ajax_token
-        }
-        let data = await HttpClient.get(ajax_urls.state, params);
-        let block = new Block(data)
-        block.loadStates(data.repeater_db)
-        return block
+
     }
 
-} 
+}

@@ -1,9 +1,9 @@
-import type { BlockContent } from "../entities/BlockContent";
-import { CannotFindComponentError } from "../errors/CannotFindComponentError";
-import { createTestingPinia } from "@pinia/testing";
+import type {BlockContent} from "../entities/BlockContent";
+import {CannotFindComponentError} from "../errors/CannotFindComponentError";
+import {createTestingPinia} from "@pinia/testing";
 import filledColumnBlockWithId from "./filledColumnContentWithId.json";
-import { setActivePinia } from "pinia";
-import { useZoneStore } from "../store/zoneStore";
+import {setActivePinia} from "pinia";
+import {useZoneStore} from "../store/zoneStore";
 
 describe("Rename block", () => {
   const columnBlock: BlockContent = filledColumnBlockWithId as BlockContent;

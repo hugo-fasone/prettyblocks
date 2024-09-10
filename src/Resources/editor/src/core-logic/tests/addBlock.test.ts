@@ -1,8 +1,8 @@
-import type { BlockStructure } from "../entities/BlockStructure";
+import type {BlockStructure} from "../entities/BlockStructure";
 import columnStructure from "./columnStructure.json";
-import { createTestingPinia } from "@pinia/testing";
-import { setActivePinia } from "pinia";
-import { useZoneStore } from "../store/zoneStore";
+import {createTestingPinia} from "@pinia/testing";
+import {setActivePinia} from "pinia";
+import {useZoneStore} from "../store/zoneStore";
 
 describe("Add new block", () => {
   beforeEach(() => {

@@ -33,19 +33,16 @@
 </template>
 
 <script setup lang="ts">
-import type {
-  ComponentContent,
-  FieldContent,
-} from "../../core-logic/entities/ComponentContent";
-import type { BlockContent } from "../../core-logic/entities/BlockContent";
+import type {ComponentContent, FieldContent,} from "../../core-logic/entities/ComponentContent";
+import type {BlockContent} from "../../core-logic/entities/BlockContent";
 import Element from "./Element.vue";
 import Icon from "../Icon.vue";
-import { useZoneStore } from "../../core-logic/store/zoneStore";
-import { PrimitiveFieldContent } from "../../core-logic/entities/PrimitiveFieldContent";
-import { PrimitiveFieldType } from "../../core-logic/entities/ElementType";
-import { Repeater } from "../../core-logic/entities/Repeater";
-import { findComponentBlock } from "../../core-logic/utils/finder";
-import { ref } from "vue";
+import {useZoneStore} from "../../core-logic/store/zoneStore";
+import {PrimitiveFieldContent} from "../../core-logic/entities/PrimitiveFieldContent";
+import {PrimitiveFieldType} from "../../core-logic/entities/ElementType";
+import {Repeater} from "../../core-logic/entities/Repeater";
+import {findComponentBlock} from "../../core-logic/utils/finder";
+import {ref} from "vue";
 import draggable from "vuedraggable";
 
 const { fields, parentElement } = defineProps<{

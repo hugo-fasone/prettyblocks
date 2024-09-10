@@ -37,10 +37,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import {ref} from "vue";
 import emitter from "tiny-emitter/instance";
-import { storeToRefs } from "pinia";
-import { useZoneStore } from "../core-logic/store/zoneStore";
+import {storeToRefs} from "pinia";
+import {useZoneStore} from "../core-logic/store/zoneStore";
 
 let showModal = ref(false);
 

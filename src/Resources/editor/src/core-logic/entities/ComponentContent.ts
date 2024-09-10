@@ -1,7 +1,7 @@
-import { type COMPONENT_TYPE, PrimitiveFieldType } from "./ElementType";
+import {type COMPONENT_TYPE, PrimitiveFieldType} from "./ElementType";
 
-import type { PrimitiveFieldContent } from "./PrimitiveFieldContent";
-import type { Repeater } from "./Repeater";
+import type {PrimitiveFieldContent} from "./PrimitiveFieldContent";
+import type {Repeater} from "./Repeater";
 
 export type FieldContent =
   | ComponentContent

@@ -1,6 +1,6 @@
-import { COMPONENT_TYPE, PrimitiveFieldType } from "./ElementType";
+import {COMPONENT_TYPE, PrimitiveFieldType} from "./ElementType";
 
-import { PrimitiveFieldStructure } from "./PrimitiveFieldStructure";
+import {PrimitiveFieldStructure} from "./PrimitiveFieldStructure";
 
 export type ComponentStructure = {
   id: string;

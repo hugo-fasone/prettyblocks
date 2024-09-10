@@ -40,13 +40,13 @@
 </template>
 
 <script setup lang="ts">
-import { FieldContent } from "../../core-logic/entities/ComponentContent.js";
-import { PrimitiveFieldType } from "../../core-logic/entities/ElementType.js";
-import { PrimitiveFieldContent } from "../../core-logic/entities/PrimitiveFieldContent.js";
-import { Repeater } from "../../core-logic/entities/Repeater.js";
-import { useNavigationStore } from "../../core-logic/store/navigationStore.js";
-import { useZoneStore } from "../../core-logic/store/zoneStore.js";
-import { findComponentBlock } from "../../core-logic/utils/finder.js";
+import {FieldContent} from "../../core-logic/entities/ComponentContent.js";
+import {PrimitiveFieldType} from "../../core-logic/entities/ElementType.js";
+import {PrimitiveFieldContent} from "../../core-logic/entities/PrimitiveFieldContent.js";
+import {Repeater} from "../../core-logic/entities/Repeater.js";
+import {useNavigationStore} from "../../core-logic/store/navigationStore.js";
+import {useZoneStore} from "../../core-logic/store/zoneStore.js";
+import {findComponentBlock} from "../../core-logic/utils/finder.js";
 import Icon from "../Icon.vue";
 import EditPrimitiveField from "./EditPrimitiveField.vue";
 

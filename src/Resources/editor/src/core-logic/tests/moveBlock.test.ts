@@ -1,9 +1,9 @@
-import type { BlockContent } from "../entities/BlockContent";
-import { CannotFindComponentError } from "../errors/CannotFindComponentError";
-import { PrimitiveFieldType } from "../entities/ElementType";
-import { createTestingPinia } from "@pinia/testing";
-import { setActivePinia } from "pinia";
-import { useZoneStore } from "../store/zoneStore";
+import type {BlockContent} from "../entities/BlockContent";
+import {CannotFindComponentError} from "../errors/CannotFindComponentError";
+import {PrimitiveFieldType} from "../entities/ElementType";
+import {createTestingPinia} from "@pinia/testing";
+import {setActivePinia} from "pinia";
+import {useZoneStore} from "../store/zoneStore";
 
 const newColumnBlock: BlockContent = {
   id: "columnBlock",

@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace PrestaSafe\PrettyBlocks\Entity\PrimitiveField;
@@ -13,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 class NumberField extends AbstractPrimitiveField
 {
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     protected mixed $value;
 

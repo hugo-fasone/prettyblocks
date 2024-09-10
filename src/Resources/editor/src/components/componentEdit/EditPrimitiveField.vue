@@ -8,11 +8,8 @@
 </template>
 
 <script setup lang="ts">
-import { PrimitiveFieldType } from "../../core-logic/entities/ElementType";
-import {
-  PrimitiveFieldContent,
-  PrimitiveFieldContentMap,
-} from "../../core-logic/entities/PrimitiveFieldContent";
+import {PrimitiveFieldType} from "../../core-logic/entities/ElementType";
+import {PrimitiveFieldContent, PrimitiveFieldContentMap,} from "../../core-logic/entities/PrimitiveFieldContent";
 import TextField from "./fields/TextField.vue";
 import NumberField from "./fields/NumberField.vue";
 import RangeField from "./fields/RangeField.vue";
@@ -23,7 +20,7 @@ import DateField from "./fields/DateField.vue";
 import ColorField from "./fields/ColorField.vue";
 import UrlField from "./fields/UrlField.vue";
 import WysiwygField from "./fields/WysiwygField.vue";
-import { useZoneStore } from "../../core-logic/store/zoneStore";
+import {useZoneStore} from "../../core-logic/store/zoneStore";
 import SwitchField from "./fields/SwitchField.vue";
 
 const { field } = defineProps<{

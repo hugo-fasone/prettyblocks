@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, defineComponent } from 'vue'
+import {defineComponent, defineProps} from 'vue'
 import Icon from './Icon.vue'
 import Button from './Button.vue'
 

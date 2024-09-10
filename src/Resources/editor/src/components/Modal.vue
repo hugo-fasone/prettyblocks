@@ -1,10 +1,10 @@
 <script setup>
-import { ref, defineComponent } from 'vue'
+import {defineComponent, ref} from 'vue'
 import emitter from 'tiny-emitter/instance'
-import { HttpClient } from "../services/HttpClient";
+import {HttpClient} from "../services/HttpClient";
 import Block from './Block.vue'
-import { currentZone } from '../store/currentBlock'
-import { trans } from '../scripts/trans'
+import {currentZone} from '../store/currentBlock'
+import {trans} from '../scripts/trans'
 
 defineComponent({
   Block

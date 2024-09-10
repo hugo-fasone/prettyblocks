@@ -5,27 +5,33 @@ declare(strict_types=1);
 namespace PrestaSafe\PrettyBlocks\Entity\Block;
 
 use Doctrine\ORM\Mapping as ORM;
+use PrestaSafe\PrettyBlocks\Entity\Element;
 
 /**
  * @ORM\MappedSuperclass
  */
-abstract class AbstractBlock implements BlockInterface
+abstract class AbstractBlock extends Element implements BlockInterface
 {
     /**
      * @ORM\Id
      * @ORM\Column(type="string")
      */
-    protected $id;
+    protected string $id;
 
     /**
      * @ORM\Column(type="string")
      */
-    protected $label;
+    protected string $label;
 
     /**
      * @ORM\Column(type="json")
      */
     protected $fields = [];
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected int $position;
 
     public function __construct(string $id, string $label)
     {
@@ -51,6 +57,16 @@ abstract class AbstractBlock implements BlockInterface
     public function addField($field): void
     {
         $this->fields[] = $field;
+    }
+
+    public function getPosition(): int
+    {
+        return $this->position;
+    }
+
+    public function setPosition(int $position): void
+    {
+        $this->position = $position;
     }
 
     abstract public function validate(): bool;

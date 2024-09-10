@@ -1,18 +1,10 @@
 <script setup>
-import {
-  onMounted,
-  onUnmounted,
-  defineProps,
-  ref,
-  defineComponent,
-  computed,
-  watch,
-} from "vue";
+import {computed, defineComponent, defineProps, onMounted, onUnmounted, ref, watch,} from "vue";
 import emitter from "tiny-emitter/instance";
 import Loader from "./Loader.vue";
 import Button from "./Button.vue";
 import Iframe from "../scripts/iframe";
-import { contextShop } from "../store/currentBlock";
+import {contextShop} from "../store/currentBlock";
 
 let iframe = new Iframe(ajax_urls.startup_url, 1, 1)
 //let iframe = new Iframe();

@@ -1,13 +1,29 @@
 <?php
-
 declare(strict_types=1);
 
 namespace PrestaSafe\PrettyBlocks\Entity\PrimitiveField;
 
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\MappedSuperclass
+ */
 abstract class AbstractPrimitiveField implements PrimitiveFieldInterface
 {
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="string")
+     */
     protected string $id;
+
+    /**
+     * @ORM\Column(type="string")
+     */
     protected string $label;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
     protected mixed $value;
 
     public function __construct(string $id, string $label)

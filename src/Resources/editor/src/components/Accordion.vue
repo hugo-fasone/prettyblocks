@@ -1,5 +1,5 @@
 <script setup>
-import { defineComponent, defineProps, ref } from 'vue'
+import {defineComponent, defineProps, ref} from 'vue'
 import Collapsable from './Collapsable.vue'
 import MenuItem from './MenuItem.vue'
 import Icon from './Icon.vue'

@@ -1,12 +1,11 @@
 <script setup>
-import { defineProps, ref, defineComponent } from "vue";
+import {defineComponent, defineProps, ref} from "vue";
 import Icon from "./Icon.vue";
-import { currentZone } from "../store/currentBlock";
+import {contextShop, currentZone} from "../store/currentBlock";
 import Loader from "./Loader.vue";
 import emitter from "tiny-emitter/instance";
-import { createToaster } from "@meforma/vue-toaster";
-import { contextShop } from "../store/currentBlock";
-import { HttpClient } from "../services/HttpClient.js";
+import {createToaster} from "@meforma/vue-toaster";
+import {HttpClient} from "../services/HttpClient.js";
 
 const toaster = createToaster({
   position: "top",

@@ -1,9 +1,10 @@
 <?php
-
 declare(strict_types=1);
 
 namespace PrestaSafe\PrettyBlocks\Controller\Api;
 
+use Exception;
+use JsonException;
 use PrestaSafe\PrettyBlocks\Service\ZoneService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -11,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ZoneController extends AbstractController
 {
-    private $zoneService;
+    private ZoneService $zoneService;
 
     public function __construct(ZoneService $zoneService)
     {
@@ -19,7 +20,7 @@ class ZoneController extends AbstractController
     }
 
     /**
-     * Endpoint to list all available zones
+     * Return the list of all available zones
      */
     public function listZones(): JsonResponse
     {
@@ -30,7 +31,6 @@ class ZoneController extends AbstractController
             $data[] = [
                 'id' => $zone->getId(),
                 'label' => $zone->getLabel(),
-                // You can add more details if needed
             ];
         }
 
@@ -38,28 +38,28 @@ class ZoneController extends AbstractController
     }
 
     /**
-     * Endpoint to get a specific zone by ID
+     * Return a specific zone by its ID
      */
     public function getZone(string $id): JsonResponse
     {
         $zone = $this->zoneService->getZoneById($id);
 
-        if (!$zone) {
+        if (null === $zone) {
             return new JsonResponse(['error' => 'Zone not found'], JsonResponse::HTTP_NOT_FOUND);
         }
 
         $data = [
             'id' => $zone->getId(),
             'label' => $zone->getLabel(),
-            'blocks' => [],
+            'elements' => []
         ];
 
-        foreach ($zone->getBlocks() as $block) {
-            $data['blocks'][] = [
-                'id' => $block->getId(),
-                'label' => $block->getLabel(),
-                'fields' => $block->getFields(),
-                // Include more block details if necessary
+        foreach ($zone->getElements() as $element) {
+            $data['elements'][] = [
+                'id' => $element->getId(),
+                'label' => $element->getLabel(),
+                'type' => $element->getType(),
+                'position' => $element->getPosition(),
             ];
         }
 
@@ -67,29 +67,29 @@ class ZoneController extends AbstractController
     }
 
     /**
-     * Endpoint to update a specific zone by ID with edited blocks
+     * Update a specific zone by its ID with edited elements
+     * @throws JsonException
      */
     public function updateZone(Request $request, string $id): JsonResponse
     {
         $zone = $this->zoneService->getZoneById($id);
 
-        if (!$zone) {
+        if (null === $zone) {
             return new JsonResponse(['error' => 'Zone not found'], JsonResponse::HTTP_NOT_FOUND);
         }
 
         $data = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
 
-        if (!isset($data['blocks'])) {
-            return new JsonResponse(['error' => 'Invalid data'], JsonResponse::HTTP_BAD_REQUEST);
+        if (false === isset($data['elements'])) {
+            return new JsonResponse(['error' => 'Invalid data format'], JsonResponse::HTTP_BAD_REQUEST);
         }
 
         try {
-            $this->zoneService->updateZone($zone, $data['blocks']);
-        } catch (\Exception $e) {
+            $this->zoneService->updateZone($zone, $data['elements']);
+        } catch (Exception $e) {
             return new JsonResponse(['error' => $e->getMessage()], JsonResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
 
         return new JsonResponse(['status' => 'Zone updated successfully']);
     }
-
 }

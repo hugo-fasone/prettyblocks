@@ -3,9 +3,8 @@ import Icon from './Icon.vue';
 import Collapsable from './Collapsable.vue';
 import MenuItem from './MenuItem.vue';
 import ButtonLight from './ButtonLight.vue';
-import { defineEmits } from 'vue'
-import emitter from 'tiny-emitter/instance'
-import { trans } from '../scripts/trans'
+import {defineEmits} from 'vue'
+import {trans} from '../scripts/trans'
 
 defineProps({
   id: String,

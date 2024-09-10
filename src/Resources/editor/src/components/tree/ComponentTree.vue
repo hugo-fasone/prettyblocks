@@ -29,10 +29,10 @@
 </template>
 
 <script setup lang="ts">
-import { useZoneStore } from "../../core-logic/store/zoneStore";
-import { storeToRefs } from "pinia";
+import {useZoneStore} from "../../core-logic/store/zoneStore";
+import {storeToRefs} from "pinia";
 import Element from "./Element.vue";
-import { ref } from "vue";
+import {ref} from "vue";
 import draggable from "vuedraggable";
 import Icon from "../Icon.vue";
 import emitter from "tiny-emitter/instance";

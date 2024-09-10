@@ -1,12 +1,12 @@
-import type { BlockContent } from "../entities/BlockContent";
-import type { BlockStructure } from "../entities/BlockStructure";
-import type { ComponentContent } from "../entities/ComponentContent";
-import type { ComponentStructure } from "./../entities/ComponentStructure";
-import type { PrimitiveFieldContent } from "../entities/PrimitiveFieldContent";
-import type { PrimitiveFieldStructure } from "../entities/PrimitiveFieldStructure";
-import { PrimitiveFieldType } from "../entities/ElementType";
-import type { Repeater } from "../entities/Repeater";
-import { v4 as uuidv4 } from "uuid";
+import type {BlockContent} from "../entities/BlockContent";
+import type {BlockStructure} from "../entities/BlockStructure";
+import type {ComponentContent} from "../entities/ComponentContent";
+import type {ComponentStructure} from "./../entities/ComponentStructure";
+import type {PrimitiveFieldContent} from "../entities/PrimitiveFieldContent";
+import type {PrimitiveFieldStructure} from "../entities/PrimitiveFieldStructure";
+import {PrimitiveFieldType} from "../entities/ElementType";
+import type {Repeater} from "../entities/Repeater";
+import {v4 as uuidv4} from "uuid";
 
 export const buildNewBlockContentFromBlockStructure = (
   blockStructure: BlockStructure

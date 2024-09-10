@@ -1,10 +1,10 @@
 <script setup>
 import Layout from "./components/Layout.vue";
-import { useZoneStore } from "./core-logic/store/zoneStore";
+import {useZoneStore} from "./core-logic/store/zoneStore";
 import columnStructure from "./core-logic/tests/columnStructure.json";
 import allFieldsStructure from "./core-logic/tests/allFieldsStructure.json";
-import { onMounted } from "vue";
-import { buildNewBlockContentFromBlockStructure } from "./core-logic/utils/builder";
+import {onMounted} from "vue";
+import {buildNewBlockContentFromBlockStructure} from "./core-logic/utils/builder";
 
 const zoneStore = useZoneStore();
 onMounted(() => {

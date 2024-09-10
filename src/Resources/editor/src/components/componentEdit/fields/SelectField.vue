@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import { PrimitiveSelectType } from "../../../core-logic/entities/PrimitiveFieldContent";
+import {PrimitiveSelectType} from "../../../core-logic/entities/PrimitiveFieldContent";
 
 const emit = defineEmits(["update:modelValue"]);
 const { value } = defineProps<{ value: PrimitiveSelectType }>();

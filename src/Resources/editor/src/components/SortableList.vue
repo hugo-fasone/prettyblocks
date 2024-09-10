@@ -1,9 +1,9 @@
 <script setup>
 import draggable from "vuedraggable";
-import { HttpClient } from "../services/HttpClient";
+import {HttpClient} from "../services/HttpClient";
 import emitter from "tiny-emitter/instance";
-import { contextShop, useStore } from "../store/currentBlock";
-import { createToaster } from "@meforma/vue-toaster";
+import {contextShop, useStore} from "../store/currentBlock";
+import {createToaster} from "@meforma/vue-toaster";
 
 const toaster = createToaster({
   position: "top",

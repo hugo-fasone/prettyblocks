@@ -1,4 +1,4 @@
-import type { FieldContent } from "./ComponentContent";
+import type {FieldContent} from "./ComponentContent";
 
 export type BlockContent = {
   id: string;

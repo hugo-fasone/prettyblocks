@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace PrestaSafe\PrettyBlocks\Service;
 
-use PrestaSafe\PrettyBlocks\Entity\Block\BlockInterface;
+use PrestaSafe\PrettyBlocks\Entity\ElementInterface;
 use PrestaSafe\PrettyBlocks\Entity\Zone;
 use PrestaSafe\PrettyBlocks\Factory\EntityFactory;
 use PrestaSafe\PrettyBlocks\Repository\ZoneRepository;
 
 class ZoneService
 {
-    private ZoneRepository $zoneRepository;
-    private EntityFactory $entityFactory;
+    private $zoneRepository;
+    private $entityFactory;
 
     public function __construct(ZoneRepository $zoneRepository, EntityFactory $entityFactory)
     {
@@ -20,41 +20,47 @@ class ZoneService
         $this->entityFactory = $entityFactory;
     }
 
+    /**
+     * Récupère toutes les zones disponibles
+     */
     public function getAllZones(): array
     {
-        return $this->zoneRepository->findAllZones();
+        return $this->zoneRepository->findAllZones();  // Utilise la méthode findAllZones du repository
     }
 
-    public function getZoneById(string $id): ?Zone
+    public function updateZone(Zone $zone, array $elements): void
     {
-        return $this->zoneRepository->findById($id);
-    }
+        // Retirer les anciens éléments de la zone
+        $zone->removeAllElements();
 
-    public function updateZone(Zone $zone, array $blocks): void
-    {
-        // Remove existing blocks
-        foreach ($zone->getBlocks() as $block) {
-            $zone->removeBlock($block);
+        // Ajouter les nouveaux éléments avec position
+        foreach ($elements as $elementData) {
+            $element = $this->hydrateElementFromData($elementData);
+            $zone->addElement($element);
         }
 
-        // Add new blocks
-        foreach ($blocks as $blockData) {
-            $block = $this->hydrateBlockFromDataStructure($blockData);
-            $zone->addBlock($block);
-        }
-
+        // Sauvegarder la zone avec les éléments mis à jour
         $this->zoneRepository->save($zone);
     }
 
-    private function hydrateBlockFromDataStructure(array $data): BlockInterface
+    /**
+     * Récupère une zone spécifique par son ID
+     */
+    public function getZoneById(string $id): ?Zone
     {
-        $block = $this->entityFactory->createBlock($data);
-        // Hydrater les champs du bloc
-        foreach ($data['fields'] as $fieldData) {
-            $field = $this->entityFactory->createField($fieldData);
-            $block->addField($field);
+        return $this->zoneRepository->findById($id);  // Utilise la méthode findById du repository
+    }
+
+    private function hydrateElementFromData(array $data): ElementInterface
+    {
+        $element = $this->entityFactory->createBlock($data); // Si c'est un bloc
+        if ($data['type'] === 'component') {
+            $element = $this->entityFactory->createComponent($data);
         }
 
-        return $block;
+        // Hydrater la position de l'élément
+        $element->setPosition($data['position']);
+
+        return $element;
     }
 }

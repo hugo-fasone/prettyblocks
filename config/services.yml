@@ -1,59 +1,67 @@
+doctrine:
+  orm:
+    mappings:
+      PrettyBlocks:
+        type: annotation
+        dir: '%kernel.project_dir%/modules/prettyblocks/src/Entity'
+        prefix: 'PrestaSafe\PrettyBlocks\Entity'
+        is_bundle: false
+
 services:
   _defaults:
     public: true
     autoconfigure: true
     autowire: true
 
-  # Registry pour enregistrer dynamiquement les types d'entités
-  prestasafe.prettyblocks.registry.entity_registry:
-    class: PrestaSafe\PrettyBlocks\Registry\EntityRegistry
+  # Registry for dynamically registering entity types
+  PrestaSafe\PrettyBlocks\Registry\ElementRegistry:
+    class: PrestaSafe\PrettyBlocks\Registry\ElementRegistry
 
-  # Factory pour la création dynamique des entités
-  prestasafe.prettyblocks.factory.entity_factory:
+  # Factory for dynamic entity creation
+  PrestaSafe\PrettyBlocks\Factory\EntityFactory:
     class: PrestaSafe\PrettyBlocks\Factory\EntityFactory
     arguments:
-      - '@prestasafe.prettyblocks.registry.entity_registry'
+      - '@PrestaSafe\PrettyBlocks\Registry\ElementRegistry'
 
-  # Repositories Doctrine
-  prestasafe.prettyblocks.repository.block_repository:
+  # Doctrine Repositories
+  PrestaSafe\PrettyBlocks\Repository\BlockRepository:
     class: PrestaSafe\PrettyBlocks\Repository\BlockRepository
-    factory: [ '@doctrine', getRepository ]
+    factory: [ '@doctrine.orm.entity_manager', getRepository ]
     arguments:
       -
         $persistentObject: PrestaSafe\PrettyBlocks\Entity\Block
 
-  prestasafe.prettyblocks.repository.component_repository:
+  PrestaSafe\PrettyBlocks\Repository\ComponentRepository:
     class: PrestaSafe\PrettyBlocks\Repository\ComponentRepository
-    factory: [ '@doctrine', getRepository ]
+    factory: [ '@doctrine.orm.entity_manager', getRepository ]
     arguments:
       -
         $persistentObject: PrestaSafe\PrettyBlocks\Entity\Component
 
-  prestasafe.prettyblocks.repository.primitive_field_repository:
+  PrestaSafe\PrettyBlocks\Repository\PrimitiveFieldRepository:
     class: PrestaSafe\PrettyBlocks\Repository\PrimitiveFieldRepository
-    factory: [ '@doctrine', getRepository ]
+    factory: [ '@doctrine.orm.entity_manager', getRepository ]
     arguments:
       -
         $persistentObject: PrestaSafe\PrettyBlocks\Entity\PrimitiveField
 
-  prestasafe.prettyblocks.repository.zone_repository:
+  PrestaSafe\PrettyBlocks\Repository\ZoneRepository:
     class: PrestaSafe\PrettyBlocks\Repository\ZoneRepository
-    factory: [ '@doctrine', getRepository ]
+    factory: [ '@doctrine.orm.entity_manager', getRepository ]
     arguments:
-      -
-        $persistentObject: PrestaSafe\PrettyBlocks\Entity\Zone
+      - 'PrestaSafe\PrettyBlocks\Entity\Zone'
 
-  # Service principal pour la gestion des zones
-  prestasafe.prettyblocks.service.zone_service:
+  # Main service for managing zones
+  PrestaSafe\PrettyBlocks\Service\ZoneService:
     class: PrestaSafe\PrettyBlocks\Service\ZoneService
     arguments:
-      - '@prestasafe.prettyblocks.repository.zone_repository'
-      - '@prestasafe.prettyblocks.factory.entity_factory'
+      - '@PrestaSafe\PrettyBlocks\Repository\ZoneRepository'
+      - '@doctrine.orm.entity_manager'
 
-  # Contrôleurs API
-  prestasafe.prettyblocks.controller.zone_controller:
+  # API Controllers
+  PrestaSafe\PrettyBlocks\Controller\Api\ZoneController:
     class: PrestaSafe\PrettyBlocks\Controller\Api\ZoneController
     arguments:
-      - '@prestasafe.prettyblocks.service.zone_service'
+      - '@PrestaSafe\PrettyBlocks\Service\ZoneService'
     tags:
       - { name: controller.service_arguments }

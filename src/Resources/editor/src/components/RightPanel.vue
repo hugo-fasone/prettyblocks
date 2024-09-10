@@ -1,5 +1,5 @@
 <script setup>
-import { defineComponent, onMounted, ref, reactive } from 'vue'
+import {defineComponent, ref} from 'vue'
 import Select from './form/Select.vue'
 import SimpleSelect from './form/SimpleSelect.vue'
 import HeaderDropdown from './HeaderDropdown.vue'
@@ -12,19 +12,19 @@ import Button from './Button.vue'
 import FileUpload from './form/FileUpload.vue'
 import Icon from './Icon.vue'
 import PanelThemeSettings from './PanelThemeSettings.vue'
-import { useStore } from '../store/currentBlock'
+import {useStore} from '../store/currentBlock'
 import emitter from 'tiny-emitter/instance'
 
 import Loader from './Loader.vue'
 import Modal from './Modal.vue'
 import Accordion from './Accordion.vue'
-import { createToaster } from "@meforma/vue-toaster";
-import { v4 as uuidv4 } from 'uuid'
+import {createToaster} from "@meforma/vue-toaster";
+import {v4 as uuidv4} from 'uuid'
 import Editor from '@tinymce/tinymce-vue';
 import Block from '../scripts/block'
 import ColorInput from 'vue-color-input'
 import FieldRepeater from './FieldRepeater.vue'
-import { trans } from '../scripts/trans'
+import {trans} from '../scripts/trans'
 
 const toaster = createToaster({
   position: 'top',

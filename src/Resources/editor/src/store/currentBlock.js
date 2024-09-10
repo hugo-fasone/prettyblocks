@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'
+import {defineStore} from 'pinia'
 
 export const useStore = defineStore('currentblock', {
   state: () => {
@@ -8,7 +8,7 @@ export const useStore = defineStore('currentblock', {
       code: null,
       subSelected: null,
       need_reload: true
-      
+
     }
   }
 })
@@ -29,7 +29,7 @@ export const contextShop = defineStore('contextStore', {
       shop_name: null,
       current_url: null,
       href: null,
-    } 
+    }
   },
   actions: {
     async getContext() {

@@ -1,12 +1,12 @@
-import { ComponentContent, FieldContent } from "../entities/ComponentContent";
+import {ComponentContent, FieldContent} from "../entities/ComponentContent";
 
-import type { BlockContent } from "../entities/BlockContent";
-import { CannotFindComponentError } from "../errors/CannotFindComponentError";
-import { OperationNotAllowedError } from "../errors/OperationNotAllowedError";
-import { Repeater } from "../entities/Repeater";
-import { createTestingPinia } from "@pinia/testing";
-import { setActivePinia } from "pinia";
-import { useZoneStore } from "../store/zoneStore";
+import type {BlockContent} from "../entities/BlockContent";
+import {CannotFindComponentError} from "../errors/CannotFindComponentError";
+import {OperationNotAllowedError} from "../errors/OperationNotAllowedError";
+import {Repeater} from "../entities/Repeater";
+import {createTestingPinia} from "@pinia/testing";
+import {setActivePinia} from "pinia";
+import {useZoneStore} from "../store/zoneStore";
 
 const emptyBlockContent1: BlockContent = {
   id: "empty_block_content_1",

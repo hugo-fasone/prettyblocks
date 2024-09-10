@@ -14,7 +14,7 @@ export class toolbar {
         .substr(2, 9);
       element.setAttribute("data-id-title", id);
 
-      let dataAttributesString = element.dataset.attributes; 
+      let dataAttributesString = element.dataset.attributes;
       const attrObject = JSON.parse(dataAttributesString);
 
       this.arr.push({
@@ -106,7 +106,7 @@ export class toolbar {
           id: t.id,
           focus: t.focus,
           tag: this.select.value,
-          classes: Array.from(e.classList), 
+          classes: Array.from(e.classList),
           inside: t.inside,
           bold: t.bold,
           italic: t.italic,
@@ -156,7 +156,7 @@ export class toolbar {
             id: t.id,
             focus: t.focus,
             tag: this.select.value,
-            classes: Array.from(e.classList), 
+            classes: Array.from(e.classList),
             inside: t.inside,
             bold: t.bold,
             italic: t.italic,
@@ -178,7 +178,7 @@ export class toolbar {
             id: t.id,
             focus: t.focus,
             tag: this.select.value,
-            classes: Array.from(e.classList), 
+            classes: Array.from(e.classList),
             inside: t.inside,
             bold: t.bold,
             italic: t.italic,
@@ -208,7 +208,7 @@ export class toolbar {
             id: t.id,
             focus: t.focus,
             tag: this.select.value,
-            classes: Array.from(e.classList), 
+            classes: Array.from(e.classList),
             inside: t.inside,
             bold: t.bold,
             italic: t.italic,
@@ -243,7 +243,7 @@ export class toolbar {
             focus: t.focus,
             inside: t.inside,
             tag: this.select.value,
-            classes: Array.from(e.classList), 
+            classes: Array.from(e.classList),
             bold: t.bold,
             italic: t.italic,
             underline: t.underline,
@@ -298,11 +298,11 @@ export class toolbar {
   getAttributeValue(attrObject, attributeName) {
     return attrObject.hasOwnProperty(attributeName) ? attrObject[attributeName] : false;
   }
-  
+
   setAttributeValue(element, attributeName, newValue) {
     let attrString = element.getAttribute('data-attributes');
     let attrObject = null;
-    attrObject = JSON.parse(attrString);  
+    attrObject = JSON.parse(attrString);
     if (attrObject && attrObject.hasOwnProperty(attributeName)) {
         attrObject[attributeName] = newValue;
     } else {
@@ -310,7 +310,7 @@ export class toolbar {
     }
     // console.log('OK', attrObject)
     element.setAttribute('data-attributes', JSON.stringify(attrObject || {}));
-    
+
   }
 
 
@@ -386,7 +386,7 @@ export class toolbar {
               e === this ||
               e.parentNode === this.toolbar)
           ) {
-            return;
+
           } else if (!focus) {
             this.toolbar.style.display = "none";
           }
@@ -464,12 +464,12 @@ export class toolbar {
 
   change(lastValue, newValue) {
     lastValue.html = newValue.html;
-    lastValue.value = newValue.value;  
-    lastValue.classes = newValue.classes;  
-    lastValue.bold = newValue.bold;  
+    lastValue.value = newValue.value;
+    lastValue.classes = newValue.classes;
+    lastValue.bold = newValue.bold;
     lastValue.italic = newValue.italic;
     lastValue.underline = newValue.underline;
-    
+
     lastValue.size = newValue.size;
     this.trigger("change", lastValue, newValue);
   }

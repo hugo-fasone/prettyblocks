@@ -1,6 +1,6 @@
-import { BlockContent } from "../entities/BlockContent";
-import { BlockStructure } from "../entities/BlockStructure";
-import { buildNewBlockContentFromBlockStructure } from "../utils/builder";
+import {BlockContent} from "../entities/BlockContent";
+import {BlockStructure} from "../entities/BlockStructure";
+import {buildNewBlockContentFromBlockStructure} from "../utils/builder";
 // import { buildNewBlockContentFromBlockStructure } from "../utils/builder";
 
 export const addBlock = (zoneStore, blockId: string) => {

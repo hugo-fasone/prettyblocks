@@ -40,12 +40,12 @@
 </template>
 
 <script setup>
-import { computed, defineEmits } from "vue";
-import { useStore } from "../store/currentBlock";
+import {computed, defineEmits} from "vue";
+import {useStore} from "../store/currentBlock";
 import ButtonLight from "./ButtonLight.vue";
 import Collapsable from "./Collapsable.vue";
 import Icon from "./Icon.vue";
-import { trans } from "../scripts/trans";
+import {trans} from "../scripts/trans";
 
 const props = defineProps({
   element: Object,

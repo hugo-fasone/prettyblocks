@@ -1,34 +1,21 @@
 <script setup>
-import {
-  ref,
-  onMounted,
-  defineComponent,
-  onBeforeUnmount,
-  computed,
-  watchEffect,
-  watch,
-} from "vue";
+import {defineComponent, ref,} from "vue";
 import SortableList from "./SortableList.vue";
 import MenuGroup from "./MenuGroup.vue";
 import MenuItem from "./MenuItem.vue";
 import LeftPanelItem from "./LeftPanelItem.vue";
 import ButtonLight from "./ButtonLight.vue";
 import Button from "./Button.vue";
-import { HttpClient } from "../services/HttpClient";
-import Block from "../scripts/block";
+import {HttpClient} from "../services/HttpClient";
 import ZoneSelect from "./form/ZoneSelect.vue";
 /* Demo data */
 // import { v4 as uuidv4 } from 'uuid'
 import emitter from "tiny-emitter/instance";
-import {
-  useStore,
-  currentZone,
-  contextShop,
-  storedBlocks,
-} from "../store/currentBlock";
-import { trans } from "../scripts/trans";
+import {contextShop, currentZone, storedBlocks, useStore,} from "../store/currentBlock";
+import {trans} from "../scripts/trans";
 
-import { createToaster } from "@meforma/vue-toaster";
+import {createToaster} from "@meforma/vue-toaster";
+
 const toaster = createToaster({
   position: "top",
 });

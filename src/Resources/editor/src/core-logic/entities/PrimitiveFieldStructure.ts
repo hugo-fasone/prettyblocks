@@ -1,5 +1,5 @@
-import { PrimitiveFieldContentMap } from "./PrimitiveFieldContent";
-import { PrimitiveFieldType } from "./ElementType";
+import {PrimitiveFieldContentMap} from "./PrimitiveFieldContent";
+import {PrimitiveFieldType} from "./ElementType";
 
 export type PrimitiveFieldStructure<T extends PrimitiveFieldType> = {
   id: string;

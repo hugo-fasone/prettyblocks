@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace PrestaSafe\PrettyBlocks\Controller\Api;
 
-use PrestaSafe\PrettyBlocks\Registry\EntityRegistry;
+use PrestaSafe\PrettyBlocks\Registry\ElementRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class BlockController extends AbstractController
 {
-    protected EntityRegistry $entityRegistry;
+    protected ElementRegistry $entityRegistry;
 
-    public function __construct(EntityRegistry $entityRegistry)
+    public function __construct(ElementRegistry $entityRegistry)
     {
         $this->entityRegistry = $entityRegistry;
     }
@@ -22,7 +22,7 @@ class BlockController extends AbstractController
      */
     public function listBlocks(): JsonResponse
     {
-        $this->entityRegistry->getAvailableBlockTypes();
+        $this->entityRegistry->getRegisteredBlocks();
     }
 
 }

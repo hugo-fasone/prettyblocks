@@ -1,9 +1,9 @@
 <script setup>
-import { reactive, watch } from "vue"
-import { HttpClient }  from '../services/HttpClient.js'
+import {reactive, watch} from "vue"
+import {HttpClient} from '../services/HttpClient.js'
 
-import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue'
-import { ChevronDownIcon } from '@heroicons/vue/24/solid'
+import {Popover, PopoverButton, PopoverPanel} from '@headlessui/vue'
+import {ChevronDownIcon} from '@heroicons/vue/24/solid'
 import Input from './form/Input.vue';
 
 const props = defineProps({

@@ -1,15 +1,11 @@
 <?php
-
 declare(strict_types=1);
 
 namespace PrestaSafe\PrettyBlocks\Entity;
 
-namespace PrestaSafe\PrettyBlocks\Entity;
-
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use PrestaSafe\PrettyBlocks\Entity\Block\BlockInterface;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="PrestaSafe\PrettyBlocks\Repository\ZoneRepository")
@@ -21,54 +17,78 @@ class Zone
      * @ORM\Id
      * @ORM\Column(type="string")
      */
-    private $id;
+    private string $id;
 
     /**
      * @ORM\Column(type="string")
      */
-    private $label;
+    private string $label;
 
     /**
-     * @ORM\OneToMany(targetEntity="PrestaSafe\PrettyBlocks\Entity\Block\BlockInterface", mappedBy="zone", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="Element", mappedBy="zone", cascade={"persist", "remove"})
      */
-    private $blocks;
+    private Collection $elements;
 
     public function __construct(string $id, string $label)
     {
         $this->id = $id;
         $this->label = $label;
-        $this->blocks = new ArrayCollection();
+        $this->elements = new ArrayCollection();
     }
 
+    /**
+     * Return the ID of the zone
+     */
     public function getId(): string
     {
         return $this->id;
     }
 
+    /**
+     * Return the label of the zone
+     */
     public function getLabel(): string
     {
         return $this->label;
     }
 
-    public function getBlocks(): Collection
+    /**
+     * Return the collection of elements in the zone
+     */
+    public function getElements(): Collection
     {
-        return $this->blocks;
+        return $this->elements;
     }
 
-    public function addBlock(BlockInterface $block): void
+    /**
+     * Add an element to the zone
+     */
+    public function addElement(ElementInterface $element): void
     {
-        if (!$this->blocks->contains($block)) {
-            $this->blocks[] = $block;
-            $block->setZone($this);
+        if (false === $this->elements->contains($element)) {
+            $this->elements->add($element);
+            $element->setZone($this);
         }
     }
 
-    public function removeBlock(BlockInterface $block): void
+    /**
+     * Remove an element from the zone
+     */
+    public function removeElement(ElementInterface $element): void
     {
-        if ($this->blocks->contains($block)) {
-            $this->blocks->removeElement($block);
-            // set the owning side to null
-            $block->setZone(null);
+        if (true === $this->elements->contains($element)) {
+            $this->elements->removeElement($element);
+            $element->setZone(null);
+        }
+    }
+
+    /**
+     * Remove all elements from the zone
+     */
+    public function removeAllElements(): void
+    {
+        foreach ($this->elements as $element) {
+            $this->removeElement($element);
         }
     }
 }
