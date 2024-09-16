@@ -31,15 +31,14 @@ use Evolutive\Library\Install\AbstractInstaller;
 use Evolutive\Library\Tab\TabCollection;
 use Exception;
 use Module;
+use PrestaSafe\PrettyBlocks\Doctrine\DynamicDiscriminatorMapService;
 use PrestaSafe\PrettyBlocks\Entity\Block\TextBlock;
 use PrestaSafe\PrettyBlocks\Entity\Component\TextComponent;
 use PrestaSafe\PrettyBlocks\Entity\PrimitiveField\NumberField;
 use PrestaSafe\PrettyBlocks\Entity\PrimitiveField\TextField;
 use PrestaSafe\PrettyBlocks\Entity\Zone;
 use PrestaSafe\PrettyBlocks\Registry\ElementRegistry;
-use PrestaSafe\PrettyBlocks\Service\DynamicDiscriminatorMapService;
 use PrestaShop\PrestaShop\Adapter\SymfonyContainer;
-use PrestaShop\PrestaShop\Core\Module\ModuleInterface;
 use PrestaShopBundle\Translation\TranslatorInterface;
 
 class Installer extends AbstractInstaller
@@ -86,6 +85,7 @@ class Installer extends AbstractInstaller
         $this->registerDoctrineNamespace();
         $this->registerInitialElements();
         $this->dynamicDiscriminatorMapService->updateDiscriminatorMap();
+
         return $this->installSchema($module) && parent::install($module);
     }
 
@@ -100,6 +100,8 @@ class Installer extends AbstractInstaller
     protected function installSchema(Module $module): bool
     {
         $entityManager = $this->getEntityManager();
+        $eventManager = $entityManager->getEventManager();
+        $listeners = $eventManager->getListeners();
 
         $tool = new SchemaTool($entityManager);
 
@@ -115,6 +117,7 @@ class Installer extends AbstractInstaller
             $tool->createSchema($filteredMetadata);
         } catch (Exception $e) {
             $module->displayError($e->getMessage());
+
             return false;
         }
 
@@ -132,7 +135,6 @@ class Installer extends AbstractInstaller
         );
 
         ($config->getMetadataDriverImpl())->addDriver($annotationDriver, 'PrestaSafe\PrettyBlocks\Entity');
-
     }
 
     public function getClasses(EntityManager $entityManager): array
@@ -161,11 +163,12 @@ class Installer extends AbstractInstaller
             $tool->dropSchema($classes);
         } catch (Exception $e) {
             $module->displayError($e->getMessage());
+
             return false;
         }
+
         return true;
     }
-
 
     public function updateDoctrineSchemaWithNewBlocks(): void
     {

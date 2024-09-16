@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace PrestaSafe\PrettyBlocks\Service;
+namespace PrestaSafe\PrettyBlocks\Doctrine;
 
 use Doctrine\ORM\EntityManagerInterface;
 use PrestaSafe\PrettyBlocks\Entity\Element;
